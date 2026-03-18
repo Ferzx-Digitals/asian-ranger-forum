@@ -7,7 +7,7 @@ const stats = [
 
 const StatsBar = () => {
   return (
-    <section className="relative z-50 -mt-16 py-6 px-4">
+    <section className="relative z-50 -mt-8 py-6 px-4">
       <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center">
