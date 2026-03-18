@@ -32,11 +32,11 @@ const ParallaxHero = () => {
     };
   }, []);
 
-  const backShift = -90 * progress;
-  const midShift = -170 * progress;
-  const frontShift = -250 * progress;
-  const titleShift = 120 * progress;
-  const titleOpacity = clamp(1 - progress * 1.1, 0, 1);
+  const backShift = -50 * progress;
+  const midShift = -115 * progress;
+  const frontShift = -175 * progress;
+  const titleShift = 82 * progress;
+  const titleOpacity = clamp(1 - progress * 1.05, 0, 1);
 
   return (
     <section
@@ -49,7 +49,7 @@ const ParallaxHero = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,hsl(43_72%_52%_/_0.26),transparent_28%),linear-gradient(to_bottom,hsl(35_55%_78%_/_0.88),transparent_58%)]" />
 
         <div
-          className="absolute inset-x-0 top-[15vh] z-[12] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[22vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleShift}px, 0)`,
             opacity: titleOpacity,
@@ -58,7 +58,7 @@ const ParallaxHero = () => {
           <p className="font-body mb-4 text-sm font-semibold uppercase tracking-[0.38em] text-secondary md:text-base">
             Thimphu, Bhutan
           </p>
-          <h1 className="font-display text-primary text-4xl font-bold leading-[0.95] md:text-6xl lg:text-8xl">
+          <h1 className="font-display text-primary text-5xl font-bold leading-[0.95] md:text-7xl lg:text-[7rem]">
             2<sup className="text-[0.55em]">nd</sup> Asian Ranger
             <br />
             Congress 2026
@@ -75,8 +75,7 @@ const ParallaxHero = () => {
           </p>
         </div>
 
-        {/* Back mountains - BEHIND text (z-8) */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-[52vh] overflow-hidden md:h-[56vh]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[16vh] z-[8] h-[28vh] overflow-hidden md:bottom-[18vh] md:h-[30vh]">
           <img
             src={mountainBack}
             alt=""
@@ -85,8 +84,7 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* Mid mountains - IN FRONT of text (z-18) */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-[-1vh] z-[18] h-[60vh] overflow-hidden md:h-[64vh]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[7vh] z-[18] h-[36vh] overflow-hidden md:bottom-[8vh] md:h-[40vh]">
           <img
             src={mountainMid}
             alt=""
@@ -98,20 +96,19 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* Front mountains - IN FRONT of text (z-28) */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-[-3vh] z-[28] h-[72vh] overflow-hidden md:h-[76vh]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[-4vh] z-[28] h-[44vh] overflow-hidden md:h-[50vh]">
           <img
             src={mountainFront}
             alt=""
             className="h-full w-full object-cover object-bottom will-change-transform"
             style={{
               transform: `translate3d(0, ${frontShift}px, 0) scale(1.16)`,
-              filter: "brightness(0.7) saturate(0.8)",
+              filter: "brightness(0.72) saturate(0.82)",
             }}
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-40 h-28 bg-gradient-to-t from-background via-background/85 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 z-40 h-24 bg-gradient-to-t from-background via-background/85 to-transparent" />
       </div>
     </section>
   );
