@@ -40,7 +40,7 @@ const ParallaxHero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative h-[125vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] via-60% to-[hsl(var(--muted))]"
+      className="relative h-[125vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] via-60% to-[hsl(48,60%,97%)]"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Warm sky gradient */}
@@ -134,8 +134,6 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* Bottom fade to blend into content */}
-        <div className="absolute inset-x-0 bottom-0 z-[35] h-32 bg-gradient-to-b from-transparent via-[hsl(var(--muted))] to-[hsl(var(--muted))]" />
       </div>
     </section>
   );
