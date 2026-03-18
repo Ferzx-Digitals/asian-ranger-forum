@@ -75,20 +75,22 @@ const ParallaxHero = () => {
           </p>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-[8] h-[52vh] overflow-hidden md:h-[56vh]">
+        {/* Back mountains - BEHIND text (z-8) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-[52vh] overflow-hidden md:h-[56vh]">
           <img
             src={mountainBack}
-            alt="Distant Himalayan mountain silhouettes behind the congress title"
-            className="h-full w-full object-cover object-bottom opacity-55 mix-blend-multiply will-change-transform"
+            alt=""
+            className="h-full w-full object-cover object-bottom opacity-55 will-change-transform"
             style={{ transform: `translate3d(0, ${backShift}px, 0) scale(1.08)` }}
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-[-1vh] z-[18] h-[60vh] overflow-hidden md:h-[64vh]">
+        {/* Mid mountains - IN FRONT of text (z-18) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-[-1vh] z-[18] h-[60vh] overflow-hidden md:h-[64vh]">
           <img
             src={mountainMid}
-            alt="Forested Himalayan ridgelines layered in mist"
-            className="h-full w-full object-cover object-bottom mix-blend-multiply will-change-transform"
+            alt=""
+            className="h-full w-full object-cover object-bottom will-change-transform"
             style={{
               transform: `translate3d(0, ${midShift}px, 0) scale(1.12)`,
               filter: "brightness(0.9) saturate(0.85)",
@@ -96,11 +98,12 @@ const ParallaxHero = () => {
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-[-3vh] z-[28] h-[72vh] overflow-hidden md:h-[76vh]">
+        {/* Front mountains - IN FRONT of text (z-28) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-[-3vh] z-[28] h-[72vh] overflow-hidden md:h-[76vh]">
           <img
             src={mountainFront}
-            alt="Foreground Bhutanese mountain ridges framing the landing page"
-            className="h-full w-full object-cover object-bottom mix-blend-multiply will-change-transform"
+            alt=""
+            className="h-full w-full object-cover object-bottom will-change-transform"
             style={{
               transform: `translate3d(0, ${frontShift}px, 0) scale(1.16)`,
               filter: "brightness(0.7) saturate(0.8)",
