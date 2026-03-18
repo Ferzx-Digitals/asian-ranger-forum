@@ -105,7 +105,7 @@ const ParallaxHero = () => {
       {/* Front mountains - fastest */}
       <div
         className="absolute bottom-0 left-0 w-full z-30 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.6}px)` }}
+        style={{ transform: `translateY(${clampedOffset * -0.25}px)` }}
       >
         <img
           src={mountainFront}
