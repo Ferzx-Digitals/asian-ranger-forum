@@ -13,101 +13,129 @@ const ParallaxHero = () => {
   useEffect(() => {
     const updateProgress = () => {
       if (!heroRef.current) return;
-
       const rect = heroRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const scrollRange = Math.max(rect.height - viewportHeight, 1);
-      const nextProgress = clamp(-rect.top / scrollRange, 0, 1);
-
-      setProgress(nextProgress);
+      setProgress(clamp(-rect.top / scrollRange, 0, 1));
     };
 
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("resize", updateProgress);
-
     return () => {
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
     };
   }, []);
 
-  const backShift = -70 * progress;
-  const midShift = -140 * progress;
-  const frontShift = -210 * progress;
-  const titleShift = 115 * progress;
-  const titleOpacity = clamp(1 - progress * 0.95, 0, 1);
+  // Title moves DOWN as you scroll (gets swallowed by rising mountains)
+  const titleY = 160 * progress;
+  const titleOpacity = clamp(1 - progress * 1.2, 0, 1);
+
+  // Mountains rise UP as you scroll (negative = upward). Back moves least, front moves most.
+  const backY = -120 * progress;
+  const midY = -220 * progress;
+  const frontY = -320 * progress;
 
   return (
     <section
       ref={heroRef}
-      className="relative h-[180vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] to-background"
+      className="relative h-[200vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] to-background"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="absolute inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,hsl(43_72%_52%_/_0.26),transparent_28%),linear-gradient(to_bottom,hsl(35_55%_78%_/_0.88),transparent_58%)]" />
+        {/* Warm sky gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,hsl(43_72%_52%_/_0.22),transparent_50%)]" />
 
+        {/* Prayer flag accent line */}
+        <div className="absolute inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
+
+        {/* TITLE — starts at 12% from top, fully in the sky */}
         <div
-          className="absolute inset-x-0 top-[28vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[12vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
-            transform: `translate3d(0, ${titleShift}px, 0)`,
+            transform: `translate3d(0, ${titleY}px, 0)`,
             opacity: titleOpacity,
           }}
         >
-          <p className="font-body mb-4 text-sm font-semibold uppercase tracking-[0.38em] text-secondary md:text-base">
+          <p className="font-body mb-3 text-sm font-semibold uppercase tracking-[0.38em] text-secondary md:text-base">
             Thimphu, Bhutan
           </p>
-          <h1 className="font-display text-primary text-5xl font-bold leading-[0.95] md:text-7xl lg:text-[7rem]">
+          <h1 className="font-display text-primary text-4xl font-bold leading-[0.95] md:text-6xl lg:text-[6.5rem]">
             2<sup className="text-[0.55em]">nd</sup> Asian Ranger
             <br />
             Congress 2026
           </h1>
-          <div className="mt-5 flex items-center gap-3 md:mt-6">
+          <div className="mt-4 flex items-center gap-3 md:mt-5">
             <div className="h-px w-10 bg-secondary md:w-14" />
-            <p className="font-display text-secondary text-xl font-semibold tracking-wide md:text-3xl">
+            <p className="font-display text-secondary text-lg font-semibold tracking-wide md:text-2xl">
               1 — 5 December
             </p>
             <div className="h-px w-10 bg-secondary md:w-14" />
           </div>
-          <p className="font-body mt-4 text-xs uppercase tracking-[0.35em] text-muted-foreground md:text-sm">
+          <p className="font-body mt-3 text-xs uppercase tracking-[0.35em] text-muted-foreground md:text-sm">
             Land of the Thunder Dragon
           </p>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[26vh] z-[8] h-[38vh] overflow-hidden md:h-[42vh]">
+        {/* BACK mountains — starts at bottom 22vh, behind text */}
+        <div
+          className="pointer-events-none absolute inset-x-0 z-[8] will-change-transform"
+          style={{
+            bottom: "-10vh",
+            height: "42vh",
+            transform: `translate3d(0, ${backY}px, 0)`,
+          }}
+        >
           <img
             src={mountainBack}
             alt=""
-            className="h-full w-full object-cover object-bottom opacity-55 will-change-transform"
-            style={{ transform: `translate3d(0, ${backShift}px, 0) scale(1.1)` }}
+            className="h-full w-full object-cover object-top opacity-50"
+            style={{ transform: "scale(1.15)" }}
           />
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[10vh] z-[18] h-[54vh] overflow-hidden md:h-[58vh]">
+        {/* MID mountains — starts just below bottom edge, in front of text */}
+        <div
+          className="pointer-events-none absolute inset-x-0 z-[18] will-change-transform"
+          style={{
+            bottom: "-28vh",
+            height: "52vh",
+            transform: `translate3d(0, ${midY}px, 0)`,
+          }}
+        >
           <img
             src={mountainMid}
             alt=""
-            className="h-full w-full object-cover object-bottom will-change-transform"
+            className="h-full w-full object-cover object-top will-change-transform"
             style={{
-              transform: `translate3d(0, ${midShift}px, 0) scale(1.14)`,
+              transform: "scale(1.18)",
               filter: "brightness(0.9) saturate(0.85)",
             }}
           />
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[-6vh] z-[28] h-[72vh] overflow-hidden md:h-[78vh]">
+        {/* FRONT mountains — starts well below bottom, in front of everything */}
+        <div
+          className="pointer-events-none absolute inset-x-0 z-[28] will-change-transform"
+          style={{
+            bottom: "-48vh",
+            height: "62vh",
+            transform: `translate3d(0, ${frontY}px, 0)`,
+          }}
+        >
           <img
             src={mountainFront}
             alt=""
-            className="h-full w-full object-cover object-bottom will-change-transform"
+            className="h-full w-full object-cover object-top will-change-transform"
             style={{
-              transform: `translate3d(0, ${frontShift}px, 0) scale(1.18)`,
+              transform: "scale(1.2)",
               filter: "brightness(0.72) saturate(0.82)",
             }}
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-40 h-24 bg-gradient-to-t from-background via-background/85 to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 z-40 h-20 bg-gradient-to-t from-background to-transparent" />
       </div>
     </section>
   );
