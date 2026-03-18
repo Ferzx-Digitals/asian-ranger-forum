@@ -135,7 +135,7 @@ const ParallaxHero = () => {
         </div>
 
         {/* Bottom fade to blend into content */}
-        <div className="absolute inset-x-0 bottom-0 z-[35] h-32 bg-gradient-to-b from-transparent to-background" />
+        <div className="absolute inset-x-0 bottom-0 z-[35] h-32 bg-gradient-to-b from-transparent via-[hsl(var(--muted))] to-[hsl(var(--muted))]" />
       </div>
     </section>
   );
