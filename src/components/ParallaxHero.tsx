@@ -54,7 +54,7 @@ const ParallaxHero = () => {
       {/* Back mountains - slowest */}
       <div
         className="absolute bottom-0 left-0 w-full will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.1}px)` }}
+        style={{ transform: `translateY(${clampedOffset * -0.05}px)` }}
       >
         <img
           src={mountainBack}
