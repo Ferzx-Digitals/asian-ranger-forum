@@ -118,7 +118,7 @@ const ParallaxHero = () => {
         <div
           className="pointer-events-none absolute inset-x-0 z-[28] will-change-transform"
           style={{
-            bottom: "-2vh",
+            bottom: "-7vh",
             height: "58vh",
             transform: `translate3d(0, ${frontY}px, 0)`,
           }}
