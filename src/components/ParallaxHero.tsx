@@ -49,9 +49,9 @@ const ParallaxHero = () => {
         {/* Prayer flag accent line */}
         <div className="absolute inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
 
-        {/* TITLE — starts at 12% from top, fully in the sky */}
+        {/* TITLE — starts close to the ridge line */}
         <div
-          className="absolute inset-x-0 top-[12vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[10vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleY}px, 0)`,
             opacity: titleOpacity,
@@ -77,12 +77,12 @@ const ParallaxHero = () => {
           </p>
         </div>
 
-        {/* BACK mountains — starts at bottom 22vh, behind text */}
+        {/* BACK mountains — higher on load, behind text */}
         <div
           className="pointer-events-none absolute inset-x-0 z-[8] will-change-transform"
           style={{
-            bottom: "-10vh",
-            height: "42vh",
+            bottom: "4vh",
+            height: "34vh",
             transform: `translate3d(0, ${backY}px, 0)`,
           }}
         >
@@ -94,12 +94,12 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* MID mountains — starts just below bottom edge, in front of text */}
+        {/* MID mountains — starts just under the title baseline */}
         <div
           className="pointer-events-none absolute inset-x-0 z-[18] will-change-transform"
           style={{
-            bottom: "-28vh",
-            height: "52vh",
+            bottom: "-6vh",
+            height: "46vh",
             transform: `translate3d(0, ${midY}px, 0)`,
           }}
         >
@@ -114,12 +114,12 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* FRONT mountains — starts well below bottom, in front of everything */}
+        {/* FRONT mountains — close foreground */}
         <div
           className="pointer-events-none absolute inset-x-0 z-[28] will-change-transform"
           style={{
-            bottom: "-48vh",
-            height: "62vh",
+            bottom: "-22vh",
+            height: "56vh",
             transform: `translate3d(0, ${frontY}px, 0)`,
           }}
         >
