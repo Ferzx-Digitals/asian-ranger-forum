@@ -51,7 +51,7 @@ const ParallaxHero = () => {
 
         {/* TITLE — starts close to the ridge line */}
         <div
-          className="absolute inset-x-0 top-[10vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[20vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleY}px, 0)`,
             opacity: titleOpacity,
