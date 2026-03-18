@@ -32,24 +32,23 @@ const ParallaxHero = () => {
     };
   }, []);
 
-  const backShift = -50 * progress;
-  const midShift = -115 * progress;
-  const frontShift = -175 * progress;
-  const titleShift = 82 * progress;
-  const titleOpacity = clamp(1 - progress * 1.05, 0, 1);
+  const backShift = -70 * progress;
+  const midShift = -140 * progress;
+  const frontShift = -210 * progress;
+  const titleShift = 115 * progress;
+  const titleOpacity = clamp(1 - progress * 0.95, 0, 1);
 
   return (
     <section
       ref={heroRef}
-      className="relative h-[190vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] to-background"
+      className="relative h-[180vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] to-background"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="absolute inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
-
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,hsl(43_72%_52%_/_0.26),transparent_28%),linear-gradient(to_bottom,hsl(35_55%_78%_/_0.88),transparent_58%)]" />
 
         <div
-          className="absolute inset-x-0 top-[22vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[28vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleShift}px, 0)`,
             opacity: titleOpacity,
@@ -75,34 +74,34 @@ const ParallaxHero = () => {
           </p>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[16vh] z-[8] h-[28vh] overflow-hidden md:bottom-[18vh] md:h-[30vh]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[26vh] z-[8] h-[38vh] overflow-hidden md:h-[42vh]">
           <img
             src={mountainBack}
             alt=""
             className="h-full w-full object-cover object-bottom opacity-55 will-change-transform"
-            style={{ transform: `translate3d(0, ${backShift}px, 0) scale(1.08)` }}
+            style={{ transform: `translate3d(0, ${backShift}px, 0) scale(1.1)` }}
           />
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[7vh] z-[18] h-[36vh] overflow-hidden md:bottom-[8vh] md:h-[40vh]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[10vh] z-[18] h-[54vh] overflow-hidden md:h-[58vh]">
           <img
             src={mountainMid}
             alt=""
             className="h-full w-full object-cover object-bottom will-change-transform"
             style={{
-              transform: `translate3d(0, ${midShift}px, 0) scale(1.12)`,
+              transform: `translate3d(0, ${midShift}px, 0) scale(1.14)`,
               filter: "brightness(0.9) saturate(0.85)",
             }}
           />
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[-4vh] z-[28] h-[44vh] overflow-hidden md:h-[50vh]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[-6vh] z-[28] h-[72vh] overflow-hidden md:h-[78vh]">
           <img
             src={mountainFront}
             alt=""
             className="h-full w-full object-cover object-bottom will-change-transform"
             style={{
-              transform: `translate3d(0, ${frontShift}px, 0) scale(1.16)`,
+              transform: `translate3d(0, ${frontShift}px, 0) scale(1.18)`,
               filter: "brightness(0.72) saturate(0.82)",
             }}
           />
