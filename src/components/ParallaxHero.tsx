@@ -4,16 +4,47 @@ import mountainMid from "@/assets/mountain-mid.png";
 import mountainFront from "@/assets/mountain-front.png";
 
 const ParallaxHero = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const [offset, setOffset] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        // How far the top of the hero has scrolled above the viewport top
+        setOffset(-rect.top);
+      }
     };
+
+    // Listen on window, document, and any scrollable parent
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("scroll", handleScroll, { passive: true, capture: true });
+
+    // Also try to find the scrollable parent
+    const findScrollParent = (el: HTMLElement | null): HTMLElement | null => {
+      if (!el) return null;
+      if (el.scrollHeight > el.clientHeight) return el;
+      return findScrollParent(el.parentElement);
+    };
+
+    const scrollParent = findScrollParent(heroRef.current);
+    if (scrollParent && scrollParent !== document.documentElement) {
+      scrollParent.addEventListener("scroll", handleScroll, { passive: true });
+    }
+
+    // Initial call
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll, { capture: true });
+      if (scrollParent && scrollParent !== document.documentElement) {
+        scrollParent.removeEventListener("scroll", handleScroll);
+      }
+    };
   }, []);
+
+  const clampedOffset = Math.max(0, offset);
 
   return (
     <div ref={heroRef} className="relative h-[120vh] overflow-hidden bg-gradient-to-b from-[hsl(35,40%,85%)] via-[hsl(40,50%,90%)] to-background">
@@ -22,8 +53,8 @@ const ParallaxHero = () => {
 
       {/* Back mountains - slowest */}
       <div
-        className="absolute bottom-0 left-0 w-full"
-        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        className="absolute bottom-0 left-0 w-full will-change-transform"
+        style={{ transform: `translateY(${clampedOffset * 0.1}px)` }}
       >
         <img
           src={mountainBack}
@@ -35,8 +66,8 @@ const ParallaxHero = () => {
 
       {/* Title - sits between mountain layers */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4"
-        style={{ transform: `translateY(${scrollY * 0.25}px)` }}
+        className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 will-change-transform"
+        style={{ transform: `translateY(${clampedOffset * 0.3}px)` }}
       >
         <p className="font-body text-sm md:text-base tracking-[0.4em] uppercase text-secondary mb-4 font-semibold">
           Thimphu, Bhutan
@@ -60,8 +91,8 @@ const ParallaxHero = () => {
 
       {/* Mid mountains */}
       <div
-        className="absolute bottom-0 left-0 w-full z-20"
-        style={{ transform: `translateY(${scrollY * 0.35}px)` }}
+        className="absolute bottom-0 left-0 w-full z-20 will-change-transform"
+        style={{ transform: `translateY(${clampedOffset * 0.4}px)` }}
       >
         <img
           src={mountainMid}
@@ -73,8 +104,8 @@ const ParallaxHero = () => {
 
       {/* Front mountains - fastest */}
       <div
-        className="absolute bottom-0 left-0 w-full z-30"
-        style={{ transform: `translateY(${scrollY * 0.55}px)` }}
+        className="absolute bottom-0 left-0 w-full z-30 will-change-transform"
+        style={{ transform: `translateY(${clampedOffset * 0.6}px)` }}
       >
         <img
           src={mountainFront}
