@@ -7,7 +7,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <ParallaxHero />
       <StatsBar />
-      <div className="max-w-3xl mx-auto px-4 py-8 text-center">
+      <div className="max-w-3xl mx-auto px-4 py-4 text-center">
         <p className="font-body text-base md:text-lg text-muted-foreground leading-relaxed">
           A landmark gathering of Asia's rangers, conservationists, and organisations dedicated to protecting the natural world — hosted in the heart of the Himalayas.
         </p>
