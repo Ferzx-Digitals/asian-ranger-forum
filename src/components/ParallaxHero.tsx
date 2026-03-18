@@ -54,7 +54,7 @@ const ParallaxHero = () => {
       {/* Back mountains - slowest */}
       <div
         className="absolute bottom-0 left-0 w-full will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.1}px)` }}
+        style={{ transform: `translateY(${clampedOffset * -0.05}px)` }}
       >
         <img
           src={mountainBack}
@@ -67,7 +67,7 @@ const ParallaxHero = () => {
       {/* Title - sits between mountain layers */}
       <div
         className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.3}px)` }}
+        style={{ transform: `translateY(${clampedOffset * 0.4}px)`, opacity: Math.max(0, 1 - clampedOffset / 600) }}
       >
         <p className="font-body text-sm md:text-base tracking-[0.4em] uppercase text-secondary mb-4 font-semibold">
           Thimphu, Bhutan
@@ -92,7 +92,7 @@ const ParallaxHero = () => {
       {/* Mid mountains */}
       <div
         className="absolute bottom-0 left-0 w-full z-20 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.4}px)` }}
+        style={{ transform: `translateY(${clampedOffset * -0.15}px)` }}
       >
         <img
           src={mountainMid}
@@ -105,7 +105,7 @@ const ParallaxHero = () => {
       {/* Front mountains - fastest */}
       <div
         className="absolute bottom-0 left-0 w-full z-30 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.6}px)` }}
+        style={{ transform: `translateY(${clampedOffset * -0.25}px)` }}
       >
         <img
           src={mountainFront}
