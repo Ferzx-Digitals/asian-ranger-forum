@@ -77,12 +77,12 @@ const ParallaxHero = () => {
           </p>
         </div>
 
-        {/* BACK mountains — higher on load, behind text */}
+        {/* BACK mountains — visible on load, right below title */}
         <div
           className="pointer-events-none absolute inset-x-0 z-[8] will-change-transform"
           style={{
-            bottom: "4vh",
-            height: "34vh",
+            bottom: "18vh",
+            height: "40vh",
             transform: `translate3d(0, ${backY}px, 0)`,
           }}
         >
@@ -94,12 +94,12 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* MID mountains — starts just under the title baseline */}
+        {/* MID mountains — partially visible on load */}
         <div
           className="pointer-events-none absolute inset-x-0 z-[18] will-change-transform"
           style={{
-            bottom: "-6vh",
-            height: "46vh",
+            bottom: "4vh",
+            height: "48vh",
             transform: `translate3d(0, ${midY}px, 0)`,
           }}
         >
@@ -114,12 +114,12 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* FRONT mountains — close foreground */}
+        {/* FRONT mountains — peeks at bottom on load */}
         <div
           className="pointer-events-none absolute inset-x-0 z-[28] will-change-transform"
           style={{
-            bottom: "-22vh",
-            height: "56vh",
+            bottom: "-12vh",
+            height: "58vh",
             transform: `translate3d(0, ${frontY}px, 0)`,
           }}
         >
