@@ -49,7 +49,7 @@ const ParallaxHero = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,hsl(43_72%_52%_/_0.26),transparent_28%),linear-gradient(to_bottom,hsl(35_55%_78%_/_0.88),transparent_58%)]" />
 
         <div
-          className="absolute inset-x-0 top-[15vh] z-10 flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[15vh] z-[12] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleShift}px, 0)`,
             opacity: titleOpacity,
