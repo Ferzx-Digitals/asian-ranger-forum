@@ -67,7 +67,7 @@ const ParallaxHero = () => {
       {/* Title - sits between mountain layers */}
       <div
         className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.3}px)` }}
+        style={{ transform: `translateY(${clampedOffset * 0.4}px)`, opacity: Math.max(0, 1 - clampedOffset / 600) }}
       >
         <p className="font-body text-sm md:text-base tracking-[0.4em] uppercase text-secondary mb-4 font-semibold">
           Thimphu, Bhutan
