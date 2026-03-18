@@ -3,121 +3,112 @@ import mountainBack from "@/assets/mountain-back.png";
 import mountainMid from "@/assets/mountain-mid.png";
 import mountainFront from "@/assets/mountain-front.png";
 
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
+
 const ParallaxHero = () => {
-  const [offset, setOffset] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        // How far the top of the hero has scrolled above the viewport top
-        setOffset(-rect.top);
-      }
+    const updateProgress = () => {
+      if (!heroRef.current) return;
+
+      const rect = heroRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const travel = rect.height - viewportHeight;
+      const nextProgress = travel > 0 ? clamp(-rect.top / travel, 0, 1) : 0;
+
+      setProgress(nextProgress);
     };
 
-    // Listen on window, document, and any scrollable parent
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    document.addEventListener("scroll", handleScroll, { passive: true, capture: true });
+    window.addEventListener("scroll", updateProgress, { passive: true, capture: true });
+    window.addEventListener("resize", updateProgress);
+    document.addEventListener("scroll", updateProgress, { passive: true, capture: true });
 
-    // Also try to find the scrollable parent
-    const findScrollParent = (el: HTMLElement | null): HTMLElement | null => {
-      if (!el) return null;
-      if (el.scrollHeight > el.clientHeight) return el;
-      return findScrollParent(el.parentElement);
-    };
-
-    const scrollParent = findScrollParent(heroRef.current);
-    if (scrollParent && scrollParent !== document.documentElement) {
-      scrollParent.addEventListener("scroll", handleScroll, { passive: true });
-    }
-
-    // Initial call
-    handleScroll();
+    updateProgress();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("scroll", handleScroll, { capture: true });
-      if (scrollParent && scrollParent !== document.documentElement) {
-        scrollParent.removeEventListener("scroll", handleScroll);
-      }
+      window.removeEventListener("scroll", updateProgress, true);
+      window.removeEventListener("resize", updateProgress);
+      document.removeEventListener("scroll", updateProgress, true);
     };
   }, []);
 
-  const clampedOffset = Math.max(0, offset);
+  const backShift = -28 * progress;
+  const titleShift = 90 * progress;
+  const midShift = -64 * progress;
+  const frontShift = -108 * progress;
+  const titleOpacity = 1 - progress * 1.15;
 
   return (
-    <div ref={heroRef} className="relative h-[120vh] overflow-hidden bg-gradient-to-b from-[hsl(35,40%,85%)] via-[hsl(40,50%,90%)] to-background">
-      {/* Prayer flag decorative line */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-60 z-50" />
+    <section
+      ref={heroRef}
+      className="relative h-[140vh] overflow-hidden bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] to-background"
+    >
+      <div className="absolute inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
 
-      {/* Back mountains - slowest */}
-      <div
-        className="absolute bottom-0 left-0 w-full will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * -0.05}px)` }}
-      >
-        <img
-          src={mountainBack}
-          alt=""
-          className="w-full h-auto object-cover object-bottom opacity-50"
-          style={{ filter: "hue-rotate(10deg) brightness(0.7)" }}
-        />
-      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,hsl(43_72%_52%_/_0.22),transparent_30%),linear-gradient(to_bottom,hsl(35_55%_78%_/_0.85),transparent_55%)]" />
 
-      {/* Title - sits between mountain layers */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * 0.4}px)`, opacity: Math.max(0, 1 - clampedOffset / 600) }}
+        className="absolute inset-x-0 top-[13vh] z-10 flex flex-col items-center px-4 text-center will-change-transform"
+        style={{ transform: `translate3d(0, ${titleShift}px, 0)`, opacity: clamp(titleOpacity, 0, 1) }}
       >
-        <p className="font-body text-sm md:text-base tracking-[0.4em] uppercase text-secondary mb-4 font-semibold">
+        <p className="font-body mb-4 text-sm font-semibold uppercase tracking-[0.38em] text-secondary md:text-base">
           Thimphu, Bhutan
         </p>
-        <h1 className="font-display text-4xl md:text-6xl lg:text-8xl font-bold text-primary text-center leading-tight">
-          2<sup className="text-[0.6em]">nd</sup> Asian Ranger
+        <h1 className="font-display text-primary text-4xl font-bold leading-[0.95] md:text-6xl lg:text-8xl">
+          2<sup className="text-[0.55em]">nd</sup> Asian Ranger
           <br />
           Congress 2026
         </h1>
-        <div className="mt-6 flex items-center gap-3">
-          <div className="w-12 h-px bg-secondary" />
-          <p className="font-display text-xl md:text-3xl text-secondary font-semibold tracking-wide">
+        <div className="mt-5 flex items-center gap-3 md:mt-6">
+          <div className="h-px w-10 bg-secondary md:w-14" />
+          <p className="font-display text-secondary text-xl font-semibold tracking-wide md:text-3xl">
             1 — 5 December
           </p>
-          <div className="w-12 h-px bg-secondary" />
+          <div className="h-px w-10 bg-secondary md:w-14" />
         </div>
-        <p className="mt-4 font-body text-xs md:text-sm text-muted-foreground tracking-widest uppercase">
+        <p className="font-body mt-4 text-xs uppercase tracking-[0.35em] text-muted-foreground md:text-sm">
           Land of the Thunder Dragon
         </p>
       </div>
 
-      {/* Mid mountains */}
-      <div
-        className="absolute bottom-0 left-0 w-full z-20 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * -0.15}px)` }}
-      >
+      <div className="absolute inset-x-0 bottom-0 z-[8] h-[48vh] overflow-hidden md:h-[52vh]">
+        <img
+          src={mountainBack}
+          alt="Distant Himalayan mountain silhouettes behind the congress title"
+          className="h-full w-full object-cover object-bottom opacity-55 mix-blend-multiply will-change-transform"
+          style={{ transform: `translate3d(0, ${backShift}px, 0) scale(1.06)` }}
+        />
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 z-[18] h-[54vh] overflow-hidden md:h-[58vh]">
         <img
           src={mountainMid}
-          alt=""
-          className="w-full h-auto object-cover object-bottom"
-          style={{ filter: "brightness(0.85) saturate(0.8)" }}
+          alt="Forested Himalayan ridgelines layered in mist"
+          className="h-full w-full object-cover object-bottom mix-blend-multiply will-change-transform"
+          style={{
+            transform: `translate3d(0, ${midShift}px, 0) scale(1.08)`,
+            filter: "brightness(0.9) saturate(0.85)",
+          }}
         />
       </div>
 
-      {/* Front mountains - fastest */}
-      <div
-        className="absolute bottom-0 left-0 w-full z-30 will-change-transform"
-        style={{ transform: `translateY(${clampedOffset * -0.25}px)` }}
-      >
+      <div className="absolute inset-x-0 bottom-[-2vh] z-[28] h-[64vh] overflow-hidden md:h-[68vh]">
         <img
           src={mountainFront}
-          alt=""
-          className="w-full h-auto object-cover object-bottom"
-          style={{ filter: "brightness(0.6) saturate(0.7)" }}
+          alt="Foreground Bhutanese mountain ridges framing the landing page"
+          className="h-full w-full object-cover object-bottom mix-blend-multiply will-change-transform"
+          style={{
+            transform: `translate3d(0, ${frontShift}px, 0) scale(1.12)`,
+            filter: "brightness(0.7) saturate(0.8)",
+          }}
         />
       </div>
 
-      {/* Gradient overlay at bottom for smooth transition */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-40" />
-    </div>
+      <div className="absolute inset-x-0 bottom-0 z-40 h-28 bg-gradient-to-t from-background via-background/85 to-transparent" />
+    </section>
   );
 };
 
