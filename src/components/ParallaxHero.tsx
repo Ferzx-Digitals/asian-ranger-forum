@@ -134,8 +134,6 @@ const ParallaxHero = () => {
           />
         </div>
 
-        {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 z-40 h-8 bg-gradient-to-t from-background to-transparent" />
       </div>
     </section>
   );
