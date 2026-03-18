@@ -60,7 +60,7 @@ const ParallaxHero = () => {
           <p className="font-body mb-3 text-sm font-semibold uppercase tracking-[0.38em] text-secondary md:text-base">
             Thimphu, Bhutan
           </p>
-          <h1 className="font-display text-primary text-4xl font-bold leading-[0.95] md:text-6xl lg:text-[6.5rem]">
+          <h1 className="font-display text-primary text-4xl font-bold leading-[0.95] md:text-6xl lg:text-8xl">
             2<sup className="text-[0.55em]">nd</sup> Asian Ranger
             <br />
             Congress 2026
