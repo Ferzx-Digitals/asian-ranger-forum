@@ -5,16 +5,36 @@ const EmailSignup = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Google Form configuration
+  const GOOGLE_FORM_ID = "1FAIpQLSdwMmGAwhmGsD_a1j3ddakzyUkI9cyPjyQziNr52A6G6JyGvg";
+  const GOOGLE_FORM_EMAIL_FIELD_ID = "2077294958";
+  const GOOGLE_FORM_URL = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
     setIsSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
+    try {
+      // Create FormData for the submission
+      const formData = new FormData();
+      formData.append(`entry.${GOOGLE_FORM_EMAIL_FIELD_ID}`, email);
+
+      // Submit to Google Forms
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors", // Required for Google Forms
+      });
+
       toast.success("Thank you! We'll keep you updated.");
       setEmail("");
+    } catch (error) {
+      toast.error("Failed to submit. Please try again.");
+      console.error("Submission error:", error);
+    } finally {
       setIsSubmitting(false);
-    }, 800);
+    }
   };
 
   return (
