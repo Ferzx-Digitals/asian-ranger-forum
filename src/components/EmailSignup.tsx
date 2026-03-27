@@ -38,7 +38,7 @@ const EmailSignup = () => {
   };
 
   return (
-    <section className="relative z-50 flex items-center justify-center px-4 py-4 md:py-6">
+    <section className="relative z-50 flex items-center justify-center px-4 pt-4 pb-10 md:pt-6 md:pb-14">
       <div className="w-full max-w-lg">
         {/* Decorative Bhutanese-inspired border card */}
         <div className="relative rounded-sm border border-secondary/30 bg-card/80 backdrop-blur-sm p-8 md:p-12 shadow-lg">
