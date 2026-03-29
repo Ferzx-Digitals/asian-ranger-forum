@@ -68,7 +68,7 @@ const ParallaxHero = () => {
           <div className="mt-4 flex items-center gap-3 md:mt-5">
             <div className="h-px w-10 bg-secondary md:w-14" />
             <p className="font-display text-secondary text-lg font-semibold tracking-wide md:text-2xl">
-              1 — 5 December
+              2 — 4 December
             </p>
             <div className="h-px w-10 bg-secondary md:w-14" />
           </div>

@@ -74,7 +74,7 @@ const EmailSignup = () => {
           </form>
 
           <p className="mt-6 text-xs text-muted-foreground text-center font-body">
-            Royal Institute of Management, Simtokha · Thimphu, Bhutan
+            Thimphu, Bhutan
           </p>
         </div>
       </div>
