@@ -1,6 +1,6 @@
 import ParallaxHero from "@/components/ParallaxHero";
 import StatsBar from "@/components/StatsBar";
-import EmailSignup from "@/components/EmailSignup";
+import ExpressionOfInterest from "@/components/ExpressionOfInterest";
 
 const Index = () => {
   return (
@@ -13,7 +13,7 @@ const Index = () => {
             A landmark gathering of Asia's rangers, conservationists, and organisations dedicated to protecting the natural world — hosted in the heart of the Himalayas.
           </p>
         </div>
-        <EmailSignup />
+        <ExpressionOfInterest />
         <footer className="py-8 text-center border-t border-border">
           <p className="font-body text-xs text-muted-foreground">
             © 2026 Asian Ranger Congress · Society of Bhutanese Foresters · Ranger Federation of Asia
