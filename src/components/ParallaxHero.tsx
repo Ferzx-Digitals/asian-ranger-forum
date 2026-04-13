@@ -73,7 +73,7 @@ const ParallaxHero = () => {
             <div className="h-px w-10 bg-secondary md:w-14" />
           </div>
           <p className="font-body mt-3 text-xs uppercase tracking-[0.35em] text-muted-foreground md:text-sm">
-            Land of the Thunder Dragon
+            Land Of The Himalayas
           </p>
         </div>
 

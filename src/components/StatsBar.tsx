@@ -1,7 +1,7 @@
 const stats = [
   { value: "70%", label: "Forest Cover" },
   { value: "10+", label: "Protected Areas" },
-  { value: "200+", label: "Rangers Expected" },
+  { value: "150+", label: "Rangers Expected" },
   { value: "20+", label: "Asian Nations" },
 ];
 
