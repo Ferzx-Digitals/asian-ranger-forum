@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import mountainBack from "@/assets/mountain-back.png";
 import mountainMid from "@/assets/mountain-mid.png";
@@ -87,7 +89,7 @@ const ParallaxHero = () => {
           }}
         >
           <img
-            src={mountainBack}
+            src={mountainBack.src}
             alt=""
             className="h-full w-full object-cover object-top opacity-50"
             style={{ transform: "scale(1.15)" }}
@@ -104,7 +106,7 @@ const ParallaxHero = () => {
           }}
         >
           <img
-            src={mountainMid}
+            src={mountainMid.src}
             alt=""
             className="h-full w-full object-cover object-top will-change-transform"
             style={{
@@ -124,7 +126,7 @@ const ParallaxHero = () => {
           }}
         >
           <img
-            src={mountainFront}
+            src={mountainFront.src}
             alt=""
             className="h-full w-full object-cover object-top will-change-transform"
             style={{
