@@ -1,0 +1,26 @@
+export const theme = {
+  cssVars: {
+    light: {
+      "--background": "48 60% 97%",
+      "--foreground": "0 0% 18%",
+      "--card": "48 60% 97%",
+      "--card-foreground": "0 0% 18%",
+      "--popover": "48 60% 97%",
+      "--popover-foreground": "0 0% 18%",
+      "--primary": "153 42% 18%",
+      "--primary-foreground": "48 60% 97%",
+      "--secondary": "43 72% 52%",
+      "--secondary-foreground": "0 0% 18%",
+      "--muted": "45 30% 90%",
+      "--muted-foreground": "0 0% 40%",
+      "--accent": "355 78% 56%",
+      "--accent-foreground": "0 0% 100%",
+      "--destructive": "0 84.2% 60.2%",
+      "--destructive-foreground": "210 40% 98%",
+      "--border": "45 20% 82%",
+      "--input": "45 20% 82%",
+      "--ring": "153 42% 18%",
+      "--radius": "0.5rem",
+    },
+  },
+} as const;
