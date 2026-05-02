@@ -1,6 +1,7 @@
 import ExpressionOfInterest from "@/components/ExpressionOfInterest";
 import ParallaxHero from "@/components/ParallaxHero";
 import StatsBar from "@/components/StatsBar";
+import { KeyDetails } from "@/features/home/components/KeyDetails";
 
 export default function Page() {
   return (
@@ -18,13 +19,8 @@ export default function Page() {
             the heart of the Himalayas.
           </p>
         </div>
+        <KeyDetails />
         <ExpressionOfInterest />
-        <footer className="py-8 text-center border-t border-border">
-          <p className="font-body text-xs text-muted-foreground">
-            © 2026 Asian Ranger Congress · Society of Bhutanese Foresters ·
-            Ranger Federation of Asia
-          </p>
-        </footer>
       </div>
     </div>
   );
