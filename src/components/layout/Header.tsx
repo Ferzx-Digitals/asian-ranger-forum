@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -103,6 +104,14 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex h-16 items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0">
+          <Image
+            src="/logo.svg"
+            alt="Asian Ranger Congress 2026"
+            width={48}
+            height={48}
+            className="h-10 w-auto"
+            priority
+          />
           <div className="flex flex-col leading-none">
             <span className="font-display text-base font-bold text-primary leading-tight">
               Asian Ranger Congress
