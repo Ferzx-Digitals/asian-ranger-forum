@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/layout/PageHero";
 import { MessageCard } from "@/features/about/components/MessageCard";
+import { MagnifiableMap } from "@/features/about/components/MagnifiableMap";
 
 export const metadata = {
   title: "About the Congress | 2nd Asian Ranger Congress 2026",
@@ -67,6 +68,16 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Magnifiable Map */}
+        <section>
+          <div className="mb-6">
+            <h2 className="font-display text-2xl font-bold text-primary mb-2">
+              Majestic Thimphu Hosts You
+            </h2>
+          </div>
+          <MagnifiableMap />
         </section>
 
         {/* Messages */}
