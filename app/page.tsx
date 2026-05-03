@@ -1,7 +1,9 @@
 import ExpressionOfInterest from "@/components/ExpressionOfInterest";
 import ParallaxHero from "@/components/ParallaxHero";
 import StatsBar from "@/components/StatsBar";
-import { KeyDetails } from "@/features/home/components/KeyDetails";
+import { CongressObjectives } from "@/features/home/components/CongressObjectives";
+import { CongressThemes } from "@/features/home/components/CongressThemes";
+import { FieldVisitsTeaser } from "@/features/home/components/FieldVisitsTeaser";
 import { OrganiserCards } from "@/features/home/components/OrganiserCards";
 import { Welcome } from "@/features/home/components/Welcome";
 
@@ -16,7 +18,9 @@ export default function Page() {
         <Welcome />
         <StatsBar />
         <OrganiserCards />
-        <KeyDetails />
+        <CongressObjectives />
+        <CongressThemes />
+        <FieldVisitsTeaser />
         <ExpressionOfInterest />
       </div>
     </div>
