@@ -83,6 +83,19 @@
   --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 12px)); /* Adjust for half the gap */
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
 @keyframes accordion-down {
   from {
     height: 0;

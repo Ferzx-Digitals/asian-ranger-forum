@@ -1,42 +1,75 @@
 import { PageHero } from "@/components/layout/PageHero";
+import { cn } from "@/lib/utils";
+import { 
+  Trophy, 
+  BookOpen, 
+  ShieldCheck, 
+  Handshake, 
+  Mountain, 
+  FileText 
+} from "lucide-react";
 
 export const metadata = {
   title: "Theme & Objectives | 2nd Asian Ranger Congress 2026",
 };
 
 const objectives = [
-  "Celebrate the achievements of rangers and conservation professionals across Asia",
-  "Share knowledge, experiences, and best practices in protected area management",
-  "Strengthen the ranger profession by identifying gaps in training, equipment, and support",
-  "Foster regional cooperation between ranger organisations, governments, and civil society",
-  "Highlight Bhutan's conservation model as a benchmark for nature-positive development",
-  "Produce an updated Asian Ranger Declaration to guide the profession over the next decade",
+  {
+    text: "Celebrate the achievements of rangers and conservation professionals across Asia",
+    icon: Trophy,
+  },
+  {
+    text: "Share knowledge, experiences, and best practices in protected area management",
+    icon: BookOpen,
+  },
+  {
+    text: "Strengthen the ranger profession by identifying gaps in training, equipment, and support",
+    icon: ShieldCheck,
+  },
+  {
+    text: "Foster regional cooperation between ranger organisations, governments, and civil society",
+    icon: Handshake,
+  },
+  {
+    text: "Highlight Bhutan's conservation model as a benchmark for nature-positive development",
+    icon: Mountain,
+  },
+  {
+    text: "Produce an updated Asian Ranger Declaration to guide the profession over the next decade",
+    icon: FileText,
+  },
 ];
 
 const congressThemes = [
   {
     title: "Ranger Welfare & Wellbeing",
     description: "Addressing the physical, psychological, and professional needs of rangers across the region, including safety, compensation, legal protections, and mental health support.",
+    image: "/placeholder.svg",
   },
   {
     title: "Community-Based Conservation",
     description: "Exploring how rangers work with local and indigenous communities to build shared stewardship of natural resources.",
+    image: "/placeholder.svg",
   },
   {
     title: "Technology & Innovation",
     description: "Showcasing new tools and approaches — from camera traps to AI-assisted monitoring — that are transforming how rangers protect wildlife.",
+    image: "/placeholder.svg",
   },
   {
     title: "Climate Change & Biodiversity",
     description: "Understanding how climate change is reshaping habitats, species distributions, and ranger operations, and how the profession is adapting.",
+    image: "/placeholder.svg",
   },
   {
     title: "Women in Rangering",
     description: "Celebrating the growing role of women in ranger forces across Asia and addressing the barriers that continue to limit representation.",
+    image: "/placeholder.svg",
   },
   {
     title: "Policy & Legislation",
     description: "Discussing the legal frameworks that govern rangers' work and how policy can better support the profession.",
+    image: "/placeholder.svg",
   },
 ];
 
@@ -49,10 +82,10 @@ export default function ThemePage() {
         subtitle="Defining the purpose and priorities of the 2nd Asian Ranger Congress."
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-24">
         {/* Theme */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Congress Theme</h2>
+        <section className="max-w-4xl mx-auto">
+          <h2 className="font-display text-2xl font-bold text-primary mb-4 text-center md:text-left">Congress Theme</h2>
           <div className="rounded-sm border border-secondary/40 bg-secondary/5 p-8 text-center">
             <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary mb-3">
               2026 Theme
@@ -64,7 +97,7 @@ export default function ThemePage() {
               The official congress theme will be announced in the coming months.
             </p>
           </div>
-          <p className="mt-4 font-body text-sm text-foreground/70 leading-relaxed">
+          <p className="mt-4 font-body text-sm text-foreground/70 leading-relaxed text-center md:text-left">
             The 2nd Asian Ranger Congress continues to build on the momentum of the first Congress and the outcomes of the 10th IRF World Ranger Congress, with a strong commitment to the{" "}
             <a
               href="https://www.cbd.int/article/cop15-cbd-press-release-final-19dec2022"
@@ -79,28 +112,62 @@ export default function ThemePage() {
         </section>
 
         {/* Objectives */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-6">Objectives</h2>
-          <ul className="space-y-3">
-            {objectives.map((obj, i) => (
-              <li key={i} className="flex gap-3">
-                <span className="shrink-0 w-6 h-6 rounded-full bg-secondary/20 text-secondary font-body text-xs font-bold flex items-center justify-center mt-0.5">
-                  {i + 1}
-                </span>
-                <p className="font-body text-sm text-foreground/80 leading-relaxed">{obj}</p>
-              </li>
-            ))}
-          </ul>
+        <section className="overflow-hidden py-4 -mx-4 sm:-mx-6">
+          <h2 className="font-display text-2xl font-bold text-primary mb-8 px-4 sm:px-6">Objectives</h2>
+          <div className="relative">
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 px-3">
+              {[...objectives, ...objectives].map((obj, i) => (
+                <div 
+                  key={i} 
+                  className="w-72 flex-shrink-0 bg-card border-b-4 border-b-secondary border-x border-t border-border p-6 rounded-sm shadow-sm hover:shadow-md transition-shadow group/card"
+                >
+                  <div className="flex flex-col items-center text-center gap-4 whitespace-normal">
+                    <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center border border-secondary/20 group-hover/card:bg-primary/10 transition-colors">
+                      <obj.icon className="w-6 h-6 text-secondary" />
+                    </div>
+                    <p className="font-body text-sm text-foreground/80 leading-relaxed font-medium">
+                      {obj.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Fade gradients for smooth scrolling feel */}
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          </div>
         </section>
 
         {/* Congress Themes */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-6">Congress Themes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {congressThemes.map((theme) => (
-              <div key={theme.title} className="rounded-sm border border-border bg-card p-5">
-                <h3 className="font-body text-sm font-semibold text-primary mb-2">{theme.title}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{theme.description}</p>
+        <section className="space-y-16">
+          <h2 className="font-display text-3xl font-bold text-primary mb-12 text-center">Congress Themes</h2>
+          <div className="space-y-16 md:space-y-24">
+            {congressThemes.map((theme, index) => (
+              <div 
+                key={theme.title} 
+                className={cn(
+                  "flex flex-col gap-8 md:gap-16 items-center",
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                )}
+              >
+                <div className="w-full md:w-[45%]">
+                  <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border bg-muted/30">
+                    <img 
+                      src={theme.image} 
+                      alt={theme.title}
+                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                </div>
+                <div className="w-full md:w-[55%] space-y-4">
+                  <div className="space-y-2">
+                    <p className="font-body text-xs font-bold text-secondary uppercase tracking-widest">Theme {index + 1}</p>
+                    <h3 className="font-display text-2xl font-bold text-primary leading-tight">{theme.title}</h3>
+                  </div>
+                  <p className="font-body text-base text-muted-foreground leading-relaxed">
+                    {theme.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

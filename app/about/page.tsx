@@ -48,13 +48,14 @@ export default function AboutPage() {
           <h2 className="font-display text-2xl font-bold text-primary mb-6">
             Messages of Welcome
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-8">
             <MessageCard
               name="Chris Galliers"
               title="President, International Rangers Federation (IRF)"
               message={"The International Rangers Federation is proud to support the 2nd Asian Ranger Congress and to stand alongside the rangers of Asia as they gather once more to share, learn, and inspire.\n\nThe 1st Asian Ranger Forum in Guwahati was a landmark moment — it showed the world what Asian rangers are capable of when they come together. The Guwahati Declaration was a powerful statement of intent, and it is now our collective responsibility to turn those commitments into action.\n\nBhutan is a fitting host for this gathering. A country that has made conservation a national philosophy, where rangers are respected and where the results speak for themselves. I hope that the 2026 Congress will not only build on the momentum of Guwahati but will set a new standard for what a ranger congress can achieve.\n\nTo every ranger making the journey to Thimphu — thank you. Your dedication, courage, and commitment to protecting Asia's extraordinary biodiversity is an inspiration to rangers around the world. We look forward to seeing you in Bhutan."}
             />
             <MessageCard
+              reverse
               name="Bunty Tao"
               title="President, Ranger Federation of Asia (RFA)"
               message={"As a ranger, as an Indigenous person, and as President of the Ranger Federation of Asia, I am deeply honoured to welcome you to the 2nd Asian Ranger Congress in Thimphu, Bhutan.\n\nRangers across Asia come from many different backgrounds, cultures, and landscapes — but we are united by a shared purpose: to protect the natural world and the communities that depend on it. This Congress is our common space. A space where every ranger — whether you patrol a high Himalayan forest, a coastal mangrove, or a tropical rainforest — belongs and has a voice.\n\nAs the first Indigenous ranger to serve as President of the Ranger Federation of Asia, I am proud to see this Congress championing diversity, inclusion, and the recognition of rangers beyond the boundaries of traditional conservation. Our knowledge, our cultures, and our connections to the land are not just assets — they are essential to the future of conservation in Asia and beyond.\n\nI look forward to welcoming each and every one of you to Bhutan, to learning from your experiences, and to building together a stronger, more united ranger community across Asia."}
