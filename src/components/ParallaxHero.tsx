@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import mountainBack from "@/assets/mountain-back.png";
 import mountainMid from "@/assets/mountain-mid.png";
 import mountainFront from "@/assets/mountain-front.png";
+import { OrganiserLogos } from "@/components/layout/OrganiserLogos";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);
@@ -42,7 +43,7 @@ const ParallaxHero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative h-[125vh] bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] via-60% to-[hsl(48,60%,97%)]"
+      className="relative h-[125vh] -mt-16 bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] via-60% to-[hsl(48,60%,97%)] to-80%"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Warm sky gradient */}
@@ -74,9 +75,9 @@ const ParallaxHero = () => {
             </p>
             <div className="h-px w-10 bg-secondary md:w-14" />
           </div>
-          <p className="font-body mt-3 text-xs uppercase tracking-[0.35em] text-muted-foreground md:text-sm">
-            Land Of The Himalayas
-          </p>
+          <div className="mt-6 md:mt-8">
+            <OrganiserLogos />
+          </div>
         </div>
 
         {/* BACK mountains — visible on load, right below title */}

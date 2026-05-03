@@ -1,7 +1,7 @@
 import { PageHero } from "@/components/layout/PageHero";
 import { EntryByAir } from "@/features/travel/components/EntryByAir";
 import { EntryByRoad } from "@/features/travel/components/EntryByRoad";
-import { VenueMap } from "@/features/travel/components/VenueMap";
+import { VenuePhoto } from "@/features/travel/components/VenuePhoto";
 import { VisaInfo } from "@/features/travel/components/VisaInfo";
 import { EmergencyNumbers } from "@/features/travel/components/EmergencyNumbers";
 
@@ -18,14 +18,20 @@ export default function TravelPage() {
         subtitle="Everything you need to know about getting to Thimphu, Bhutan and making the most of your stay."
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-2 pb-12 space-y-14">
         {/* Venue */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Congress Venue</h2>
-          <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
-            The 2nd Asian Ranger Congress will be held at the <strong className="text-foreground/80">Royal Institute of Management (RIM)</strong> in Simtokha, Thimphu, Bhutan. RIM is a prestigious management and development institute located approximately 8 km south of central Thimphu.
+        <section className="text-center">
+          <VenuePhoto />
+
+          <h2 className="font-display text-2xl font-bold text-primary leading-tight mt-3">
+            Royal Institute of Management
+          </h2>
+          <p className="font-body text-sm text-muted-foreground">
+            Simtokha, Thimphu, Bhutan
           </p>
-          <VenueMap />
+          <p className="font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto mt-2">
+            Bhutan's premier institute for management and governance training, featuring a 200-seat main auditorium and over 15 breakout rooms.
+          </p>
         </section>
 
         {/* Entry by air */}

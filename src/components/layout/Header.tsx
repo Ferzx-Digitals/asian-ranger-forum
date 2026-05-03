@@ -34,10 +34,10 @@ const navGroups = [
 ];
 
 const directLinks = [
-  { label: "Register", href: "/register", highlight: true },
   { label: "Travel", href: "/travel" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
+  { label: "Register", href: "/register", highlight: true },
 ];
 
 function DropdownGroup({

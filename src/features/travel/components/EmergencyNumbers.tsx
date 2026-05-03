@@ -1,9 +1,9 @@
 const emergencyNumbers = [
-  { number: "110", label: "Police" },
-  { number: "111", label: "Fire" },
-  { number: "112", label: "Emergency (National)" },
-  { number: "113", label: "Ambulance" },
-  { number: "999", label: "General Emergency" },
+  { number: "110", label: "Fire & Rescue Services" },
+  { number: "111", label: "Traffic Police" },
+  { number: "112", label: "Ambulance & Medical Emergencies" },
+  { number: "113", label: "Royal Bhutan Police" },
+  { number: "999", label: "Disaster Helpline" },
 ];
 
 export function EmergencyNumbers() {

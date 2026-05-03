@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/layout/PageHero";
-import { FaqAccordion } from "@/features/faq/components/FaqAccordion";
+import { FaqSearch } from "@/features/faq/components/FaqSearch";
 
 export const metadata = {
   title: "FAQ | 2nd Asian Ranger Congress 2026",
@@ -12,10 +12,11 @@ export default function FaqPage() {
         eyebrow="FAQ"
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about the congress, registration, travel, and more."
+        compact
       />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-        <FaqAccordion />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-12">
+        <FaqSearch />
         <div className="mt-12 rounded-sm border border-border bg-card p-6 text-center">
           <p className="font-body text-sm text-muted-foreground mb-3">
             Didn&apos;t find what you were looking for?
