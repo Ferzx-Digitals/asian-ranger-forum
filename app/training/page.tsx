@@ -40,11 +40,11 @@ export default function TrainingPage() {
         subtitle="Practical, hands-on training opportunities led by regional experts — designed to strengthen ranger skills across conservation, law enforcement, and community engagement."
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14 text-center">
         {/* Overview */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-4">Overview</h2>
-          <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed">
+          <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto">
             <p>
               Alongside the main congress programme, the 2nd Asian Ranger Congress will offer a series of practical training sessions open to all registered participants. These sessions are designed to build skills that rangers can take back to their protected areas and apply in their day-to-day work.
             </p>
@@ -59,9 +59,9 @@ export default function TrainingPage() {
           <h2 className="font-display text-2xl font-bold text-primary mb-6">Training Areas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {trainingAreas.map((t) => (
-              <div key={t.area} className="rounded-sm border border-border bg-card p-5">
+              <div key={t.area} className="rounded-sm border border-border bg-card p-5 text-center flex flex-col items-center">
                 <h3 className="font-body text-sm font-semibold text-primary mb-2">{t.area}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{t.description}</p>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-md">{t.description}</p>
               </div>
             ))}
           </div>
@@ -70,10 +70,10 @@ export default function TrainingPage() {
         {/* Facilitate a session */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-4">Lead a Training Session</h2>
-          <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
+          <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
             Experienced rangers, trainers, and conservation professionals are invited to propose and lead training sessions at the congress. Proposals for training sessions follow the same process as the general Call for Proposals. The submission portal will be open in 2026.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <button
               disabled
               className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"

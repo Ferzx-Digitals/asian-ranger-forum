@@ -6,7 +6,13 @@ import {
   ShieldCheck, 
   Handshake, 
   Mountain, 
-  FileText 
+  FileText,
+  Activity,
+  Users,
+  Cpu,
+  Globe,
+  Star,
+  Scale
 } from "lucide-react";
 
 export const metadata = {
@@ -45,31 +51,37 @@ const congressThemes = [
     title: "Ranger Welfare & Wellbeing",
     description: "Addressing the physical, psychological, and professional needs of rangers across the region, including safety, compensation, legal protections, and mental health support.",
     image: "/placeholder.svg",
+    icon: Activity,
   },
   {
     title: "Community-Based Conservation",
     description: "Exploring how rangers work with local and indigenous communities to build shared stewardship of natural resources.",
     image: "/placeholder.svg",
+    icon: Users,
   },
   {
     title: "Technology & Innovation",
     description: "Showcasing new tools and approaches — from camera traps to AI-assisted monitoring — that are transforming how rangers protect wildlife.",
     image: "/placeholder.svg",
+    icon: Cpu,
   },
   {
     title: "Climate Change & Biodiversity",
     description: "Understanding how climate change is reshaping habitats, species distributions, and ranger operations, and how the profession is adapting.",
     image: "/placeholder.svg",
+    icon: Globe,
   },
   {
     title: "Women in Rangering",
     description: "Celebrating the growing role of women in ranger forces across Asia and addressing the barriers that continue to limit representation.",
     image: "/placeholder.svg",
+    icon: Star,
   },
   {
     title: "Policy & Legislation",
     description: "Discussing the legal frameworks that govern rangers' work and how policy can better support the profession.",
     image: "/placeholder.svg",
+    icon: Scale,
   },
 ];
 
@@ -151,12 +163,18 @@ export default function ThemePage() {
                 )}
               >
                 <div className="w-full md:w-[45%]">
-                  <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border bg-muted/30">
-                    <img 
-                      src={theme.image} 
-                      alt={theme.title}
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                    />
+                  <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border bg-muted/30 flex items-center justify-center group/image">
+                    {theme.image === "/placeholder.svg" ? (
+                      <div className="flex items-center justify-center w-full h-full bg-primary/5 transition-colors duration-500 group-hover/image:bg-primary/10">
+                        <theme.icon className="w-16 h-16 text-secondary/30 group-hover/image:text-secondary/50 transition-all duration-500" />
+                      </div>
+                    ) : (
+                      <img 
+                        src={theme.image} 
+                        alt={theme.title}
+                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="w-full md:w-[55%] space-y-4">
