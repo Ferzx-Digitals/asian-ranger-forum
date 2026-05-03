@@ -12,7 +12,9 @@ export function RegistrationSteps() {
           Expression of Interest
         </h3>
         <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
-          Submit your expression of interest to indicate you would like to attend the 2nd Asian Ranger Congress. You will be contacted with further details once your interest is received.
+          Submit your expression of interest to indicate you would like to
+          attend the 2nd Asian Ranger Congress. You will be contacted with
+          further details once your interest is received.
         </p>
         <Link
           href="https://forms.office.com/e/pxaqynXnht"
@@ -33,7 +35,9 @@ export function RegistrationSteps() {
           Confirmation & Payment
         </h3>
         <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
-          After your expression of interest is reviewed, you will receive a formal invitation with payment instructions and a confirmation link to complete your registration.
+          After your expression of interest is reviewed, you will receive a
+          formal invitation with payment instructions and a confirmation link to
+          complete your registration.
         </p>
         <p className="font-body text-xs text-muted-foreground italic">
           Available after EOI review — opens closer to the congress date

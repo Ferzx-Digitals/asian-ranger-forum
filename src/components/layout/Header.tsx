@@ -116,7 +116,11 @@ export function Header() {
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {navGroups.map((group) => (
-            <DropdownGroup key={group.label} group={group} pathname={pathname} />
+            <DropdownGroup
+              key={group.label}
+              group={group}
+              pathname={pathname}
+            />
           ))}
           {directLinks.map((link) =>
             link.highlight ? (

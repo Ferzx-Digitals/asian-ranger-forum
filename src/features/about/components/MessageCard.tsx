@@ -19,41 +19,55 @@ interface MessageCardProps {
   reverse?: boolean;
 }
 
-export function MessageCard({ 
-  name, 
-  title, 
-  message, 
-  imageUrl, 
+export function MessageCard({
+  name,
+  title,
+  message,
+  imageUrl,
   placeholder,
   maxLength = 280,
-  reverse = false
+  reverse = false,
 }: MessageCardProps) {
   const isLongMessage = message && message.length > maxLength;
-  const displayMessage = isLongMessage ? `${message.substring(0, maxLength)}...` : message;
+  const displayMessage = isLongMessage
+    ? `${message.substring(0, maxLength)}...`
+    : message;
 
   return (
-    <div className={cn(
-      "relative rounded-sm border border-border bg-card p-8 flex flex-col gap-8 items-start",
-      reverse ? "md:flex-row-reverse" : "md:flex-row"
-    )}>
+    <div
+      className={cn(
+        "relative rounded-sm border border-border bg-card p-8 flex flex-col gap-8 items-start",
+        reverse ? "md:flex-row-reverse" : "md:flex-row",
+      )}
+    >
       <div className="flex flex-col items-center text-center shrink-0 w-full md:w-48">
         <Avatar className="h-24 w-24 mb-4 border border-border">
           <AvatarImage src={imageUrl} alt={name} className="object-cover" />
           <AvatarFallback className="bg-muted text-muted-foreground font-display text-xl">
-            {name.split(' ').map(n => n[0]).join('').toUpperCase()}
+            {name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .toUpperCase()}
           </AvatarFallback>
         </Avatar>
         <div className="space-y-1">
-          <p className="font-body text-sm font-bold text-primary leading-tight">{name}</p>
-          <p className="font-body text-xs text-muted-foreground leading-snug">{title}</p>
+          <p className="font-body text-sm font-bold text-primary leading-tight">
+            {name}
+          </p>
+          <p className="font-body text-xs text-muted-foreground leading-snug">
+            {title}
+          </p>
         </div>
       </div>
-      
+
       <div className="relative flex-1 pt-2">
-        <div className={cn(
-          "absolute -top-4 font-display text-6xl text-secondary/20 leading-none select-none",
-          reverse ? "-right-2" : "-left-2"
-        )}>
+        <div
+          className={cn(
+            "absolute -top-4 font-display text-6xl text-secondary/20 leading-none select-none",
+            reverse ? "-right-2" : "-left-2",
+          )}
+        >
           &ldquo;
         </div>
         <div className="relative z-10">
@@ -70,10 +84,12 @@ export function MessageCard({
             </div>
           ) : (
             <div className="space-y-4">
-              <p className={cn(
-                "font-body text-base text-foreground/80 leading-relaxed whitespace-pre-line",
-                reverse && "md:text-right"
-              )}>
+              <p
+                className={cn(
+                  "font-body text-base text-foreground/80 leading-relaxed whitespace-pre-line",
+                  reverse && "md:text-right",
+                )}
+              >
                 {displayMessage}
               </p>
               {isLongMessage && (
@@ -88,14 +104,26 @@ export function MessageCard({
                       <DialogHeader className="p-8 pb-4 border-b">
                         <div className="flex items-center gap-4">
                           <Avatar className="h-12 w-12 border border-border">
-                            <AvatarImage src={imageUrl} alt={name} className="object-cover" />
+                            <AvatarImage
+                              src={imageUrl}
+                              alt={name}
+                              className="object-cover"
+                            />
                             <AvatarFallback className="bg-muted text-muted-foreground font-display text-sm">
-                              {name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                              {name
+                                .split(" ")
+                                .map((n) => n[0])
+                                .join("")
+                                .toUpperCase()}
                             </AvatarFallback>
                           </Avatar>
                           <div className="text-left">
-                            <DialogTitle className="font-display text-xl text-primary">{name}</DialogTitle>
-                            <p className="font-body text-xs text-muted-foreground">{title}</p>
+                            <DialogTitle className="font-display text-xl text-primary">
+                              {name}
+                            </DialogTitle>
+                            <p className="font-body text-xs text-muted-foreground">
+                              {title}
+                            </p>
                           </div>
                         </div>
                       </DialogHeader>

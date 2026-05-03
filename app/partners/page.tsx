@@ -17,32 +17,40 @@ export default function PartnersPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
         {/* Organising partners */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-6">Organising Partners</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-6">
+            Organising Partners
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
                 name: "Ranger Federation of Asia (RFA)",
                 role: "Co-organiser",
-                description: "The regional federation representing ranger organisations across Asia.",
+                description:
+                  "The regional federation representing ranger organisations across Asia.",
                 logo: undefined as string | undefined,
                 url: undefined as string | undefined,
               },
               {
                 name: "International Rangers Federation (IRF)",
                 role: "Co-organiser",
-                description: "The global federation supporting rangers in over 60 countries worldwide.",
+                description:
+                  "The global federation supporting rangers in over 60 countries worldwide.",
                 logo: undefined as string | undefined,
                 url: undefined as string | undefined,
               },
               {
                 name: "Society of Bhutanese Foresters (SBF)",
                 role: "Host Organisation",
-                description: "The professional body for foresters and conservation practitioners in Bhutan.",
+                description:
+                  "The professional body for foresters and conservation practitioners in Bhutan.",
                 logo: undefined as string | undefined,
                 url: undefined as string | undefined,
               },
             ].map((org) => (
-              <div key={org.name} className="rounded-sm border border-border bg-card p-6 flex flex-col items-center justify-between text-center gap-3">
+              <div
+                key={org.name}
+                className="rounded-sm border border-border bg-card p-6 flex flex-col items-center justify-between text-center gap-3"
+              >
                 <div className="w-16 h-16 rounded-sm bg-muted flex items-center justify-center overflow-hidden">
                   {org.logo ? (
                     <img
@@ -51,14 +59,20 @@ export default function PartnersPage() {
                       className="w-full h-full object-contain p-1"
                     />
                   ) : (
-                    <span className="font-body text-2xl text-muted-foreground">🌿</span>
+                    <span className="font-body text-2xl text-muted-foreground">
+                      🌿
+                    </span>
                   )}
                 </div>
                 <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary">
                   {org.role}
                 </p>
-                <h3 className="font-body text-sm font-semibold text-primary">{org.name}</h3>
-                <p className="font-body text-sm text-muted-foreground">{org.description}</p>
+                <h3 className="font-body text-sm font-semibold text-primary">
+                  {org.name}
+                </h3>
+                <p className="font-body text-sm text-muted-foreground">
+                  {org.description}
+                </p>
                 {org.url ? (
                   <a
                     href={org.url}
@@ -80,10 +94,16 @@ export default function PartnersPage() {
 
         {/* All partners */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-2">Partners & Supporters</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-2">
+            Partners & Supporters
+          </h2>
           <p className="font-body text-sm text-muted-foreground mb-6">
-            Partner logos will be displayed here. If your organisation would like to become a partner, please{" "}
-            <a href="mailto:asianrangercongress@gmail.com" className="text-secondary hover:underline">
+            Partner logos will be displayed here. If your organisation would
+            like to become a partner, please{" "}
+            <a
+              href="mailto:asianrangercongress@gmail.com"
+              className="text-secondary hover:underline"
+            >
               contact us
             </a>
             .

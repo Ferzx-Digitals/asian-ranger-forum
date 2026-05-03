@@ -25,7 +25,9 @@ export function SponsorshipTiers() {
           key={tier.name}
           className={`rounded-sm border-2 ${tier.color} bg-card p-8 flex flex-col ${tier.featured ? "shadow-md" : ""}`}
         >
-          <div className={`self-start px-3 py-0.5 rounded-sm font-body text-xs font-semibold uppercase tracking-widest mb-4 ${tier.badge}`}>
+          <div
+            className={`self-start px-3 py-0.5 rounded-sm font-body text-xs font-semibold uppercase tracking-widest mb-4 ${tier.badge}`}
+          >
             {tier.name}
           </div>
           <h3 className="font-display text-xl font-bold text-primary mb-4">

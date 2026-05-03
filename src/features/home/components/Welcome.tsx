@@ -38,9 +38,7 @@ export function Welcome() {
         {/* Closing call */}
         <p className="font-body text-base md:text-lg text-muted-foreground leading-relaxed">
           Join us from{" "}
-          <span className="text-primary font-semibold">
-            2–4 December 2026
-          </span>{" "}
+          <span className="text-primary font-semibold">2–4 December 2026</span>{" "}
           to share knowledge, forge partnerships, and strengthen the ranger
           community across Asia.
         </p>

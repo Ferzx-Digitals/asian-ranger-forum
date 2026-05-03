@@ -30,47 +30,65 @@ export default function TravelPage() {
             Simtokha, Thimphu, Bhutan
           </p>
           <p className="font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto mt-2">
-            Bhutan's premier institute for management and governance training, featuring a 200-seat main auditorium and over 15 breakout rooms.
+            Bhutan's premier institute for management and governance training,
+            featuring a 200-seat main auditorium and over 15 breakout rooms.
           </p>
         </section>
 
         {/* Entry by air */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Entry by Air</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Entry by Air
+          </h2>
           <EntryByAir />
         </section>
 
         {/* Entry by road */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Entry by Road</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Entry by Road
+          </h2>
           <p className="font-body text-sm text-muted-foreground mb-4">
-            Bhutan can also be reached by road from India through three official land crossings:
+            Bhutan can also be reached by road from India through three official
+            land crossings:
           </p>
           <EntryByRoad />
         </section>
 
         {/* Visa */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Visa & Entry Requirements</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Visa & Entry Requirements
+          </h2>
           <VisaInfo />
         </section>
 
         {/* Accommodation */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Accommodation</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Accommodation
+          </h2>
           <div className="rounded-sm border border-border bg-card p-6">
             <p className="font-body text-sm text-foreground/80 leading-relaxed mb-3">
-              Accommodation for the duration of the congress (1–4 December 2026) is included in the registration fee. Participants will be accommodated at or near RIM Simtokha. Details on the specific accommodation arrangements will be provided upon confirmation of registration.
+              Accommodation for the duration of the congress (1–4 December 2026)
+              is included in the registration fee. Participants will be
+              accommodated at or near RIM Simtokha. Details on the specific
+              accommodation arrangements will be provided upon confirmation of
+              registration.
             </p>
             <p className="font-body text-xs text-muted-foreground italic">
-              Participants wishing to extend their stay before or after the congress are responsible for arranging and funding their own additional accommodation.
+              Participants wishing to extend their stay before or after the
+              congress are responsible for arranging and funding their own
+              additional accommodation.
             </p>
           </div>
         </section>
 
         {/* Emergency numbers */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Emergency Numbers in Bhutan</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Emergency Numbers in Bhutan
+          </h2>
           <EmergencyNumbers />
         </section>
       </div>

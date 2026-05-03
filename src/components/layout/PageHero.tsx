@@ -7,7 +7,9 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, title, subtitle, compact }: PageHeroProps) {
   return (
-    <section className={`relative bg-gradient-to-b from-[hsl(34,52%,88%)] to-background overflow-hidden ${compact ? "pt-16 pb-8 md:pt-20 md:pb-8" : "py-16 md:py-20"}`}>
+    <section
+      className={`relative bg-gradient-to-b from-[hsl(34,52%,88%)] to-background overflow-hidden ${compact ? "pt-16 pb-8 md:pt-20 md:pb-8" : "py-16 md:py-20"}`}
+    >
       {/* Prayer flag accent */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
 

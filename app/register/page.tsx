@@ -19,13 +19,17 @@ export default function RegisterPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">
         {/* How to Register */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-6">How to Register</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-6">
+            How to Register
+          </h2>
           <RegistrationSteps />
         </section>
 
         {/* What's Included */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-2">What&apos;s Included</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-2">
+            What&apos;s Included
+          </h2>
           <p className="font-body text-sm text-muted-foreground mb-6">
             The registration fee of <strong>USD 400</strong> covers:
           </p>
@@ -39,7 +43,9 @@ export default function RegisterPage() {
 
         {/* FAQ snippets */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Registration FAQs</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Registration FAQs
+          </h2>
           <div className="space-y-4">
             {[
               {
@@ -63,8 +69,13 @@ export default function RegisterPage() {
                 a: "Limited support may be available for rangers from low-income countries. Please contact asianrangercongress@gmail.com to enquire.",
               },
             ].map(({ q, a }) => (
-              <div key={q} className="rounded-sm border border-border bg-card p-5">
-                <p className="font-body text-sm font-semibold text-primary mb-1">{q}</p>
+              <div
+                key={q}
+                className="rounded-sm border border-border bg-card p-5"
+              >
+                <p className="font-body text-sm font-semibold text-primary mb-1">
+                  {q}
+                </p>
                 <p className="font-body text-sm text-muted-foreground">{a}</p>
               </div>
             ))}

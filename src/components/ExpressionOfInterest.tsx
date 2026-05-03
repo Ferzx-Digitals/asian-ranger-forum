@@ -18,7 +18,9 @@ const ExpressionOfInterest = () => {
           </h2>
 
           <p className="font-body text-sm text-muted-foreground text-center mb-8">
-            Rangers, conservationists, and partner organisations from across Asia are invited to register their interest in attending the Congress.
+            Rangers, conservationists, and partner organisations from across
+            Asia are invited to register their interest in attending the
+            Congress.
           </p>
 
           <a

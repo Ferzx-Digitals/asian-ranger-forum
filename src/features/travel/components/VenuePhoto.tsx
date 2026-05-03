@@ -2,7 +2,9 @@ interface VenuePhotoProps {
   src?: string;
 }
 
-export function VenuePhoto({ src = "/images/rim-campus.png" }: VenuePhotoProps) {
+export function VenuePhoto({
+  src = "/images/rim-campus.png",
+}: VenuePhotoProps) {
   return (
     <figure className="w-full aspect-[16/6] overflow-hidden mx-auto">
       <img

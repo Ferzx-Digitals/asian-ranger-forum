@@ -6,7 +6,8 @@ const EmailSignup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Google Form configuration
-  const GOOGLE_FORM_ID = "1FAIpQLSdwMmGAwhmGsD_a1j3ddakzyUkI9cyPjyQziNr52A6G6JyGvg";
+  const GOOGLE_FORM_ID =
+    "1FAIpQLSdwMmGAwhmGsD_a1j3ddakzyUkI9cyPjyQziNr52A6G6JyGvg";
   const GOOGLE_FORM_EMAIL_FIELD_ID = "2077294958";
   const GOOGLE_FORM_URL = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
 
@@ -52,7 +53,8 @@ const EmailSignup = () => {
             Stay Informed
           </h2>
           <p className="font-body text-sm text-muted-foreground text-center mb-8">
-            Be the first to receive updates on registration, speakers, and the full programme.
+            Be the first to receive updates on registration, speakers, and the
+            full programme.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">

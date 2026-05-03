@@ -6,7 +6,11 @@ interface NavLinkProps extends ComponentPropsWithoutRef<typeof Link> {
   activeClassName?: string;
 }
 
-const NavLink = ({ className, activeClassName: _activeClassName, ...props }: NavLinkProps) => {
+const NavLink = ({
+  className,
+  activeClassName: _activeClassName,
+  ...props
+}: NavLinkProps) => {
   return <Link className={cn(className)} {...props} />;
 };
 
