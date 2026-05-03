@@ -24,24 +24,55 @@ export default function PartnersPage() {
                 name: "Ranger Federation of Asia (RFA)",
                 role: "Co-organiser",
                 description: "The regional federation representing ranger organisations across Asia.",
+                logo: undefined as string | undefined,
+                url: undefined as string | undefined,
               },
               {
                 name: "International Rangers Federation (IRF)",
                 role: "Co-organiser",
                 description: "The global federation supporting rangers in over 60 countries worldwide.",
+                logo: undefined as string | undefined,
+                url: undefined as string | undefined,
               },
               {
                 name: "Society of Bhutanese Foresters (SBF)",
                 role: "Host Organisation",
                 description: "The professional body for foresters and conservation practitioners in Bhutan.",
+                logo: undefined as string | undefined,
+                url: undefined as string | undefined,
               },
             ].map((org) => (
-              <div key={org.name} className="rounded-sm border border-border bg-card p-6">
-                <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-2">
+              <div key={org.name} className="rounded-sm border border-border bg-card p-6 flex flex-col items-center justify-between text-center gap-3">
+                <div className="w-16 h-16 rounded-sm bg-muted flex items-center justify-center overflow-hidden">
+                  {org.logo ? (
+                    <img
+                      src={`/logos/${org.logo}`}
+                      alt={org.name}
+                      className="w-full h-full object-contain p-1"
+                    />
+                  ) : (
+                    <span className="font-body text-2xl text-muted-foreground">🌿</span>
+                  )}
+                </div>
+                <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary">
                   {org.role}
                 </p>
-                <h3 className="font-body text-sm font-semibold text-primary mb-2">{org.name}</h3>
+                <h3 className="font-body text-sm font-semibold text-primary">{org.name}</h3>
                 <p className="font-body text-sm text-muted-foreground">{org.description}</p>
+                {org.url ? (
+                  <a
+                    href={org.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-xs text-secondary hover:text-secondary/80 underline underline-offset-2 transition-colors"
+                  >
+                    Know More →
+                  </a>
+                ) : (
+                  <span className="font-body text-xs text-muted-foreground/40 cursor-not-allowed">
+                    Know More →
+                  </span>
+                )}
               </div>
             ))}
           </div>

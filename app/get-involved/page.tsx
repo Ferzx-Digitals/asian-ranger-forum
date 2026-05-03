@@ -63,12 +63,30 @@ export default function GetInvolvedPage() {
           </div>
         </section>
 
-        {/* Support a Ranger */}
+        {/* Support a Ranger to Attend */}
         <section>
           <div className="rounded-sm border border-secondary/40 bg-secondary/5 p-8">
-            <h2 className="font-display text-2xl font-bold text-primary mb-3">Support a Ranger</h2>
-            <p className="font-body text-sm text-foreground/80 leading-relaxed mb-6">
-              Many rangers across Asia lack the institutional funding to attend international events. By contributing to the Congress Support Fund, you can help cover the registration costs for rangers from low-income countries — giving them access to the knowledge, networks, and training that can transform their work.
+            <h2 className="font-display text-2xl font-bold text-primary mb-3">
+              Support a Ranger to Attend
+            </h2>
+            <p className="font-body text-sm text-foreground/80 leading-relaxed mb-3">
+              We believe every ranger deserves a seat at the table. If you or
+              your organisation would like to contribute to funding the
+              participation of rangers who may not otherwise be able to attend,
+              please get in touch at{" "}
+              <a
+                href="mailto:asianrangercongress@gmail.com"
+                className="text-secondary font-semibold hover:underline"
+              >
+                asianrangercongress@gmail.com
+              </a>
+              .
+            </p>
+            <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6">
+              Your contribution helps cover registration, travel, and
+              accommodation for rangers from countries with limited
+              institutional funding — giving them access to the knowledge,
+              networks, and training that can transform their work.
             </p>
             <a
               href="mailto:asianrangercongress@gmail.com"

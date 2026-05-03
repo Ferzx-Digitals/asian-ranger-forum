@@ -64,6 +64,18 @@ export default function ThemePage() {
               The official congress theme will be announced in the coming months.
             </p>
           </div>
+          <p className="mt-4 font-body text-sm text-foreground/70 leading-relaxed">
+            The 2nd Asian Ranger Congress continues to build on the momentum of the first Congress and the outcomes of the 10th IRF World Ranger Congress, with a strong commitment to the{" "}
+            <a
+              href="https://www.cbd.int/article/cop15-cbd-press-release-final-19dec2022"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-secondary hover:text-secondary/80 underline underline-offset-2 transition-colors"
+            >
+              Kunming-Montreal Global Biodiversity Framework
+            </a>
+            .
+          </p>
         </section>
 
         {/* Objectives */}

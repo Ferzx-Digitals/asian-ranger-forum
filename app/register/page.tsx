@@ -43,6 +43,14 @@ export default function RegisterPage() {
           <div className="space-y-4">
             {[
               {
+                q: "When will I hear if my EOI is successful?",
+                a: "Following the review of all Expressions of Interest, selected participants will be notified by the Organising Committee and invited to complete formal registration. Specific timelines will be communicated as the event approaches — we recommend submitting your EOI as early as possible.",
+              },
+              {
+                q: "Can my organisation submit on behalf of multiple rangers?",
+                a: "Yes — organisations are welcome to nominate multiple rangers. However, each nominated ranger must submit their own Expression of Interest with their personal details and motivation, so that every participant has a voice in the selection process. For help coordinating group submissions, email asianrangercongress@gmail.com.",
+              },
+              {
                 q: "What is the registration deadline?",
                 a: "Registration deadlines will be communicated upon confirmation. Submit your EOI early to secure your place.",
               },
