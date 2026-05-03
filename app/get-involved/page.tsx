@@ -17,14 +17,23 @@ export default function GetInvolvedPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
         {/* Why sponsor */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">Why Sponsor?</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            Why Sponsor?
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed">
               <p>
-                The 2nd Asian Ranger Congress brings together over 200 rangers, conservation leaders, government officials, and organisations from across Asia. Sponsoring the congress is an opportunity to demonstrate your commitment to conservation and ranger welfare while gaining visibility with a highly engaged regional audience.
+                The 2nd Asian Ranger Congress brings together over 200 rangers,
+                conservation leaders, government officials, and organisations
+                from across Asia. Sponsoring the congress is an opportunity to
+                demonstrate your commitment to conservation and ranger welfare
+                while gaining visibility with a highly engaged regional
+                audience.
               </p>
               <p>
-                All sponsorship funds directly support the congress programme, including making the event accessible to rangers from countries with limited institutional funding.
+                All sponsorship funds directly support the congress programme,
+                including making the event accessible to rangers from countries
+                with limited institutional funding.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3">
@@ -34,9 +43,16 @@ export default function GetInvolvedPage() {
                 { label: "Congress Days", value: "3" },
                 { label: "Field Visits", value: "3" },
               ].map(({ label, value }) => (
-                <div key={label} className="rounded-sm border border-border bg-card p-4 text-center">
-                  <p className="font-display text-3xl font-bold text-secondary">{value}</p>
-                  <p className="font-body text-xs text-muted-foreground mt-1">{label}</p>
+                <div
+                  key={label}
+                  className="rounded-sm border border-border bg-card p-4 text-center"
+                >
+                  <p className="font-display text-3xl font-bold text-secondary">
+                    {value}
+                  </p>
+                  <p className="font-body text-xs text-muted-foreground mt-1">
+                    {label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -45,7 +61,9 @@ export default function GetInvolvedPage() {
 
         {/* Tiers */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-6">Sponsorship Tiers</h2>
+          <h2 className="font-display text-2xl font-bold text-primary mb-6">
+            Sponsorship Tiers
+          </h2>
           <SponsorshipTiers />
           <div className="mt-6 flex flex-wrap gap-3">
             <button

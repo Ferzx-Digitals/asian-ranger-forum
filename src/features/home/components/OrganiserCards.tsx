@@ -48,7 +48,8 @@ export function OrganiserCards() {
         </div>
 
         <p className="text-center font-body text-xs text-muted-foreground mt-8 max-w-xl mx-auto leading-relaxed">
-          In collaboration with partner agencies and the Royal Government of Bhutan
+          In collaboration with partner agencies and the Royal Government of
+          Bhutan
         </p>
       </div>
     </section>

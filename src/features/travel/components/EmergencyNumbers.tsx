@@ -14,8 +14,12 @@ export function EmergencyNumbers() {
           key={number}
           className="rounded-sm border border-border bg-card p-4 text-center"
         >
-          <p className="font-display text-3xl font-bold text-accent">{number}</p>
-          <p className="mt-1 font-body text-xs text-muted-foreground">{label}</p>
+          <p className="font-display text-3xl font-bold text-accent">
+            {number}
+          </p>
+          <p className="mt-1 font-body text-xs text-muted-foreground">
+            {label}
+          </p>
         </div>
       ))}
     </div>

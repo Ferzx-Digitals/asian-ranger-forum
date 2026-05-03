@@ -48,9 +48,12 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="rounded-sm border border-secondary/40 bg-secondary/5 p-8 text-center">
-        <p className="font-display text-2xl font-bold text-primary mb-2">Thank you!</p>
+        <p className="font-display text-2xl font-bold text-primary mb-2">
+          Thank you!
+        </p>
         <p className="font-body text-sm text-muted-foreground">
-          Your message has been received. We will get back to you within 5 working days.
+          Your message has been received. We will get back to you within 5
+          working days.
         </p>
       </div>
     );
@@ -69,7 +72,9 @@ export function ContactForm() {
             type="text"
             required
             value={values.fullName}
-            onChange={(e) => setValues((v) => ({ ...v, fullName: e.target.value }))}
+            onChange={(e) =>
+              setValues((v) => ({ ...v, fullName: e.target.value }))
+            }
             className="w-full rounded-sm border border-border bg-background px-3 py-2.5 font-body text-sm focus:outline-none focus:ring-1 focus:ring-secondary"
             placeholder="Your name"
           />
@@ -82,7 +87,9 @@ export function ContactForm() {
             type="email"
             required
             value={values.email}
-            onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
+            onChange={(e) =>
+              setValues((v) => ({ ...v, email: e.target.value }))
+            }
             className="w-full rounded-sm border border-border bg-background px-3 py-2.5 font-body text-sm focus:outline-none focus:ring-1 focus:ring-secondary"
             placeholder="you@example.com"
           />
@@ -95,7 +102,9 @@ export function ContactForm() {
         <input
           type="text"
           value={values.organisation}
-          onChange={(e) => setValues((v) => ({ ...v, organisation: e.target.value }))}
+          onChange={(e) =>
+            setValues((v) => ({ ...v, organisation: e.target.value }))
+          }
           className="w-full rounded-sm border border-border bg-background px-3 py-2.5 font-body text-sm focus:outline-none focus:ring-1 focus:ring-secondary"
           placeholder="Your organisation (optional)"
         />
@@ -108,7 +117,9 @@ export function ContactForm() {
           required
           rows={5}
           value={values.message}
-          onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
+          onChange={(e) =>
+            setValues((v) => ({ ...v, message: e.target.value }))
+          }
           className="w-full rounded-sm border border-border bg-background px-3 py-2.5 font-body text-sm focus:outline-none focus:ring-1 focus:ring-secondary resize-none"
           placeholder="How can we help you?"
         />
@@ -127,7 +138,10 @@ export function ContactForm() {
       )}
       <p className="font-body text-xs text-muted-foreground">
         Or email us directly at{" "}
-        <a href="mailto:asianrangercongress@gmail.com" className="text-secondary hover:underline">
+        <a
+          href="mailto:asianrangercongress@gmail.com"
+          className="text-secondary hover:underline"
+        >
           asianrangercongress@gmail.com
         </a>
       </p>

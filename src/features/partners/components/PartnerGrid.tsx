@@ -33,11 +33,15 @@ export function PartnerGrid() {
                 className="w-full h-full object-contain p-1"
               />
             ) : (
-              <span className="font-body text-2xl text-muted-foreground">🌿</span>
+              <span className="font-body text-2xl text-muted-foreground">
+                🌿
+              </span>
             )}
           </div>
 
-          <p className="font-body text-xs text-foreground/70 leading-tight">{partner.name}</p>
+          <p className="font-body text-xs text-foreground/70 leading-tight">
+            {partner.name}
+          </p>
 
           {partner.url ? (
             <a

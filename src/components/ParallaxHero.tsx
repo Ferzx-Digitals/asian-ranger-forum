@@ -136,7 +136,6 @@ const ParallaxHero = () => {
             }}
           />
         </div>
-
       </div>
     </section>
   );

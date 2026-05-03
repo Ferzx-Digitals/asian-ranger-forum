@@ -36,7 +36,9 @@ export default function ContactPage() {
               <p className="font-body text-sm text-foreground/80">
                 Royal Institute of Management (RIM)
               </p>
-              <p className="font-body text-sm text-foreground/80">Simtokha, Thimphu</p>
+              <p className="font-body text-sm text-foreground/80">
+                Simtokha, Thimphu
+              </p>
               <p className="font-body text-sm text-foreground/80">Bhutan</p>
             </div>
             <div>
@@ -49,7 +51,10 @@ export default function ContactPage() {
                   "International Rangers Federation (IRF)",
                   "Society of Bhutanese Foresters (SBF)",
                 ].map((org) => (
-                  <li key={org} className="font-body text-sm text-foreground/70">
+                  <li
+                    key={org}
+                    className="font-body text-sm text-foreground/70"
+                  >
                     {org}
                   </li>
                 ))}

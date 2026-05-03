@@ -7,7 +7,9 @@ export function VenueMap() {
         <p className="font-body text-sm font-semibold text-primary">
           Royal Institute of Management (RIM)
         </p>
-        <p className="font-body text-xs text-muted-foreground">Simtokha, Thimphu, Bhutan · 27.4305° N, 89.6780° E</p>
+        <p className="font-body text-xs text-muted-foreground">
+          Simtokha, Thimphu, Bhutan · 27.4305° N, 89.6780° E
+        </p>
       </div>
       <div className="h-80">
         <iframe

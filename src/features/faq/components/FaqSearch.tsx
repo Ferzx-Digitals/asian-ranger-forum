@@ -116,7 +116,7 @@ export function FaqSearch() {
         items: group.items.filter(
           (item) =>
             item.q.toLowerCase().includes(query) ||
-            item.a.toLowerCase().includes(query)
+            item.a.toLowerCase().includes(query),
         ),
       }))
       .filter((group) => group.items.length > 0);
@@ -124,7 +124,7 @@ export function FaqSearch() {
 
   const totalResults = filteredGroups.reduce(
     (sum, group) => sum + group.items.length,
-    0
+    0,
   );
 
   return (
@@ -179,7 +179,8 @@ export function FaqSearch() {
             No FAQs found matching "{searchQuery}"
           </p>
           <p className="font-body text-sm text-muted-foreground">
-            Try different keywords or contact us at asianrangercongress@gmail.com
+            Try different keywords or contact us at
+            asianrangercongress@gmail.com
           </p>
         </div>
       )}
