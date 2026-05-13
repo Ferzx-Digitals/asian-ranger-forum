@@ -6,19 +6,14 @@ export const metadata = {
 
 const trainingAreas = [
   {
-    area: "Wildlife Monitoring & Data Collection",
+    area: "Storytelling & Ranger Communication",
+    description:
+      "Helping rangers share their stories and experiences powerfully — from written and oral communication to media engagement and advocacy.",
+  },
+  {
+    area: "Field Skills & Wildlife Monitoring",
     description:
       "Practical techniques for biodiversity monitoring, camera trap operation, species identification, and data management in protected areas.",
-  },
-  {
-    area: "Anti-Poaching & Law Enforcement",
-    description:
-      "Strategies and legal frameworks for combating wildlife crime, evidence collection, patrol planning, and coordination with law enforcement agencies.",
-  },
-  {
-    area: "Community Engagement",
-    description:
-      "Approaches for building trust, resolving human-wildlife conflict, co-management arrangements, and supporting ranger-community partnerships.",
   },
   {
     area: "First Aid & Emergency Response",
@@ -26,14 +21,29 @@ const trainingAreas = [
       "Wilderness first aid, emergency evacuation protocols, and basic medical response for rangers working in remote field conditions.",
   },
   {
-    area: "Technology for Rangers",
+    area: "Ranger Safety & Security in the Field",
+    description:
+      "Strategies and best practices for personal safety, threat assessment, and coordination with law enforcement agencies.",
+  },
+  {
+    area: "Mental Health & Wellbeing for Rangers",
+    description:
+      "Recognising and addressing stress, trauma, and burnout — building resilience and promoting long-term wellbeing for frontline rangers.",
+  },
+  {
+    area: "Community Engagement & Conflict Resolution",
+    description:
+      "Approaches for building trust, resolving human-wildlife conflict, co-management arrangements, and supporting ranger-community partnerships.",
+  },
+  {
+    area: "Technology & Innovation in Ranger Work",
     description:
       "Hands-on training with tools such as GPS devices, digital reporting apps, drone operation, and GIS mapping for patrol management.",
   },
   {
-    area: "Ranger Leadership & Wellbeing",
+    area: "Climate Resilience & Adaptation Strategies",
     description:
-      "Developing leadership skills, stress management, resilience building, and strategies for maintaining professional motivation.",
+      "Understanding how climate change affects ranger operations and building practical capacity to adapt to a rapidly changing environment.",
   },
 ];
 
@@ -95,12 +105,18 @@ export default function TrainingPage() {
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
             Lead a Training Session
           </h2>
+          <p className="font-body text-sm text-muted-foreground mb-3 leading-relaxed max-w-2xl mx-auto">
+            Training session proposals are open to ranger organisations,
+            conservation partners, and specialist trainers. This is an excellent
+            opportunity for organisations with practical expertise to contribute
+            meaningfully to the Congress, even if their work falls outside the
+            main thematic programme.
+          </p>
           <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
-            Experienced rangers, trainers, and conservation professionals are
-            invited to propose and lead training sessions at the congress.
-            Proposals for training sessions follow the same process as the
-            general Call for Proposals. The submission portal will be open in
-            2026.
+            Please note: all training sessions must have direct ranger
+            involvement — either as trainers, co-facilitators, or active
+            participants in the session design. The submission portal will open
+            in 2026.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <button

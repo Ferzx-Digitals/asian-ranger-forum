@@ -11,11 +11,34 @@ export function RegistrationSteps() {
         <h3 className="font-display text-xl font-bold text-primary mt-2 mb-3">
           Expression of Interest
         </h3>
-        <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
-          Submit your expression of interest to indicate you would like to
-          attend the 2nd Asian Ranger Congress. You will be contacted with
-          further details once your interest is received.
+        <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
+          We invite rangers, conservation professionals, and organisations from
+          across Asia to begin by submitting an Expression of Interest (EOI).
+          This is not a registration form — it is an opportunity for you to tell
+          us about yourself, your work, and why you would like to attend the 2nd
+          Asian Ranger Congress.
         </p>
+        <div className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
+          <strong>EOIs are welcome from:</strong>
+          <ul>
+            <li>Frontline rangers,</li>
+            <li>Conservation professionals and practitioners,</li>
+            <li>Ranger associations and federations,</li>
+            <li>Conservation organisations supporting rangers,</li>
+            <li>Researchers and academics working on ranger-related issues</li>
+          </ul>
+        </div>
+        <div className="rounded-sm bg-muted/40 px-4 py-3 mb-6">
+          <p className="font-body text-xs font-semibold text-primary mb-2">
+            To ensure the Congress remains true to its mission, participation
+            will be allocated as follows:
+          </p>
+          <ul className="space-y-0.5 font-body text-xs text-muted-foreground">
+            <li>80% — Rangers from Asia</li>
+            <li>10% — Rangers from other continents</li>
+            <li>10% — Ranger supporters and conservation organisations</li>
+          </ul>
+        </div>
         <Link
           href="https://forms.office.com/e/pxaqynXnht"
           target="_blank"
@@ -34,13 +57,26 @@ export function RegistrationSteps() {
         <h3 className="font-display text-xl font-bold text-primary mt-2 mb-3">
           Confirmation & Payment
         </h3>
-        <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
-          After your expression of interest is reviewed, you will receive a
-          formal invitation with payment instructions and a confirmation link to
-          complete your registration.
+        <p className="font-body text-sm text-muted-foreground mb-3 leading-relaxed">
+          Following the review of all Expressions of Interest, selected
+          participants will be notified and invited to complete the formal
+          registration process. Priority will be given to ensuring maximum
+          participation of Asian rangers, in keeping with the spirit and purpose
+          of the Congress.
+          <br />
+          Selected participants will receive a confirmation letter along with
+          instructions to complete their registration and payment. The
+          registration fee of USD 400 per participant covers accommodation, all
+          meals, transportation, and a welcome kit for the full duration of the
+          Congress.
+        </p>
+        <p className="font-body text-xs text-muted-foreground italic mb-3">
+          Please note: a bank transaction fee will apply on top of the
+          registration fee and is the responsibility of the participant.
         </p>
         <p className="font-body text-xs text-muted-foreground italic">
-          Available after EOI review — opens closer to the congress date
+          Registration form and payment link to be activated for confirmed
+          participants only. Contact: asianrangercongress@gmail.com
         </p>
       </div>
     </div>

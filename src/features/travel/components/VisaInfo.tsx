@@ -1,20 +1,36 @@
 export function VisaInfo() {
   const fees = [
-    { category: "Visa Fee", amount: "USD 40", note: "Per person, per entry" },
+    {
+      category: "Visa Fee",
+      amount: "USD 40",
+      note: "One-time payment",
+    },
+    {
+      category: "SDF Processing Fee",
+      amount: "approx. USD 20–30",
+      note: "Applies only to days outside the official Congress period",
+    },
+    {
+      category: "Monument Fee",
+      amount: "USD 50–100",
+      note: "One-time payment, depending on monuments visited (outside Congress period)",
+    },
     {
       category: "Sustainable Development Fee (SDF)",
       amount: "USD 100/night",
-      note: "Exempted for confirmed congress participants",
+      note: "Exempted for confirmed registered participants during the Congress",
     },
   ];
 
   return (
     <div className="space-y-6">
       <p className="font-body text-sm text-muted-foreground leading-relaxed">
-        All foreign nationals (except Indian, Bangladeshi, and Maldivian
-        citizens) require a visa to enter Bhutan. Visas must be arranged in
-        advance through a licensed Bhutanese tour operator or directly via the
-        Bhutan Tourism portal.
+        Most international visitors to Bhutan require a visa. Visa processing
+        will be facilitated by the Department of Forests and Park Services,
+        Ministry of Energy and Natural Resources, in collaboration with the
+        Organising Committee. The Organising Committee will assist with
+        efficient visa processing for all Congress participants. Further details
+        and a link for visa applications will be provided upon registration.
       </p>
 
       <div className="overflow-x-auto">

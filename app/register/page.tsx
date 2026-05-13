@@ -17,10 +17,10 @@ export default function RegisterPage() {
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">
-        {/* How to Register */}
+        {/* How Registration Works */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-6">
-            How to Register
+            How Registration Works
           </h2>
           <RegistrationSteps />
         </section>
@@ -41,46 +41,6 @@ export default function RegisterPage() {
           <SdfExemption />
         </section>
 
-        {/* FAQ snippets */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Registration FAQs
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                q: "When will I hear if my EOI is successful?",
-                a: "Following the review of all Expressions of Interest, selected participants will be notified by the Organising Committee and invited to complete formal registration. Specific timelines will be communicated as the event approaches — we recommend submitting your EOI as early as possible.",
-              },
-              {
-                q: "Can my organisation submit on behalf of multiple rangers?",
-                a: "Yes — organisations are welcome to nominate multiple rangers. However, each nominated ranger must submit their own Expression of Interest with their personal details and motivation, so that every participant has a voice in the selection process. For help coordinating group submissions, email asianrangercongress@gmail.com.",
-              },
-              {
-                q: "What is the registration deadline?",
-                a: "Registration deadlines will be communicated upon confirmation. Submit your EOI early to secure your place.",
-              },
-              {
-                q: "Can I get a refund if I cannot attend?",
-                a: "Cancellation and refund policies will be provided in the formal invitation after your EOI is reviewed.",
-              },
-              {
-                q: "Are there scholarships or subsidised places available?",
-                a: "Limited support may be available for rangers from low-income countries. Please contact asianrangercongress@gmail.com to enquire.",
-              },
-            ].map(({ q, a }) => (
-              <div
-                key={q}
-                className="rounded-sm border border-border bg-card p-5"
-              >
-                <p className="font-body text-sm font-semibold text-primary mb-1">
-                  {q}
-                </p>
-                <p className="font-body text-sm text-muted-foreground">{a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </>
   );

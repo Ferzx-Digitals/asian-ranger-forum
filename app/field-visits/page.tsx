@@ -50,13 +50,12 @@ export default function FieldVisitsPage() {
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
             About the Field Visits
           </h2>
-          <p className="font-body text-sm text-foreground/80 leading-relaxed max-w-3xl">
-            Field visits are an integral part of the congress experience. They
-            provide participants with a direct connection to Bhutan&apos;s
-            remarkable natural environment and an opportunity to see ranger work
-            in action. All three field visits are included in the registration
-            fee. Participants will be asked to indicate their preference during
-            registration.
+          <p className="font-body text-sm text-foreground/80 leading-relaxed ">
+            A highlight of the 2nd Asian Ranger Congress will be ranger-led
+            field visits to some of Bhutan's most remarkable conservation sites
+            in and around Thimphu. These visits offer delegates a unique
+            opportunity to experience Bhutan's extraordinary biodiversity and
+            learn from the rangers who protect it.
           </p>
         </section>
 

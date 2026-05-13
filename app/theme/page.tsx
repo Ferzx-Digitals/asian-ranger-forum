@@ -1,18 +1,16 @@
 import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import {
-  Trophy,
-  BookOpen,
   ShieldCheck,
-  Handshake,
-  Mountain,
-  FileText,
-  Activity,
+  Megaphone,
   Users,
-  Cpu,
+  Award,
+  BookOpen,
+  Activity,
+  Coins,
   Globe,
-  Star,
-  Scale,
+  Heart,
+  Mountain,
 } from "lucide-react";
 
 export const metadata = {
@@ -21,73 +19,76 @@ export const metadata = {
 
 const objectives = [
   {
-    text: "Celebrate the achievements of rangers and conservation professionals across Asia",
-    icon: Trophy,
-  },
-  {
-    text: "Share knowledge, experiences, and best practices in protected area management",
-    icon: BookOpen,
-  },
-  {
-    text: "Strengthen the ranger profession by identifying gaps in training, equipment, and support",
+    text: "Recognition Beyond Conservation — Advance recognition of the role rangers play beyond traditional conservation, acknowledging their contributions to climate resilience, community wellbeing, One Health, and sustainable development across Asia.",
     icon: ShieldCheck,
   },
   {
-    text: "Foster regional cooperation between ranger organisations, governments, and civil society",
-    icon: Handshake,
+    text: "Amplifying Ranger Voices — Strengthen the collective voice of Asian rangers in regional and global policy forums, building on the Guwahati Declaration and contributing to the outcomes of the 11th IRF World Ranger Congress.",
+    icon: Megaphone,
   },
   {
-    text: "Highlight Bhutan's conservation model as a benchmark for nature-positive development",
-    icon: Mountain,
+    text: "Diversity, Equity & Inclusion — Promote a more inclusive and representative ranger workforce across Asia, championing the roles of women rangers, Indigenous rangers, and rangers representing local communities in biodiversity management.",
+    icon: Users,
   },
   {
-    text: "Produce an updated Asian Ranger Declaration to guide the profession over the next decade",
-    icon: FileText,
+    text: "Ranger Recognition & Professional Standards — Enhance the professional standing of rangers across Asia, advocating for improved welfare, working conditions, training, and recognition of rangers as essential planetary health professionals.",
+    icon: Award,
+  },
+  {
+    text: "Peer Learning & Asian Solutions — Foster peer-to-peer exchange of knowledge, experiences, and best practices among rangers across Asia, celebrating Bhutan's conservation model as an inspiration for the region.",
+    icon: BookOpen,
   },
 ];
 
 const congressThemes = [
   {
-    title: "Ranger Welfare & Wellbeing",
+    title: "Ranger Role & Recognition",
     description:
-      "Addressing the physical, psychological, and professional needs of rangers across the region, including safety, compensation, legal protections, and mental health support.",
+      "Enhancing the professional standing of rangers across Asia and ensuring their contributions — beyond conservation — are valued and supported.",
     image: "/placeholder.svg",
-    icon: Activity,
+    icon: Award,
   },
   {
-    title: "Community-Based Conservation",
+    title: "Rangers for 30×30",
     description:
-      "Exploring how rangers work with local and indigenous communities to build shared stewardship of natural resources.",
-    image: "/placeholder.svg",
-    icon: Users,
-  },
-  {
-    title: "Technology & Innovation",
-    description:
-      "Showcasing new tools and approaches — from camera traps to AI-assisted monitoring — that are transforming how rangers protect wildlife.",
-    image: "/placeholder.svg",
-    icon: Cpu,
-  },
-  {
-    title: "Climate Change & Biodiversity",
-    description:
-      "Understanding how climate change is reshaping habitats, species distributions, and ranger operations, and how the profession is adapting.",
+      "Defining and advancing the role of Asian rangers in achieving the global target to protect 30% of the planet by 2030.",
     image: "/placeholder.svg",
     icon: Globe,
   },
   {
-    title: "Women in Rangering",
+    title: "Rangers as First Responders — Climate Change & Resilience",
     description:
-      "Celebrating the growing role of women in ranger forces across Asia and addressing the barriers that continue to limit representation.",
+      "Recognising rangers on the frontline of climate-related disasters and building ranger capacity to adapt to a rapidly changing climate.",
     image: "/placeholder.svg",
-    icon: Star,
+    icon: Activity,
   },
   {
-    title: "Policy & Legislation",
+    title: "Inclusive Workforce",
     description:
-      "Discussing the legal frameworks that govern rangers' work and how policy can better support the profession.",
+      "Promoting diversity, equity, and inclusion across Asia's ranger profession, championing women rangers, Indigenous rangers, and rangers representing local communities.",
     image: "/placeholder.svg",
-    icon: Scale,
+    icon: Users,
+  },
+  {
+    title: "Ranger Welfare, Advocacy & Partnerships",
+    description:
+      "Improving working conditions and safety, strengthening ranger associations, and amplifying the collective voice of Asian rangers.",
+    image: "/placeholder.svg",
+    icon: Heart,
+  },
+  {
+    title: "One Health",
+    description:
+      "Recognising the vital role of rangers in safeguarding ecosystem, wildlife, and human health.",
+    image: "/placeholder.svg",
+    icon: Mountain,
+  },
+  {
+    title: "Innovative Financing for Rangers",
+    description:
+      "Exploring new and sustainable funding mechanisms to support ranger programmes across Asia, including public-private partnerships, conservation finance, and community-based funding models.",
+    image: "/placeholder.svg",
+    icon: Coins,
   },
 ];
 
