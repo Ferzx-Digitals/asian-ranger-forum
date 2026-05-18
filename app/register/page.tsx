@@ -31,7 +31,7 @@ export default function RegisterPage() {
             What&apos;s Included
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-6">
-            The registration fee of <strong>USD 400</strong> covers:
+            The registration fee of <strong>USD 450</strong> covers:
           </p>
           <WhatsIncluded />
         </section>

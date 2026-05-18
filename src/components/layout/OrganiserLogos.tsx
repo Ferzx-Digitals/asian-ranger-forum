@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { ORGANISERS } from "@/lib/organisers";
 
 export function OrganiserLogos() {
@@ -16,18 +17,14 @@ export function OrganiserLogos() {
                 aria-hidden="true"
               />
             )}
-            {/*
-              Logo slot — when the official logo is provided, replace the two
-              <span> elements below with:
-                <Image src={`/logos/${org.abbr.toLowerCase()}.svg`} alt={org.name} width={64} height={48} />
-            */}
-            <div className="flex flex-col items-center justify-center w-[6rem] md:w-[7.5rem]">
-              <span className="font-display text-base md:text-lg font-bold text-primary leading-none tracking-wide">
-                {org.abbr}
-              </span>
-              <span className="font-body text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.12em] text-muted-foreground mt-1.5 leading-tight">
-                {org.name}
-              </span>
+            <div className="flex items-center justify-center w-[6rem] md:w-[8rem] h-20">
+              <Image
+                src={`/logos/${org.logo}`}
+                alt={org.name}
+                width={80}
+                height={60}
+                className="object-contain max-h-full w-auto"
+              />
             </div>
           </Fragment>
         ))}

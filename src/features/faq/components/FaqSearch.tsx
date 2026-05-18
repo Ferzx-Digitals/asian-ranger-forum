@@ -37,7 +37,7 @@ const faqGroups = [
       },
       {
         q: "What does the registration fee cover?",
-        a: "The registration fee of USD 400 per participant covers accommodation, all meals (working lunches, dinners, and daily tea/coffee breaks), transportation to and from the venue, a welcome kit, and access to all Congress sessions, field visits, and social events. A dedicated medical team will also be on-site throughout the event. Please note that a bank transaction fee will apply on top of the registration fee and is the responsibility of the participant.",
+        a: "The registration fee of USD 450 per participant covers accommodation, all meals (working lunches, dinners, and daily tea/coffee breaks), transportation to and from the venue, a welcome kit, and access to all Congress sessions, field visits, and social events. A dedicated medical team will also be on-site throughout the event. Please note that a bank transaction fee will apply on top of the registration fee and is the responsibility of the participant.",
       },
       {
         q: "Can my organisation submit an EOI on behalf of multiple participants?",

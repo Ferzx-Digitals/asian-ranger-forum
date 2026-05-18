@@ -66,7 +66,7 @@ export function RegistrationSteps() {
           <br />
           Selected participants will receive a confirmation letter along with
           instructions to complete their registration and payment. The
-          registration fee of USD 400 per participant covers accommodation, all
+          registration fee of USD 450 per participant covers accommodation, all
           meals, transportation, and a welcome kit for the full duration of the
           Congress.
         </p>

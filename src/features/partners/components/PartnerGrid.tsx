@@ -5,16 +5,16 @@ type Partner = {
 };
 
 const partners: Partner[] = [
-  { name: "Ranger Federation of Asia (RFA)" },
-  { name: "International Rangers Federation (IRF)" },
-  { name: "Society of Bhutanese Foresters (SBF)" },
-  { name: "Department of Forests and Park Services, MoENR, Bhutan" },
+  { name: "Ranger Federation of Asia (RFA)", logo: "rfa.png" },
+  { name: "International Rangers Federation (IRF)", logo: "irf.png" },
+  { name: "Society of Bhutanese Foresters (SBF)", logo: "sbf.png" },
+  { name: "Department of Forests and Park Services, MoENR, Bhutan", logo: "dfps.png" },
   { name: "Department of Tourism, MoICE, Bhutan" },
   { name: "Bhutan Ecological Society (BES)" },
   { name: "Hotel & Restaurant Association of Bhutan (HRAB)" },
-  { name: "Universal Ranger Support Alliance" },
+  { name: "Universal Ranger Support Alliance", logo: "ursa.png" },
   { name: "WildCan Nepal" },
-  { name: "WWF" },
+  { name: "WWF", logo: "wwf.png" },
 ];
 
 export function PartnerGrid() {
@@ -25,12 +25,12 @@ export function PartnerGrid() {
           key={partner.name}
           className="rounded-sm border border-border bg-card p-4 flex flex-col items-center justify-between gap-3 min-h-[140px] text-center"
         >
-          <div className="w-16 h-16 rounded-sm bg-muted flex items-center justify-center overflow-hidden">
+          <div className="w-30 h-30 rounded-sm flex items-center justify-center overflow-hidden">
             {partner.logo ? (
               <img
                 src={`/logos/${partner.logo}`}
                 alt={partner.name}
-                className="w-full h-full object-contain p-1"
+                className="w-full h-full object-contain"
               />
             ) : (
               <span className="font-body text-2xl text-muted-foreground">

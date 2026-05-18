@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ORGANISERS } from "@/lib/organisers";
 
 export function OrganiserCards() {
@@ -20,24 +21,14 @@ export function OrganiserCards() {
               key={org.abbr}
               className="rounded-sm border border-border bg-card p-6 md:p-8 flex flex-col items-center text-center transition-colors hover:border-secondary/50"
             >
-              {/*
-                Logo slot — when the official logo is provided, replace the
-                placeholder block below with:
-                  <Image
-                    src={`/logos/${org.abbr.toLowerCase()}.svg`}
-                    alt={org.name}
-                    width={140}
-                    height={96}
-                    className="object-contain h-full w-auto"
-                  />
-              */}
-              <div className="h-28 md:h-32 w-full flex flex-col items-center justify-center mb-6 rounded-sm border border-dashed border-secondary/40 bg-muted/40">
-                <span className="font-display text-2xl md:text-3xl font-bold text-primary/80 tracking-[0.15em] mb-1">
-                  {org.abbr}
-                </span>
-                <span className="font-body text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.3em] text-secondary font-semibold">
-                  Logo · Coming Soon
-                </span>
+              <div className="h-28 md:h-35 w-full flex items-center justify-center mb-6">
+                <Image
+                  src={`/logos/${org.logo}`}
+                  alt={org.name}
+                  width={120}
+                  height={100}
+                  className="object-contain max-h-full w-auto"
+                />
               </div>
 
               <h3 className="font-display text-base md:text-lg font-bold text-primary leading-tight">
@@ -47,10 +38,21 @@ export function OrganiserCards() {
           ))}
         </div>
 
-        <p className="text-center font-body text-xs text-muted-foreground mt-8 max-w-xl mx-auto leading-relaxed">
-          In collaboration with partner agencies and the Royal Government of
-          Bhutan
-        </p>
+        <div className="mt-8 flex flex-col items-center gap-1">
+          <p className="font-body text-xs italic text-muted-foreground">
+            In collaboration with partner agencies and
+          </p>
+          <Image
+            src="/logos/rgob.png"
+            alt="Royal Government of Bhutan"
+            width={300}
+            height={300}
+            className="object-contain"
+          />
+          <p className="font-body text-xs font-semibold text-muted-foreground">
+            Royal Government of Bhutan
+          </p>
+        </div>
       </div>
     </section>
   );
