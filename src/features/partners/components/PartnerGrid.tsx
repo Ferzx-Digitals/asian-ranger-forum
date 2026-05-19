@@ -9,11 +9,7 @@ const partners: Partner[] = [
   { name: "International Rangers Federation (IRF)", logo: "irf.png" },
   { name: "Society of Bhutanese Foresters (SBF)", logo: "sbf.png" },
   { name: "Department of Forests and Park Services, MoENR, Bhutan", logo: "dfps.png" },
-  { name: "Department of Tourism, MoICE, Bhutan" },
-  { name: "Bhutan Ecological Society (BES)" },
-  { name: "Hotel & Restaurant Association of Bhutan (HRAB)" },
   { name: "Universal Ranger Support Alliance", logo: "ursa.png" },
-  { name: "WildCan Nepal" },
   { name: "WWF", logo: "wwf.png" },
 ];
 
