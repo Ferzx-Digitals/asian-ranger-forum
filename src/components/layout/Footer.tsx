@@ -1,4 +1,9 @@
 import Link from "next/link";
+import {
+  OFFICIAL_CONGRESS_EMAIL,
+  OFFICIAL_CONGRESS_MAILTO,
+} from "@/lib/contact";
+import { RfaSocialLinks } from "./RfaSocialLinks";
 
 const linkGroups = [
   {
@@ -46,11 +51,12 @@ export function Footer() {
               Thimphu, Bhutan
             </p>
             <a
-              href="mailto:asianrangercongress@gmail.com"
+              href={OFFICIAL_CONGRESS_MAILTO}
               className="font-body text-sm text-secondary hover:underline break-all"
             >
-              asianrangercongress@gmail.com
+              {OFFICIAL_CONGRESS_EMAIL}
             </a>
+            <RfaSocialLinks className="mt-5" tone="footer" />
           </div>
 
           {/* Grouped links */}

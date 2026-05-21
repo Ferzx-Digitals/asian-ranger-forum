@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/layout/PageHero";
 import { PartnerGrid } from "@/features/partners/components/PartnerGrid";
+import { OFFICIAL_CONGRESS_MAILTO } from "@/lib/contact";
 
 export const metadata = {
   title: "Partners | 2nd Asian Ranger Congress 2026",
@@ -101,7 +102,7 @@ export default function PartnersPage() {
             Partner logos will be displayed here. If your organisation would
             like to become a partner, please{" "}
             <a
-              href="mailto:asianrangercongress@gmail.com"
+              href={OFFICIAL_CONGRESS_MAILTO}
               className="text-secondary hover:underline"
             >
               contact us

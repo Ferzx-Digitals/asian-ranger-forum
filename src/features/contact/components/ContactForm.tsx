@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import {
+  OFFICIAL_CONGRESS_EMAIL,
+  OFFICIAL_CONGRESS_MAILTO,
+} from "@/lib/contact";
 
 const GOOGLE_FORM_ACTION =
   "https://docs.google.com/forms/d/e/1FAIpQLSdYueasnaY3GP5Dj5o3Ra6zvAlusU80bEzFtQ1qsHn1KeAOQg/formResponse";
@@ -65,10 +69,14 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5">
+          <label
+            htmlFor="contact-full-name"
+            className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5"
+          >
             Full Name <span className="text-accent">*</span>
           </label>
           <input
+            id="contact-full-name"
             type="text"
             required
             value={values.fullName}
@@ -80,10 +88,14 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5">
+          <label
+            htmlFor="contact-email"
+            className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5"
+          >
             Email Address <span className="text-accent">*</span>
           </label>
           <input
+            id="contact-email"
             type="email"
             required
             value={values.email}
@@ -96,10 +108,14 @@ export function ContactForm() {
         </div>
       </div>
       <div>
-        <label className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5">
+        <label
+          htmlFor="contact-organisation"
+          className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5"
+        >
           Organisation
         </label>
         <input
+          id="contact-organisation"
           type="text"
           value={values.organisation}
           onChange={(e) =>
@@ -110,10 +126,14 @@ export function ContactForm() {
         />
       </div>
       <div>
-        <label className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5">
+        <label
+          htmlFor="contact-message"
+          className="block font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 mb-1.5"
+        >
           Message <span className="text-accent">*</span>
         </label>
         <textarea
+          id="contact-message"
           required
           rows={5}
           value={values.message}
@@ -139,10 +159,10 @@ export function ContactForm() {
       <p className="font-body text-xs text-muted-foreground">
         Or email us directly at{" "}
         <a
-          href="mailto:asianrangercongress@gmail.com"
+          href={OFFICIAL_CONGRESS_MAILTO}
           className="text-secondary hover:underline"
         >
-          asianrangercongress@gmail.com
+          {OFFICIAL_CONGRESS_EMAIL}
         </a>
       </p>
     </form>

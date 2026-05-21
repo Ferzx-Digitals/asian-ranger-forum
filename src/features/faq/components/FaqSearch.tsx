@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
+import { useMemo, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -9,181 +9,189 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
+import {
+  OFFICIAL_CONGRESS_EMAIL,
+  OFFICIAL_CONGRESS_MAILTO,
+} from "@/lib/contact";
+import { cn } from "@/lib/utils";
+import { type FaqCategory, type FaqItem, faqCategories } from "../data";
+import { faqIconMap } from "./faq-icons";
 
-const faqGroups = [
-  {
-    group: "About the Congress",
-    items: [
-      {
-        q: "What is the Asian Ranger Congress?",
-        a: "The Asian Ranger Congress is a regional gathering of rangers, conservation professionals, and organisations from across Asia. It provides a platform for sharing experiences, knowledge, and best practices in protected area management and conservation.",
-      },
-      {
-        q: "When and where is the 2nd Asian Ranger Congress?",
-        a: "The 2nd Asian Ranger Congress will be held from 2–4 December 2026 at the Royal Institute of Management (RIM), Simtokha, Thimphu, Bhutan.",
-      },
-      {
-        q: "Who organises the congress?",
-        a: "The congress is jointly organised by the Ranger Federation of Asia (RFA), the International Rangers Federation (IRF), and the Society of Bhutanese Foresters (SBF), in collaboration with partner agencies and the Royal Government of Bhutan.",
-      },
-      {
-        q: "What was the theme of the 1st Asian Ranger Congress?",
-        a: "The 1st Asian Ranger Congress was held in 2018. Details about the theme and the Congress Declaration can be found in the congress archives. A download of the 1st Congress Declaration will be made available on this website.",
-      },
-    ],
-  },
-  {
-    group: "Registration",
-    items: [
-      {
-        q: "How do I register for the congress?",
-        a: "Registration is a two-step process. First, submit your Expression of Interest (EOI) using the online form linked on the Register page. Once your interest has been reviewed, you will receive a formal invitation and payment instructions to complete your registration.",
-      },
-      {
-        q: "What is the registration fee?",
-        a: "The registration fee is USD 400 per participant. This includes accommodation for the duration of the congress (1–4 December 2026), all meals, local transportation, congress materials, and access to all sessions and field visits.",
-      },
-      {
-        q: "Can I attend without paying the registration fee?",
-        a: "The registration fee covers significant logistics including accommodation, meals, and transport. Exemptions or scholarships may be available in limited cases — please contact asianrangercongress@gmail.com to enquire.",
-      },
-      {
-        q: "What is the deadline for registration?",
-        a: "Registration deadlines will be communicated upon confirmation. We recommend submitting your Expression of Interest as early as possible to secure your place.",
-      },
-    ],
-  },
-  {
-    group: "Travel & Visa",
-    items: [
-      {
-        q: "Do I need a visa to visit Bhutan?",
-        a: "Yes, most foreign nationals require a visa to enter Bhutan. Citizens of India, Bangladesh, and Maldives are exempt from visa requirements. Visa information and application links will be provided to confirmed participants.",
-      },
-      {
-        q: "What is the Sustainable Development Fee (SDF)?",
-        a: "Bhutan charges a Sustainable Development Fee (SDF) of USD 100 per night for most international visitors. Confirmed congress participants will be eligible for an SDF exemption for the duration of the congress (2–4 December 2026).",
-      },
-      {
-        q: "How do I get to Thimphu?",
-        a: "Thimphu is most easily reached by flying into Paro International Airport (PBH), which is approximately 1.5 hours by road from Thimphu. Druk Air and Bhutan Airlines operate flights from regional hubs including Delhi, Kolkata, Kathmandu, and Bangkok. Entry is also possible by road from India through Phuentsholing, Gelephu, or Samdrup Jongkhar.",
-      },
-      {
-        q: "Will airport transfers be provided?",
-        a: "Yes, airport transfers between Paro International Airport and the congress venue in Thimphu are included in the registration fee.",
-      },
-      {
-        q: "What accommodation is provided?",
-        a: "Accommodation is included in the registration fee. Participants will be accommodated at or near the Royal Institute of Management (RIM) in Simtokha, Thimphu, for the duration of the congress (1–4 December 2026).",
-      },
-    ],
-  },
-  {
-    group: "At the Congress",
-    items: [
-      {
-        q: "What language will the congress be held in?",
-        a: "The congress will be conducted in English.",
-      },
-      {
-        q: "Can I present a paper or lead a session?",
-        a: "Yes! The congress includes a call for proposals for presentations, workshops, and training sessions. Details on submission requirements and deadlines are available on the Call for Proposals and Training Sessions pages.",
-      },
-      {
-        q: "What are the field visits?",
-        a: "Field visits are included in the congress programme and provide participants with an opportunity to experience Bhutan's remarkable conservation landscapes and ranger work first-hand. Three field visit options are being planned — details will be announced closer to the event.",
-      },
-      {
-        q: "Who should I contact if I have more questions?",
-        a: "For any queries not answered here, please email the congress secretariat at asianrangercongress@gmail.com. We will respond within 5 working days.",
-      },
-    ],
-  },
-];
+function itemMatchesQuery(category: FaqCategory, item: FaqItem, query: string) {
+  const searchableText = [
+    category.title,
+    category.shortTitle,
+    category.description,
+    item.question,
+    item.answer,
+    ...(item.keywords ?? []),
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return searchableText.includes(query);
+}
 
 export function FaqSearch() {
   const [searchQuery, setSearchQuery] = useState("");
+  const normalizedQuery = searchQuery.trim().toLowerCase();
 
-  const filteredGroups = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return faqGroups;
+  const filteredCategories = useMemo(() => {
+    if (!normalizedQuery) {
+      return faqCategories;
     }
 
-    const query = searchQuery.toLowerCase();
-    return faqGroups
-      .map((group) => ({
-        ...group,
-        items: group.items.filter(
-          (item) =>
-            item.q.toLowerCase().includes(query) ||
-            item.a.toLowerCase().includes(query),
+    return faqCategories
+      .map((category) => ({
+        ...category,
+        items: category.items.filter((item) =>
+          itemMatchesQuery(category, item, normalizedQuery),
         ),
       }))
-      .filter((group) => group.items.length > 0);
-  }, [searchQuery]);
+      .filter((category) => category.items.length > 0);
+  }, [normalizedQuery]);
 
-  const totalResults = filteredGroups.reduce(
-    (sum, group) => sum + group.items.length,
+  const totalResults = filteredCategories.reduce(
+    (sum, category) => sum + category.items.length,
     0,
   );
 
   return (
-    <div>
-      <div className="mb-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-          <Input
-            type="search"
-            placeholder="Search FAQs..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 py-2 text-base font-body"
-          />
+    <section
+      id="faq-search"
+      aria-labelledby="faq-search-title"
+      className="scroll-mt-24"
+    >
+      <div className="rounded-sm border border-border bg-card p-4 sm:p-6 md:p-8">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_minmax(320px,420px)] lg:items-end">
+          <div>
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary">
+              Search and browse
+            </p>
+            <h2
+              id="faq-search-title"
+              className="mt-2 font-display text-2xl font-bold text-primary md:text-3xl"
+            >
+              Find an Answer
+            </h2>
+            <p className="mt-2 max-w-2xl font-body text-sm leading-6 text-muted-foreground">
+              Search across registration, travel, accommodation, programme,
+              proposals, participation, and contact questions.
+            </p>
+          </div>
+
+          <div>
+            <label htmlFor="faq-search-input" className="sr-only">
+              Search FAQs
+            </label>
+            <div className="relative">
+              <Search
+                aria-hidden="true"
+                className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+              />
+              <Input
+                id="faq-search-input"
+                type="search"
+                placeholder="Search registration, visa, accommodation..."
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                className="h-12 rounded-sm pl-10 pr-11 font-body text-base"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  aria-label="Clear FAQ search"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <X aria-hidden="true" className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="mt-2 font-body text-sm text-muted-foreground">
+                Found {totalResults} result{totalResults === 1 ? "" : "s"}
+              </p>
+            )}
+          </div>
         </div>
-        {searchQuery && (
-          <p className="mt-2 text-sm text-muted-foreground">
-            Found {totalResults} result{totalResults !== 1 ? "s" : ""}
-          </p>
-        )}
       </div>
 
-      {filteredGroups.length > 0 ? (
-        <div className="space-y-8">
-          {filteredGroups.map((group) => (
-            <div key={group.group}>
-              <h2 className="font-display text-xl font-bold text-primary mb-4 pb-2 border-b border-border">
-                {group.group}
-              </h2>
-              <Accordion type="single" collapsible className="space-y-2">
-                {group.items.map((item, i) => (
-                  <AccordionItem
-                    key={i}
-                    value={`${group.group}-${i}`}
-                    className="border border-border rounded-sm px-4"
-                  >
-                    <AccordionTrigger className="font-body text-sm font-medium text-foreground/90 hover:text-primary py-4 text-left">
-                      {item.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="font-body text-sm text-muted-foreground leading-relaxed pb-4">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          ))}
+      {filteredCategories.length > 0 ? (
+        <div className="mt-8 space-y-8 md:mt-10 md:space-y-10">
+          {filteredCategories.map((category) => {
+            const Icon = faqIconMap[category.icon];
+
+            return (
+              <section
+                key={category.id}
+                id={category.id}
+                aria-labelledby={`${category.id}-title`}
+                className="scroll-mt-28"
+              >
+                <div className="mb-4 flex flex-col gap-4 rounded-sm border border-border bg-background p-5 md:flex-row md:items-start md:justify-between">
+                  <div className="flex gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-secondary/30 bg-secondary/10 text-primary">
+                      <Icon aria-hidden="true" className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3
+                        id={`${category.id}-title`}
+                        className="font-display text-xl font-bold text-primary md:text-2xl"
+                      >
+                        {category.title}
+                      </h3>
+                      <p className="mt-1 max-w-2xl font-body text-sm leading-6 text-muted-foreground">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-secondary md:pt-2">
+                    {category.items.length} question
+                    {category.items.length === 1 ? "" : "s"}
+                  </p>
+                </div>
+
+                <Accordion type="single" collapsible className="space-y-3">
+                  {category.items.map((item, index) => (
+                    <AccordionItem
+                      key={item.question}
+                      value={`${category.id}-${index}`}
+                      className={cn(
+                        "rounded-sm border border-border bg-card px-5",
+                        "data-[state=open]:border-secondary/45 data-[state=open]:bg-secondary/5",
+                      )}
+                    >
+                      <AccordionTrigger className="items-start gap-4 py-5 text-left font-body text-base font-semibold leading-6 text-foreground hover:text-primary hover:no-underline">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-5 pt-0 font-body text-sm leading-7 text-muted-foreground">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </section>
+            );
+          })}
         </div>
       ) : (
-        <div className="text-center py-12">
-          <p className="font-body text-muted-foreground mb-2">
-            No FAQs found matching "{searchQuery}"
+        <div className="mt-8 rounded-sm border border-border bg-card p-8 text-center">
+          <p className="font-display text-xl font-bold text-primary">
+            No matching FAQs found
           </p>
-          <p className="font-body text-sm text-muted-foreground">
-            Try different keywords or contact us at
-            asianrangercongress@gmail.com
+          <p className="mx-auto mt-2 max-w-xl font-body text-sm leading-6 text-muted-foreground">
+            Try a different keyword, or contact the congress secretariat at{" "}
+            <a
+              href={OFFICIAL_CONGRESS_MAILTO}
+              className="font-semibold text-secondary hover:underline"
+            >
+              {OFFICIAL_CONGRESS_EMAIL}
+            </a>
+            .
           </p>
         </div>
       )}
-    </div>
+    </section>
   );
 }

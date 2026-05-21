@@ -1,16 +1,19 @@
-import { PageHero } from "@/components/layout/PageHero";
-import { cn } from "@/lib/utils";
 import {
   Activity,
-  Users,
-  ShieldAlert,
+  Coins,
   Cpu,
   Globe,
-  Star,
   Mountain,
   Scale,
-  Coins,
+  ShieldAlert,
+  Star,
+  Users,
 } from "lucide-react";
+import { PageHero } from "@/components/layout/PageHero";
+import {
+  OFFICIAL_CONGRESS_EMAIL,
+  OFFICIAL_CONGRESS_MAILTO,
+} from "@/lib/contact";
 
 export const metadata = {
   title: "Call for Proposals | 2nd Asian Ranger Congress 2026",
@@ -80,6 +83,17 @@ const thematicAreas = [
     text: "Conservation finance and funding models",
     icon: Coins,
   },
+];
+
+const marqueeThematicAreas = [
+  ...thematicAreas.map((area) => ({
+    ...area,
+    marqueeKey: `${area.text}-primary`,
+  })),
+  ...thematicAreas.map((area) => ({
+    ...area,
+    marqueeKey: `${area.text}-repeat`,
+  })),
 ];
 
 export default function CallForProposalsPage() {
@@ -153,9 +167,9 @@ export default function CallForProposalsPage() {
 
           <div className="relative">
             <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 px-3">
-              {[...thematicAreas, ...thematicAreas].map((area, i) => (
+              {marqueeThematicAreas.map((area) => (
                 <div
-                  key={i}
+                  key={area.marqueeKey}
                   className="w-72 flex-shrink-0 bg-card border-b-4 border-b-secondary border-x border-t border-border p-6 rounded-sm shadow-sm hover:shadow-md transition-shadow group/card"
                 >
                   <div className="flex flex-col items-center text-center gap-4 whitespace-normal">
@@ -185,15 +199,16 @@ export default function CallForProposalsPage() {
             preferred format, and contact details. The submission portal will
             open in 2026. In the meantime, contact us at{" "}
             <a
-              href="mailto:asianrangercongress@gmail.com"
+              href={OFFICIAL_CONGRESS_MAILTO}
               className="text-secondary hover:underline"
             >
-              asianrangercongress@gmail.com
+              {OFFICIAL_CONGRESS_EMAIL}
             </a>{" "}
             to register your interest.
           </p>
           <div className="flex justify-center">
             <button
+              type="button"
               disabled
               className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
             >

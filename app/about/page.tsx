@@ -1,6 +1,6 @@
 import { PageHero } from "@/components/layout/PageHero";
-import { MessageCard } from "@/features/about/components/MessageCard";
 import { MagnifiableMap } from "@/features/about/components/MagnifiableMap";
+import { MessageCard } from "@/features/about/components/MessageCard";
 
 export const metadata = {
   title: "About the Congress | 2nd Asian Ranger Congress 2026",
@@ -34,7 +34,7 @@ export default function AboutPage() {
               goal is unattainable.
             </p>
             <p>
-              Building on the success of the 1st Asian Ranger Forum held in
+              Building on the success of the 1st Asian Ranger Congress held in
               Guwahati, India in December 2023, the 2nd Asian Ranger Congress
               will once again bring together rangers and organisations
               supporting rangers from across Asia to collaborate on the issues
@@ -76,6 +76,13 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl font-bold text-primary mb-2">
               Majestic Thimphu Hosts You
             </h2>
+            <p className="max-w-2xl font-body text-sm text-muted-foreground leading-relaxed">
+              Set in the Himalayan valley of Thimphu, Bhutan offers delegates
+              more than a congress venue. The country&apos;s conservation
+              legacy, high forest cover, and constitutional commitment to
+              protecting nature make it a fitting host for Asia&apos;s ranger
+              community.
+            </p>
           </div>
           <MagnifiableMap />
         </section>
@@ -88,23 +95,25 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-8">
             <MessageCard
               name="Chris Galliers"
-              title="President, International Rangers Federation (IRF)"
+              title="President, International Ranger Federation"
               message={
-                "The International Rangers Federation is proud to support the 2nd Asian Ranger Congress and to stand alongside the rangers of Asia as they gather once more to share, learn, and inspire.\n\nThe 1st Asian Ranger Forum in Guwahati was a landmark moment — it showed the world what Asian rangers are capable of when they come together. The Guwahati Declaration was a powerful statement of intent, and it is now our collective responsibility to turn those commitments into action.\n\nBhutan is a fitting host for this gathering. A country that has made conservation a national philosophy, where rangers are respected and where the results speak for themselves. I hope that the 2026 Congress will not only build on the momentum of Guwahati but will set a new standard for what a ranger congress can achieve.\n\nTo every ranger making the journey to Thimphu — thank you. Your dedication, courage, and commitment to protecting Asia's extraordinary biodiversity is an inspiration to rangers around the world. We look forward to seeing you in Bhutan."
+                "The International Ranger Federation is proud to support the 2nd Asian Ranger Congress and to once again stand alongside the rangers of Asia at this important gathering. This congress will provide a platform for rangers to share experiences, learn from one another, and inspire collective action.\n\nWhat a privilege it was to participate in the 1st Asian Ranger Forum in Guwahati, as it was such a landmark moment, showcasing the vital work of Asian rangers and their critical role in conservation. The Guwahati Declaration was a powerful statement of intent, amplifying the collective voice of Asia’s rangers and placing responsibility on all of us to turn commitments into action. The congress also strengthened relationships that have since borne fruit. We are deeply grateful to Bhutan for hosting the congress. It is such a fitting location, as Bhutan has made conservation a national philosophy, where rangers are respected and recognised for their invaluable contribution to the country.\n\nI hope that the 2026 Congress will not only build on the momentum established in Guwahati but also set a new benchmark for the ranger profession in Asia, advancing recognition and strengthening the role of rangers across the region. Importantly, it will contribute to the global ranger movement by feeding directly into the 11th IRF World Ranger Congress in April 2027, in Argentina, ensuring that the voices and experiences of Asia’s rangers shape the international agenda.\n\nTo every ranger making the journey to Thimphu — thank you. And to every organisation supporting ranger attendance, your commitment is deeply appreciated. The dedication, courage, and perseverance of Asia’s rangers in safeguarding extraordinary biodiversity and cultural heritage is an inspiration to rangers worldwide. We look forward to seeing you all in Bhutan."
               }
             />
             <MessageCard
               reverse
               name="Bunty Tao"
-              title="President, Ranger Federation of Asia (RFA)"
+              title="President, Ranger Federation of Asia"
               message={
                 "As a ranger, as an Indigenous person, and as President of the Ranger Federation of Asia, I am deeply honoured to welcome you to the 2nd Asian Ranger Congress in Thimphu, Bhutan.\n\nRangers across Asia come from many different backgrounds, cultures, and landscapes — but we are united by a shared purpose: to protect the natural world and the communities that depend on it. This Congress is our common space. A space where every ranger — whether you patrol a high Himalayan forest, a coastal mangrove, or a tropical rainforest — belongs and has a voice.\n\nAs the first Indigenous ranger to serve as President of the Ranger Federation of Asia, I am proud to see this Congress championing diversity, inclusion, and the recognition of rangers beyond the boundaries of traditional conservation. Our knowledge, our cultures, and our connections to the land are not just assets — they are essential to the future of conservation in Asia and beyond.\n\nI look forward to welcoming each and every one of you to Bhutan, to learning from your experiences, and to building together a stronger, more united ranger community across Asia."
               }
             />
             <MessageCard
-              name="[Name], President"
-              title="Society of Bhutanese Foresters (SBF)"
-              placeholder
+              name="Kinley Tshering"
+              title="Chairperson, Society of Bhutanese Foresters"
+              message={
+                "On behalf of the Society of Bhutanese Foresters, it is my profound honour to welcome rangers and conservation leaders from across Asia to the 2nd Asian Ranger Congress here in Thimphu, Bhutan. Bhutan has long placed conservation at the heart of its national identity. It is this same spirit that makes Bhutan proud to host a gathering dedicated to those who protect nature on the frontlines every single day.\n\nRangers are the backbone of conservation. Across Asia's forests, mountains, wetlands, and coastlines, they work tirelessly, often in challenging and remote conditions, to safeguard biodiversity, uphold the law, and build trust with the communities they serve. Their dedication deserves our deepest respect and our strongest institutional support. We hope that Thimphu, nestled in the Himalayas and surrounded by some of the most pristine forests on Earth, will inspire every delegate who joins us. You are not merely attending a congress; you are part of a movement.\n\nWelcome to Bhutan. We are honoured to stand with you."
+              }
             />
           </div>
         </section>
@@ -120,6 +129,7 @@ export default function AboutPage() {
             available for download.
           </p>
           <button
+            type="button"
             disabled
             className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
           >
@@ -127,19 +137,21 @@ export default function AboutPage() {
           </button>
         </section>
 
-        {/* 1st Forum Declaration */}
+        {/* 1st Congress Declaration */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            1st Asian Ranger Forum Declaration
+            1st Asian Ranger Congress Declaration
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
-            The 1st Asian Ranger Forum was held in Guwahati, India in December
-            2023 and produced the Guwahati Declaration — a landmark statement of
-            intent committing organisations and governments to strengthen the
-            ranger profession across Asia. The declaration remains a
-            foundational document for the ranger movement in the region.
+            The 1st Asian Ranger Congress was held in Guwahati, India in
+            December 2023 and produced the Guwahati Declaration — a landmark
+            statement of intent committing organisations and governments to
+            strengthen the ranger profession across Asia. The declaration
+            remains a foundational document for the ranger movement in the
+            region.
           </p>
           <button
+            type="button"
             disabled
             className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
           >

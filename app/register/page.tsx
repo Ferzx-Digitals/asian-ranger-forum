@@ -1,7 +1,8 @@
 import { PageHero } from "@/components/layout/PageHero";
 import { RegistrationSteps } from "@/features/register/components/RegistrationSteps";
-import { WhatsIncluded } from "@/features/register/components/WhatsIncluded";
 import { SdfExemption } from "@/features/register/components/SdfExemption";
+import { WhatsIncluded } from "@/features/register/components/WhatsIncluded";
+import { OFFICIAL_CONGRESS_EMAIL } from "@/lib/contact";
 
 export const metadata = {
   title: "Register | 2nd Asian Ranger Congress 2026",
@@ -31,7 +32,7 @@ export default function RegisterPage() {
             What&apos;s Included
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-6">
-            The registration fee of <strong>USD 400</strong> covers:
+            The registration fee of <strong>USD 450</strong> covers:
           </p>
           <WhatsIncluded />
         </section>
@@ -54,7 +55,7 @@ export default function RegisterPage() {
               },
               {
                 q: "Can my organisation submit on behalf of multiple rangers?",
-                a: "Yes — organisations are welcome to nominate multiple rangers. However, each nominated ranger must submit their own Expression of Interest with their personal details and motivation, so that every participant has a voice in the selection process. For help coordinating group submissions, email asianrangercongress@gmail.com.",
+                a: `Yes — organisations are welcome to nominate multiple rangers. However, each nominated ranger must submit their own Expression of Interest with their personal details and motivation, so that every participant has a voice in the selection process. For help coordinating group submissions, email ${OFFICIAL_CONGRESS_EMAIL}.`,
               },
               {
                 q: "What is the registration deadline?",
@@ -66,7 +67,7 @@ export default function RegisterPage() {
               },
               {
                 q: "Are there scholarships or subsidised places available?",
-                a: "Limited support may be available for rangers from low-income countries. Please contact asianrangercongress@gmail.com to enquire.",
+                a: `Limited support may be available for rangers from low-income countries. Please contact ${OFFICIAL_CONGRESS_EMAIL} to enquire.`,
               },
             ].map(({ q, a }) => (
               <div

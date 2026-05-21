@@ -1,4 +1,5 @@
 import { PageHero } from "@/components/layout/PageHero";
+import { OFFICIAL_CONGRESS_MAILTO } from "@/lib/contact";
 
 export const metadata = {
   title: "Training Sessions | 2nd Asian Ranger Congress 2026",
@@ -104,13 +105,14 @@ export default function TrainingPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <button
+              type="button"
               disabled
               className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
             >
               Submit Training Proposal (Coming Soon)
             </button>
             <a
-              href="mailto:asianrangercongress@gmail.com"
+              href={OFFICIAL_CONGRESS_MAILTO}
               className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border text-foreground/70 font-body text-sm font-medium hover:text-primary transition-colors"
             >
               Contact Us to Enquire

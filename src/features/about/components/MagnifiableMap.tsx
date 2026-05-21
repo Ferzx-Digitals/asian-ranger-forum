@@ -170,15 +170,15 @@ export function MagnifiableMap() {
 
         {/* Label Overlay */}
         <div className="absolute top-6 left-6 z-30 pointer-events-none">
-          <div className="bg-background/80 backdrop-blur-md border border-border/50 p-3 rounded-sm shadow-sm min-w-[140px]">
+          <div className="bg-background/80 backdrop-blur-md border border-border/50 p-3 rounded-sm shadow-sm min-w-[180px]">
             <p className="text-[10px] font-bold text-primary uppercase tracking-widest leading-none">
               {levels[currentLevel].label}
             </p>
             <p className="text-[8px] text-muted-foreground uppercase tracking-tighter mt-1">
-              {currentLevel === 0 && "Rangers from across Asia gather"}
-              {currentLevel === 1 && "In the majesty of Bhutan"}
-              {currentLevel === 2 && "Within the Thimphu valley"}
-              {currentLevel === 3 && "At our venue"}
+              {currentLevel === 0 && "Asia's ranger community converges"}
+              {currentLevel === 1 && "A Himalayan conservation leader"}
+              {currentLevel === 2 && "Bhutan's capital valley"}
+              {currentLevel === 3 && "Congress venue in Simtokha"}
             </p>
           </div>
         </div>
