@@ -51,15 +51,15 @@ export default function RegisterPage() {
             {[
               {
                 q: "When will I hear if my EOI is successful?",
-                a: "Following the review of all Expressions of Interest, selected participants will be notified by the Organising Committee and invited to complete formal registration. Specific timelines will be communicated as the event approaches — we recommend submitting your EOI as early as possible.",
+                a: "Following the review of submitted Expressions of Interest, selected participants will be notified by the Organising Committee and invited to complete formal registration. Confirmation and payment links will be sent directly to selected people who already submitted an EOI.",
               },
               {
                 q: "Can my organisation submit on behalf of multiple rangers?",
-                a: `Yes — organisations are welcome to nominate multiple rangers. However, each nominated ranger must submit their own Expression of Interest with their personal details and motivation, so that every participant has a voice in the selection process. For help coordinating group submissions, email ${OFFICIAL_CONGRESS_EMAIL}.`,
+                a: `Expression of Interest submissions are now closed, so new nominations cannot be submitted at this stage. Submitted EOIs will be reviewed by the Organising Committee. For questions about an existing submission, email ${OFFICIAL_CONGRESS_EMAIL}.`,
               },
               {
                 q: "What is the registration deadline?",
-                a: "Registration deadlines will be communicated upon confirmation. Submit your EOI early to secure your place.",
+                a: "EOI submissions are now closed. Formal registration and payment deadlines will be communicated directly to selected people who already submitted an EOI.",
               },
               {
                 q: "Can I get a refund if I cannot attend?",

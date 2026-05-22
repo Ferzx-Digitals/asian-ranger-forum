@@ -10,7 +10,7 @@ const ExpressionOfInterest = () => {
           <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-secondary rounded-br-sm" />
 
           <p className="font-body text-xs font-semibold uppercase tracking-[0.38em] text-secondary text-center mb-3">
-            Now Open
+            EOI Closed
           </p>
 
           <h2 className="font-display text-2xl md:text-3xl font-bold text-primary text-center mb-2">
@@ -18,34 +18,18 @@ const ExpressionOfInterest = () => {
           </h2>
 
           <p className="font-body text-sm text-muted-foreground text-center mb-8">
-            Rangers, conservationists, and partner organisations from across
-            Asia are invited to register their interest in attending the
-            Congress.
+            The Expression of Interest period has closed. EOIs already submitted
+            will be reviewed, and selected participants will receive the
+            confirmation and payment link directly.
           </p>
 
-          <a
-            href="https://forms.office.com/e/pxaqynXnht"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 w-full py-3 bg-accent text-accent-foreground font-body font-semibold text-sm tracking-wide uppercase rounded-sm transition-all duration-300 hover:opacity-90"
+          <button
+            type="button"
+            disabled
+            className="flex cursor-not-allowed items-center justify-center gap-3 w-full py-3 border border-border bg-muted text-muted-foreground font-body font-semibold text-sm tracking-wide uppercase rounded-sm"
           >
-            Register Interest
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
+            Expression of Interest Closed
+          </button>
 
           <p className="mt-6 text-xs font-semibold text-secondary text-center font-body">
             REGISTRATION FEE: USD 450 per participant

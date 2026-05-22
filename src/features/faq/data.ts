@@ -53,7 +53,7 @@ export const faqQuickLinks: FaqQuickLink[] = [
 export const faqNotices: FaqNotice[] = [
   {
     title: "EOI before registration",
-    body: "Submit the Expression of Interest first. Confirmed participants will receive the formal invitation and payment instructions after review.",
+    body: "Expression of Interest submissions are now closed. Selected participants who already submitted an EOI will receive the formal invitation and payment instructions after review.",
     icon: "registration",
   },
   {
@@ -80,7 +80,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "How do I register for the congress?",
         answer:
-          "Registration is a two-step process. First, submit an Expression of Interest (EOI) using the online form linked on the Register page. Following a review of all EOIs, selected participants will be invited to complete the formal registration and payment process.",
+          "Registration is a two-step process, but Expression of Interest (EOI) submissions are now closed. Following a review of submitted EOIs, selected participants will be invited to complete the formal registration and payment process.",
         keywords: ["eoi", "expression of interest", "payment", "register"],
       },
       {
@@ -93,13 +93,13 @@ export const faqCategories: FaqCategory[] = [
         question:
           "Can my organisation submit an EOI on behalf of multiple participants?",
         answer:
-          "Yes, organisations are welcome to submit EOIs on behalf of multiple participants. Please ensure that individual details are provided for each person.",
+          "EOI submissions are now closed, so new organisational nominations cannot be submitted at this stage. Submitted EOIs will be reviewed by the Organising Committee.",
         keywords: ["organisation", "group", "nominate", "multiple"],
       },
       {
         question: "When will I know if my EOI has been successful?",
         answer:
-          "The Organising Committee will review all EOIs and notify applicants of the outcome as soon as possible after the EOI deadline. Confirmed participants will then receive instructions to complete their formal registration.",
+          "The Organising Committee will review submitted EOIs and notify participants of the outcome as soon as possible. Confirmed participants will then receive instructions to complete their formal registration.",
         keywords: ["eoi", "selected", "confirmation", "timeline"],
       },
       {
@@ -110,7 +110,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What is the deadline for registration?",
         answer:
-          "Registration deadlines will be communicated upon confirmation. We recommend submitting your Expression of Interest as early as possible to secure your place.",
+          "EOI submissions are now closed. Formal registration and payment deadlines will be communicated directly to selected people who already submitted an EOI.",
         keywords: ["deadline", "timeline", "confirmation"],
       },
     ],
