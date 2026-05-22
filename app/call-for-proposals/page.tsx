@@ -102,7 +102,7 @@ export default function CallForProposalsPage() {
       <PageHero
         eyebrow="Call for Proposals"
         title="Call for Proposals"
-        subtitle="Share your work with the Asian ranger community. We invite submissions for presentations, workshops, and posters on topics relevant to rangering and conservation across Asia."
+        subtitle="Share your work and experiences with peers from across Asia through presentations, workshops, posters, and storytelling sessions."
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">
@@ -113,17 +113,16 @@ export default function CallForProposalsPage() {
           </h2>
           <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto">
             <p>
-              The 2nd Asian Ranger Congress invites submissions from rangers,
-              conservation professionals, researchers, and organisations working
-              across Asia. We are particularly interested in field-based case
-              studies, lessons learned, and innovative approaches that can be
-              shared with and adapted by the wider ranger community.
+              The 2nd Asian Ranger Congress offers an exciting opportunity for
+              rangers, researchers, experts, and conservation organisations to
+              share their work and experiences with peers from across Asia.
             </p>
             <p>
-              Proposals are reviewed by the congress programme committee.
-              Selected presenters will be notified and invited to register.
-              Submitting a proposal does not guarantee a place at the congress —
-              you must also complete the registration process.
+              If you are interested in delivering a storytelling session, talk,
+              or presentation during the Congress, we invite you to submit a
+              proposal. We particularly welcome contributions from rangers
+              working on the ground, as well as from organisations supporting
+              ranger capacity, welfare, and recognition.
             </p>
           </div>
         </section>
@@ -134,22 +133,35 @@ export default function CallForProposalsPage() {
             Session Formats
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {sessionTypes.map((s) => (
+            {sessionTypes.map((session) => (
               <div
-                key={s.type}
+                key={session.type}
                 className="rounded-sm border border-border bg-card p-5 text-center flex flex-col items-center"
               >
                 <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-1">
-                  {s.duration}
+                  {session.duration}
                 </p>
                 <h3 className="font-body text-sm font-semibold text-primary mb-2">
-                  {s.type}
+                  {session.type}
                 </h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-md">
-                  {s.description}
+                  {session.description}
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Important note */}
+        <section>
+          <div className="rounded-sm border border-secondary/40 bg-secondary/5 p-6 max-w-2xl mx-auto">
+            <p className="font-body text-sm text-foreground/80 leading-relaxed">
+              <strong className="text-primary">Please note:</strong> Proposals
+              will only be accepted where there is direct and meaningful
+              involvement of rangers. Submissions from organisations or
+              researchers must clearly demonstrate active ranger participation
+              in the proposed session.
+            </p>
           </div>
         </section>
 
@@ -160,8 +172,8 @@ export default function CallForProposalsPage() {
               Thematic Areas
             </h2>
             <p className="font-body text-sm text-muted-foreground max-w-2xl mx-auto">
-              Proposals are welcome on any topic relevant to the ranger
-              profession. Priority thematic areas include:
+              Proposals should be aligned with the themes of the Congress.
+              Priority thematic areas include:
             </p>
           </div>
 
@@ -195,9 +207,9 @@ export default function CallForProposalsPage() {
             How to Submit
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
-            Proposals should include a title, abstract (max 300 words),
-            preferred format, and contact details. The submission portal will
-            open in 2026. In the meantime, contact us at{" "}
+            Proposals should include a title, abstract, preferred format, and
+            contact details. The submission portal will open in 2026. In the
+            meantime, contact us at{" "}
             <a
               href={OFFICIAL_CONGRESS_MAILTO}
               className="text-secondary hover:underline"

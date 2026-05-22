@@ -5,21 +5,21 @@ const visits = [
     number: "01",
     name: "Lamperi Recreational Park",
     description:
-      "Scenic forest trails and rich biodiversity on the outskirts of Thimphu — a living example of Bhutan's forest conservation in action.",
+      "A beautiful forest park on the outskirts of Thimphu, Lamperi offers scenic forest trails, rich biodiversity, and a tranquil natural setting that showcases Bhutan's forest conservation at its best.",
     tag: "Forest",
   },
   {
     number: "02",
     name: "Takin Preserve, Motithang",
     description:
-      "Home to the Takin, Bhutan's rare national animal found only in the Eastern Himalayas. See these iconic animals up close.",
+      "Home to Bhutan's national animal, the Takin — a remarkable and rare bovid found only in the Eastern Himalayas. This mini-preserve in the hills above Thimphu offers visitors a chance to see these iconic animals up close while learning about conservation efforts to protect them.",
     tag: "Wildlife",
   },
   {
     number: "03",
     name: "Gidakom Forest Management Unit",
     description:
-      "Interact directly with Bhutanese rangers and witness sustainable forest management practices that have made Bhutan a global model.",
+      "An opportunity to interact directly with Bhutanese rangers and learn about sustainable forest management practices in action. This visit will highlight the day-to-day work of frontline rangers and the systems that have made Bhutan's forest conservation a global model.",
     tag: "Rangers",
   },
 ];

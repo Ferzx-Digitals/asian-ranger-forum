@@ -19,6 +19,32 @@ export default function TravelPage() {
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-2 pb-12 space-y-14">
+        {/* About Thimphu */}
+        <section>
+          <h2 className="font-display text-2xl font-bold text-primary mb-4">
+            About Thimphu, Bhutan
+          </h2>
+          <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed">
+            <p>
+              Thimphu is the capital city of Bhutan, nestled in a valley of the
+              Himalayas at an altitude of approximately 2,300 metres. It is one
+              of the few capital cities in the world without traffic lights — a
+              charming reflection of Bhutan&apos;s unique pace and philosophy.
+              Surrounded by forested hills, ancient monasteries, and dramatic
+              mountain landscapes, Thimphu offers a truly extraordinary setting
+              for the Congress.
+            </p>
+            <p>
+              Bhutan follows its own development philosophy — Gross National
+              Happiness (GNH) — which places environmental conservation as one
+              of its four core pillars. 69.71% of Bhutan&apos;s land area is
+              forested, and 52% is designated as protected areas and biological
+              corridors, making it one of the world&apos;s leading conservation
+              nations.
+            </p>
+          </div>
+        </section>
+
         {/* Venue */}
         <section className="text-center">
           <VenuePhoto />
@@ -30,8 +56,12 @@ export default function TravelPage() {
             Simtokha, Thimphu, Bhutan
           </p>
           <p className="font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto mt-2">
-            Bhutan's premier institute for management and governance training,
-            featuring a 200-seat main auditorium and over 15 breakout rooms.
+            Bhutan&apos;s premier institute for management and governance
+            training. The venue features a main auditorium with seating for up
+            to 200 participants and modern audio-visual facilities, plus more
+            than 15 breakout rooms and training halls. RIM is located just
+            outside Thimphu city, within 10–15 minutes&apos; drive of major
+            hotels.
           </p>
         </section>
 
@@ -69,17 +99,11 @@ export default function TravelPage() {
             Accommodation
           </h2>
           <div className="rounded-sm border border-border bg-card p-6">
-            <p className="font-body text-sm text-foreground/80 leading-relaxed mb-3">
-              Accommodation for the duration of the congress (1–4 December 2026)
-              is included in the registration fee. Participants will be
-              accommodated at or near RIM Simtokha. Details on the specific
-              accommodation arrangements will be provided upon confirmation of
-              registration.
-            </p>
-            <p className="font-body text-xs text-muted-foreground italic">
-              Participants wishing to extend their stay before or after the
-              congress are responsible for arranging and funding their own
-              additional accommodation.
+            <p className="font-body text-sm text-foreground/80 leading-relaxed">
+              Participants will be accommodated in hotels in Thimphu,
+              conveniently located near the venue. Accommodation costs are
+              covered by the registration fee. Shuttle buses will be provided
+              for participants staying in hotels further from the venue.
             </p>
           </div>
         </section>

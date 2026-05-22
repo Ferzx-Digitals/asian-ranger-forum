@@ -80,18 +80,31 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "How do I register for the congress?",
         answer:
-          "Registration is a two-step process. First, submit your Expression of Interest (EOI) using the online form linked on the Register page. Once your interest has been reviewed, you will receive a formal invitation and payment instructions to complete your registration.",
+          "Registration is a two-step process. First, submit an Expression of Interest (EOI) using the online form linked on the Register page. Following a review of all EOIs, selected participants will be invited to complete the formal registration and payment process.",
         keywords: ["eoi", "expression of interest", "payment", "register"],
       },
       {
         question: "What is the registration fee?",
         answer:
-          "The registration fee is USD 450 per participant. This includes accommodation for the duration of the congress (1-4 December 2026), all meals, local transportation, congress materials, and access to all sessions and field visits.",
+          "The registration fee is USD 450 per participant. This includes accommodation for the duration of the congress (1-4 December 2026), all meals including working lunches, dinners, and daily tea or coffee breaks, local transportation, congress materials, a welcome kit, access to all sessions and field visits, and an on-site medical team. Any bank transaction fees are the responsibility of the participant.",
         keywords: ["fee", "cost", "included", "payment"],
       },
       {
-        question: "Can I attend without paying the registration fee?",
-        answer: `The registration fee covers significant logistics including accommodation, meals, and transport. Exemptions or scholarships may be available in limited cases. Please contact ${OFFICIAL_CONGRESS_EMAIL} to enquire.`,
+        question:
+          "Can my organisation submit an EOI on behalf of multiple participants?",
+        answer:
+          "Yes, organisations are welcome to submit EOIs on behalf of multiple participants. Please ensure that individual details are provided for each person.",
+        keywords: ["organisation", "group", "nominate", "multiple"],
+      },
+      {
+        question: "When will I know if my EOI has been successful?",
+        answer:
+          "The Organising Committee will review all EOIs and notify applicants of the outcome as soon as possible after the EOI deadline. Confirmed participants will then receive instructions to complete their formal registration.",
+        keywords: ["eoi", "selected", "confirmation", "timeline"],
+      },
+      {
+        question: "Is financial support available to attend?",
+        answer: `Travel and participation costs can be a barrier for many rangers. If you require support to attend, please indicate this in your EOI and contact ${OFFICIAL_CONGRESS_EMAIL} for more information about available funding opportunities.`,
         keywords: ["scholarship", "exemption", "waiver", "financial support"],
       },
       {
@@ -174,7 +187,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What are the field visits?",
         answer:
-          "Field visits are included in the congress programme and provide participants with an opportunity to experience Bhutan's conservation landscapes and ranger work first-hand. Three field visit options are being planned, with details to be announced closer to the event.",
+          "A ranger-led field visit day is included in the congress programme. Participants will visit Lamperi Recreational Park, the Takin Preserve at Motithang, and the Gidakom Forest Management Unit, with final schedules and transportation details shared closer to the event.",
         keywords: ["field visit", "programme", "conservation", "bhutan"],
       },
     ],
@@ -216,9 +229,15 @@ export const faqCategories: FaqCategory[] = [
     icon: "participation",
     items: [
       {
+        question: "What is the 2nd Asian Ranger Congress?",
+        answer:
+          "The 2nd Asian Ranger Congress is a regional gathering of rangers, conservation professionals, and organisations from across Asia. Building on the success of the 1st Asian Ranger Forum held in Guwahati, India in 2023, the 2026 Congress will be hosted in Thimphu, Bhutan and will provide a platform for knowledge sharing, capacity building, and strengthening the ranger community across Asia.",
+        keywords: ["about", "congress", "forum", "thimphu", "bhutan"],
+      },
+      {
         question: "Who should attend the congress?",
         answer:
-          "The congress is intended for rangers, ranger associations, conservation practitioners, protected area managers, researchers, partner organisations, and institutions working with ranger communities across Asia.",
+          "The congress is open to rangers, ranger associations, conservation practitioners, protected area managers, researchers, partner organisations, and institutions working with ranger communities across Asia. Priority will be given to frontline rangers so the congress remains a ranger-centred event.",
         keywords: ["eligibility", "attend", "participants", "rangers"],
       },
       {

@@ -19,47 +19,30 @@ export default function GetInvolvedPage() {
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
-        {/* Why sponsor */}
+        {/* Become a Sponsor */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Why Sponsor?
+            Become a Sponsor
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed">
-              <p>
-                The 2nd Asian Ranger Congress brings together over 200 rangers,
-                conservation leaders, government officials, and organisations
-                from across Asia. Sponsoring the congress is an opportunity to
-                demonstrate your commitment to conservation and ranger welfare
-                while gaining visibility with a highly engaged regional
-                audience.
-              </p>
-              <p>
-                All sponsorship funds directly support the congress programme,
-                including making the event accessible to rangers from countries
-                with limited institutional funding.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { label: "Expected Delegates", value: "200+" },
-                { label: "Countries Represented", value: "20+" },
-                { label: "Congress Days", value: "3" },
-                { label: "Field Visits", value: "3" },
-              ].map(({ label, value }) => (
-                <div
-                  key={label}
-                  className="rounded-sm border border-border bg-card p-4 text-center"
-                >
-                  <p className="font-display text-3xl font-bold text-secondary">
-                    {value}
-                  </p>
-                  <p className="font-body text-xs text-muted-foreground mt-1">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed">
+            <p>
+              The 2nd Asian Ranger Congress is an opportunity to demonstrate
+              your organisation&apos;s commitment to conservation and to the
+              rangers who make it possible. By becoming a sponsor, you will help
+              enhance the experience of rangers attending the Congress and
+              contribute directly to strengthening Asia&apos;s ranger community.
+            </p>
+            <p>
+              There are three levels of sponsorship available — Platinum, Gold,
+              and Silver. For more information or to apply to become a sponsor,
+              please fill out the Sponsorship Form and send it to:{" "}
+              <a
+                href={OFFICIAL_CONGRESS_MAILTO}
+                className="text-secondary hover:underline"
+              >
+                {OFFICIAL_CONGRESS_EMAIL}
+              </a>
+            </p>
           </div>
         </section>
 
@@ -93,16 +76,18 @@ export default function GetInvolvedPage() {
               Support a Ranger to Attend the Congress
             </h2>
             <p className="font-body text-sm text-foreground/80 leading-relaxed mb-6">
-              Any contribution can help fund a ranger&apos;s participation —
-              travel, accommodation, and registration. Every ranger deserves a
-              seat at the table. Contact{" "}
+              We believe every ranger deserves a seat at the table. If you or
+              your organisation would like to contribute to funding the
+              participation of rangers who may not otherwise be able to attend,
+              any contribution can help fund travel, accommodation, and
+              registration. Please get in touch at{" "}
               <a
                 href={OFFICIAL_CONGRESS_MAILTO}
                 className="text-secondary font-semibold hover:underline"
               >
                 {OFFICIAL_CONGRESS_EMAIL}
-              </a>{" "}
-              to give directly.
+              </a>
+              .
             </p>
             <a
               href={OFFICIAL_CONGRESS_MAILTO}

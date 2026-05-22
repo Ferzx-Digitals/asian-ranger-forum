@@ -2,32 +2,37 @@ const inclusions = [
   {
     icon: "🏨",
     label: "Accommodation",
-    detail: "3 nights (1–4 December 2026)",
+    detail: "Selected hotels in Thimphu for the full congress duration",
   },
   {
     icon: "🍽️",
-    label: "All Meals",
-    detail: "Breakfast, lunch, and dinner throughout the congress",
+    label: "Working Lunches & Dinners",
+    detail: "All working meals throughout the event",
+  },
+  {
+    icon: "☕",
+    label: "Tea & Snack Breaks",
+    detail: "Two tea/snack breaks daily",
   },
   {
     icon: "🚌",
-    label: "Local Transport",
-    detail: "Airport transfers and congress field visits",
+    label: "Transportation",
+    detail: "Transfers to and from the venue",
   },
   {
-    icon: "📋",
-    label: "Congress Materials",
-    detail: "Programme booklet, name badge, and resource pack",
+    icon: "🎁",
+    label: "Welcome Kit",
+    detail: "Congress materials and welcome pack",
   },
   {
     icon: "🎫",
-    label: "All Sessions",
-    detail: "Plenary sessions, workshops, and side events",
+    label: "All Sessions & Field Visits",
+    detail: "Access to all congress sessions, field visits, and social events",
   },
   {
-    icon: "🌿",
-    label: "Field Visits",
-    detail: "Guided nature and conservation site visits",
+    icon: "🏥",
+    label: "On-site Medical Team",
+    detail: "Dedicated medical support throughout the congress",
   },
 ];
 

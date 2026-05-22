@@ -11,12 +11,20 @@ export function SdfExemption() {
           <h3 className="font-body text-sm font-semibold text-primary mb-1">
             Sustainable Development Fee (SDF) Exemption
           </h3>
-          <p className="font-body text-sm text-foreground/70 leading-relaxed">
-            Bhutan charges a Sustainable Development Fee (SDF) of USD 100 per
-            night for most tourists. However, confirmed congress participants
-            will be eligible for an SDF exemption for the duration of the
-            congress (2–4 December 2026). Exemption details will be provided
-            upon confirmation of registration.
+          <p className="font-body text-sm text-foreground/70 leading-relaxed mb-2">
+            Confirmed registered participants will benefit from an exemption from
+            Bhutan's Sustainable Development Fee (SDF), which the Organising
+            Committee is arranging in collaboration with the Royal Government of
+            Bhutan. This exemption is strictly for confirmed registered
+            participants and applies exclusively for the duration of the Congress
+            (2–4 December 2026).
+          </p>
+          <p className="font-body text-xs text-muted-foreground leading-relaxed">
+            If you wish to extend your stay in Bhutan beyond the official
+            Congress dates, the SDF (USD 100 per day) will apply and
+            participants will be responsible for making their own arrangements.
+            The Organising Committee will not be able to provide any support for
+            extended stays.
           </p>
         </div>
       </div>

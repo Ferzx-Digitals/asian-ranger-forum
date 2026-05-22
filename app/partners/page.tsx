@@ -28,7 +28,7 @@ export default function PartnersPage() {
                 role: "Co-organiser",
                 description:
                   "The regional federation representing ranger organisations across Asia.",
-                logo: undefined as string | undefined,
+                logo: "rfa.png",
                 url: undefined as string | undefined,
               },
               {
@@ -36,7 +36,7 @@ export default function PartnersPage() {
                 role: "Co-organiser",
                 description:
                   "The global federation supporting rangers in over 60 countries worldwide.",
-                logo: undefined as string | undefined,
+                logo: "irf.png",
                 url: undefined as string | undefined,
               },
               {
@@ -44,7 +44,7 @@ export default function PartnersPage() {
                 role: "Host Organisation",
                 description:
                   "The professional body for foresters and conservation practitioners in Bhutan.",
-                logo: undefined as string | undefined,
+                logo: "sbf.png" ,
                 url: undefined as string | undefined,
               },
             ].map((org) => (
@@ -52,12 +52,12 @@ export default function PartnersPage() {
                 key={org.name}
                 className="rounded-sm border border-border bg-card p-6 flex flex-col items-center justify-between text-center gap-3"
               >
-                <div className="w-16 h-16 rounded-sm bg-muted flex items-center justify-center overflow-hidden">
+                <div className="w-30 h-30 rounded-sm flex items-center justify-center overflow-hidden">
                   {org.logo ? (
                     <img
                       src={`/logos/${org.logo}`}
                       alt={org.name}
-                      className="w-full h-full object-contain p-1"
+                      className="w-full h-full object-contain"
                     />
                   ) : (
                     <span className="font-body text-2xl text-muted-foreground">
