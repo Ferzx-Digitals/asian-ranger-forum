@@ -1,12 +1,12 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
 interface MessageCardProps {
@@ -96,12 +96,15 @@ export function MessageCard({
                 <div className={cn("flex", reverse && "md:justify-end")}>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <button className="text-sm font-bold text-secondary hover:underline transition-all">
+                      <button
+                        type="button"
+                        className="text-sm font-bold text-secondary hover:underline transition-all"
+                      >
                         Read more...
                       </button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0 overflow-hidden">
-                      <DialogHeader className="p-8 pb-4 border-b">
+                    <DialogContent className="max-h-[calc(100dvh-2rem)] max-w-2xl overflow-hidden p-0 sm:max-h-[90dvh]">
+                      <DialogHeader className="border-b p-8 pb-4">
                         <div className="flex items-center gap-4">
                           <Avatar className="h-12 w-12 border border-border">
                             <AvatarImage
@@ -121,22 +124,25 @@ export function MessageCard({
                             <DialogTitle className="font-display text-xl text-primary">
                               {name}
                             </DialogTitle>
+                            <DialogDescription className="sr-only">
+                              Full welcome message from {name}
+                            </DialogDescription>
                             <p className="font-body text-xs text-muted-foreground">
                               {title}
                             </p>
                           </div>
                         </div>
                       </DialogHeader>
-                      <ScrollArea className="flex-1 p-8 pt-6">
+                      <div className="max-h-[calc(100dvh-10rem)] overflow-y-auto overscroll-contain px-8 py-6 sm:max-h-[calc(90dvh-8rem)]">
                         <div className="relative">
-                          <div className="absolute -top-4 -left-2 font-display text-6xl text-secondary/10 leading-none select-none">
+                          <div className="absolute -left-2 -top-4 font-display text-6xl text-secondary/10 leading-none select-none">
                             &ldquo;
                           </div>
                           <p className="relative z-10 font-body text-base text-foreground/80 leading-relaxed whitespace-pre-line">
                             {message}
                           </p>
                         </div>
-                      </ScrollArea>
+                      </div>
                     </DialogContent>
                   </Dialog>
                 </div>

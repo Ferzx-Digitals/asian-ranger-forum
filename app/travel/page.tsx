@@ -1,9 +1,11 @@
+import { Plane, Route } from "lucide-react";
+
 import { PageHero } from "@/components/layout/PageHero";
+import { EmergencyNumbers } from "@/features/travel/components/EmergencyNumbers";
 import { EntryByAir } from "@/features/travel/components/EntryByAir";
 import { EntryByRoad } from "@/features/travel/components/EntryByRoad";
 import { VenuePhoto } from "@/features/travel/components/VenuePhoto";
 import { VisaInfo } from "@/features/travel/components/VisaInfo";
-import { EmergencyNumbers } from "@/features/travel/components/EmergencyNumbers";
 
 export const metadata = {
   title: "Plan Your Travel | 2nd Asian Ranger Congress 2026",
@@ -16,6 +18,29 @@ export default function TravelPage() {
         eyebrow="Travel"
         title="Plan Your Travel"
         subtitle="Everything you need to know about getting to Thimphu, Bhutan and making the most of your stay."
+        backgroundImage={{
+          src: "/images/travel-hero-green.png",
+          alt: "Green-toned Bhutan mountain road and valley travel route toward Thimphu",
+          priority: true,
+        }}
+        actions={
+          <>
+            <a
+              href="#entry-by-air"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-secondary px-5 font-body text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            >
+              <Plane aria-hidden="true" className="h-4 w-4" />
+              Entry by Air
+            </a>
+            <a
+              href="#entry-by-road"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-sm border border-primary-foreground/35 bg-primary-foreground/10 px-5 font-body text-sm font-semibold text-primary-foreground backdrop-blur transition-colors hover:bg-primary-foreground/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            >
+              <Route aria-hidden="true" className="h-4 w-4" />
+              Entry by Road
+            </a>
+          </>
+        }
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-2 pb-12 space-y-14">
@@ -66,7 +91,7 @@ export default function TravelPage() {
         </section>
 
         {/* Entry by air */}
-        <section>
+        <section id="entry-by-air" className="scroll-mt-24">
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
             Entry by Air
           </h2>
@@ -74,7 +99,7 @@ export default function TravelPage() {
         </section>
 
         {/* Entry by road */}
-        <section>
+        <section id="entry-by-road" className="scroll-mt-24">
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
             Entry by Road
           </h2>

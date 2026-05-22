@@ -40,13 +40,13 @@ export function OrganiserCards() {
 
         <div className="mt-8 flex flex-col items-center gap-1">
           <p className="font-body text-xs italic text-muted-foreground">
-            In collaboration with partner agencies and
+            In collaboration with partner agencies
           </p>
           <Image
             src="/logos/rgob.png"
             alt="Royal Government of Bhutan"
-            width={300}
-            height={300}
+            width={250}
+            height={250}
             className="object-contain"
           />
           <p className="font-body text-xs font-semibold text-muted-foreground">

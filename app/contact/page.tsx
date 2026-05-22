@@ -16,7 +16,12 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Get in Touch"
-        subtitle="Have a question? We'd love to hear from you. Send us a message and we'll respond within 5 working days."
+        subtitle="Have a question? We'd love to hear from you."
+        backgroundImage={{
+          src: "/images/contact-hero.png",
+          alt: "Asian rangers coordinating congress communications in a Himalayan landscape",
+          priority: true,
+        }}
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">

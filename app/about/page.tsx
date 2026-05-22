@@ -13,6 +13,11 @@ export default function AboutPage() {
         eyebrow="About"
         title="About the Congress"
         subtitle="The 2nd Asian Ranger Congress brings together rangers and conservation leaders from across Asia to share knowledge, celebrate achievements, and chart a collective path forward."
+        backgroundImage={{
+          src: "/images/about-hero-natural.png",
+          alt: "Asian rangers and conservation leaders gathered in a Himalayan conservation landscape",
+          priority: true,
+        }}
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-16">
@@ -150,13 +155,14 @@ export default function AboutPage() {
             remains a foundational document for the ranger movement in the
             region.
           </p>
-          <button
-            type="button"
-            disabled
-            className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
+          <a
+            href="https://drive.google.com/file/d/1LDzJmcTJWsByLa19iohZltGxL_OZ3Lem/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-5 py-2.5 rounded-sm bg-accent text-accent-foreground font-body text-sm font-semibold uppercase tracking-wide transition-opacity hover:opacity-90"
           >
-            Download Guwahati Declaration (Coming Soon)
-          </button>
+            Download Guwahati Declaration
+          </a>
         </section>
       </div>
     </>
