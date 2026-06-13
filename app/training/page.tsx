@@ -1,50 +1,47 @@
+import { Mail, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
-import { OFFICIAL_CONGRESS_MAILTO } from "@/lib/contact";
+import { OFFICIAL_CONGRESS_EMAIL, OFFICIAL_CONGRESS_MAILTO } from "@/lib/contact";
 
 export const metadata = {
   title: "Training Sessions | 2nd Asian Ranger Congress 2026",
 };
 
-const trainingAreas = [
+const proposalFields = [
+  "Organisation / Trainer Name",
+  "Contact Email",
+  "Proposed Session Title",
+  "Training Area (select one: Storytelling & Ranger Communication / Field Skills for a Changing Planet / First Aid, Safety & Emergency Response / Mental Health, Wellbeing & Community Engagement / Diversity, Equity & Inclusion / Other)",
+  "Congress Theme Covered (optional — select one of the five themes or leave blank)",
+  "Session Description (max 200 words)",
+  "Ranger Involvement (how will rangers be involved as trainers, co-facilitators, or designers?)",
+  "Preferred Session Length (1 hour / 2 hours / Half day)",
+  "Any equipment or room requirements",
+  "Have you led a similar session before? (Yes / No — if yes, briefly describe)",
+];
+
+const trainingThemes = [
   {
-    area: "Storytelling & Ranger Communication",
-    description:
-      "Helping rangers share their stories and experiences powerfully — from written and oral communication to media engagement and advocacy.",
+    number: "01",
+    title: "Storytelling & Ranger Communication",
+    description: "Helping rangers share their stories and experiences powerfully.",
   },
   {
-    area: "Field Skills & Wildlife Monitoring",
+    number: "02",
+    title: "Field Skills for a Changing Planet",
     description:
-      "Practical techniques for biodiversity monitoring, camera trap operation, species identification, and data management in protected areas.",
+      "Practical techniques for biodiversity monitoring, data collection, and technology tools — building ranger capacity to operate effectively in a rapidly changing environment.",
   },
   {
-    area: "First Aid & Emergency Response",
+    number: "03",
+    title: "First Aid, Safety & Emergency Response",
     description:
-      "Wilderness first aid, emergency evacuation protocols, and basic medical response for rangers working in remote field conditions.",
+      "Wilderness first aid, emergency evacuation protocols, threat assessment, and personal safety strategies for rangers working in remote and high-risk field conditions.",
   },
   {
-    area: "Ranger Safety & Security in the Field",
+    number: "04",
+    title: "Mental Health, Wellbeing & Community Engagement",
     description:
-      "Strategies and best practices for personal safety, threat assessment, and coordination with law enforcement agencies.",
-  },
-  {
-    area: "Mental Health & Wellbeing for Rangers",
-    description:
-      "Recognising and addressing stress, trauma, and burnout — building resilience and promoting long-term wellbeing for frontline rangers.",
-  },
-  {
-    area: "Community Engagement & Conflict Resolution",
-    description:
-      "Approaches for building trust, resolving human-wildlife conflict, co-management arrangements, and supporting ranger-community partnerships.",
-  },
-  {
-    area: "Technology & Innovation in Ranger Work",
-    description:
-      "Hands-on training with tools such as GPS devices, digital reporting apps, drone operation, and GIS mapping for patrol management.",
-  },
-  {
-    area: "Climate Resilience & Adaptation Strategies",
-    description:
-      "Understanding how climate change affects ranger operations and building practical capacity to adapt to a rapidly changing environment.",
+      "Recognising and addressing stress, trauma, and burnout, alongside approaches for building trust with communities, resolving human-wildlife conflict, and supporting ranger-community partnerships.",
   },
 ];
 
@@ -54,7 +51,12 @@ export default function TrainingPage() {
       <PageHero
         eyebrow="Training Sessions"
         title="Ranger Skills & Training Sessions"
-        subtitle="Practical, hands-on training opportunities led by regional experts — designed to strengthen ranger skills across conservation, law enforcement, and community engagement."
+        subtitle="Practical, hands-on training opportunities led by regional experts — designed to strengthen ranger capabilities across conservation, law enforcement, and community engagement."
+        backgroundImage={{
+          src: "/images/field-visits-hero.png",
+          alt: "Rangers receiving guidance from regional experts in a Himalayan landscape in Bhutan",
+          priority: true,
+        }}
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14 text-center">
@@ -79,61 +81,85 @@ export default function TrainingPage() {
           </div>
         </section>
 
-        {/* Training areas */}
+        {/* Training themes */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-6">
-            Training Areas
+            Training Themes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {trainingAreas.map((t) => (
+            {trainingThemes.map((theme) => (
               <div
-                key={t.area}
-                className="rounded-sm border border-border bg-card p-5 text-center flex flex-col items-center"
+                key={theme.number}
+                className="rounded-sm border border-border bg-card p-6 text-left flex flex-col"
               >
-                <h3 className="font-body text-sm font-semibold text-primary mb-2">
-                  {t.area}
+                <span className="font-display text-2xl font-bold text-secondary/50 mb-3">
+                  {theme.number}
+                </span>
+                <h3 className="font-display text-lg font-bold text-primary mb-2 leading-snug">
+                  {theme.title}
                 </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-md">
-                  {t.description}
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  {theme.description}
                 </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Facilitate a session */}
-        <section>
+        {/* Lead a training session */}
+        <section className="rounded-sm border border-secondary/30 bg-secondary/5 p-6 sm:p-10">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-secondary/30 bg-background text-secondary">
+            <Sparkles aria-hidden="true" className="h-5 w-5" />
+          </div>
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Lead a Training Session
+            Interested in Leading a Training Session?
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-3 leading-relaxed max-w-2xl mx-auto">
             Training session proposals are open to ranger organisations,
-            conservation partners, and specialist trainers. This is an excellent
-            opportunity for organisations with practical expertise to contribute
-            meaningfully to the Congress, even if their work falls outside the
-            main thematic programme.
+            conservation partners, and specialist trainers. Proposals may
+            focus on any practical ranger skill, or may be designed to cover
+            one of the five congress themes.
           </p>
           <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
             Please note: all training sessions must have direct ranger
-            involvement — either as trainers, co-facilitators, or active
-            participants in the session design. The submission portal will open
-            in 2026.
+            involvement.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <button
-              type="button"
-              disabled
-              className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
-            >
-              Submit Training Proposal (Coming Soon)
-            </button>
-            <a
-              href={OFFICIAL_CONGRESS_MAILTO}
-              className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border text-foreground/70 font-body text-sm font-medium hover:text-primary transition-colors"
-            >
-              Contact Us to Enquire
-            </a>
-          </div>
+          <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-secondary mb-4">
+            Proposal portal coming soon
+          </p>
+          <a
+            href={OFFICIAL_CONGRESS_MAILTO}
+            className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-body text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            <Mail aria-hidden="true" className="h-4 w-4" />
+            Contact Us to Enquire — {OFFICIAL_CONGRESS_EMAIL}
+          </a>
+        </section>
+
+        {/* Training proposal submission */}
+        <section className="text-left">
+          <h2 className="font-display text-2xl font-bold text-primary mb-2 text-center">
+            Training Proposal Submission
+          </h2>
+          <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6 text-center max-w-2xl mx-auto">
+            When the submission portal opens, you will be asked to provide
+            the following information:
+          </p>
+          <ol className="space-y-3">
+            {proposalFields.map((field, index) => (
+              <li
+                key={field}
+                className="flex gap-3 rounded-sm border border-border bg-card p-4"
+              >
+                <span className="font-display text-sm font-bold text-secondary shrink-0">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-body text-sm text-foreground/80 leading-relaxed">
+                  {field}
+                </span>
+              </li>
+            ))}
+          </ol>
         </section>
       </div>
     </>

@@ -42,23 +42,23 @@ export function PageHero({
           <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-transparent to-primary/20" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[460px] max-w-7xl flex-col justify-end px-4 pb-12 pt-28 sm:px-6 md:min-h-[540px] md:pb-16">
+        <div className="relative z-10 mx-auto flex min-h-[260px] max-w-7xl flex-col justify-end px-4 pb-8 pt-20 sm:px-6 md:min-h-[320px] md:pb-10">
           <div className="max-w-3xl">
             {eyebrow && (
-              <p className="mb-4 font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
+              <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
                 {eyebrow}
               </p>
             )}
-            <h1 className="font-display text-4xl font-bold leading-tight md:text-6xl">
+            <h1 className="font-display text-3xl font-bold leading-tight md:text-5xl">
               {title}
             </h1>
             {subtitle && (
-              <p className="mt-5 max-w-2xl font-body text-base leading-7 text-primary-foreground/80 md:text-lg">
+              <p className="mt-4 max-w-2xl font-body text-base leading-7 text-primary-foreground/80 md:text-lg">
                 {subtitle}
               </p>
             )}
             {actions && (
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 {actions}
               </div>
             )}

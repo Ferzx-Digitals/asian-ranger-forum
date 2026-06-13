@@ -2,9 +2,10 @@ import ExpressionOfInterest from "@/components/ExpressionOfInterest";
 import ParallaxHero from "@/components/ParallaxHero";
 import StatsBar from "@/components/StatsBar";
 import { CongressObjectives } from "@/features/home/components/CongressObjectives";
-import { CongressThemes } from "@/features/home/components/CongressThemes";
+import { CountdownSection } from "@/features/home/components/CountdownSection";
 import { FieldVisitsTeaser } from "@/features/home/components/FieldVisitsTeaser";
 import { OrganiserCards } from "@/features/home/components/OrganiserCards";
+import { SupporterLogos } from "@/features/home/components/SupporterLogos";
 import { Welcome } from "@/features/home/components/Welcome";
 
 export default function Page() {
@@ -15,11 +16,12 @@ export default function Page() {
         className="relative z-50 -mt-[25vh] bg-background"
         style={{ boxShadow: "0 -8px 0 hsl(48,60%,97%)" }}
       >
+        <CountdownSection />
         <Welcome />
         <StatsBar />
         <OrganiserCards />
+        <SupporterLogos />
         <CongressObjectives />
-        <CongressThemes />
         <FieldVisitsTeaser />
         <ExpressionOfInterest />
       </div>

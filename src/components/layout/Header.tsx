@@ -3,50 +3,76 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown } from "lucide-react";
 
-const navGroups = [
+type NavLinkItem = {
+  type: "link";
+  label: string;
+  href: string;
+  highlight?: boolean;
+};
+
+type NavDropdownItem = {
+  type: "dropdown";
+  label: string;
+  items: { label: string; href: string }[];
+};
+
+type NavItem = NavLinkItem | NavDropdownItem;
+
+const navItems: NavItem[] = [
+  { type: "link", label: "Home", href: "/" },
   {
+    type: "dropdown",
     label: "About",
     items: [
-      { label: "About the Congress", href: "/about" },
-      { label: "Theme & Objectives", href: "/theme" },
+      { label: "Congress Introduction", href: "/about" },
+      { label: "Congress Theme", href: "/theme" },
+      { label: "Our Partners", href: "/partners" },
     ],
   },
   {
-    label: "Congress",
+    type: "dropdown",
+    label: "Program",
     items: [
       { label: "Call for Proposals", href: "/call-for-proposals" },
-      { label: "Training Sessions", href: "/training" },
       { label: "Field Visits", href: "/field-visits" },
     ],
   },
   {
-    label: "Get Involved",
+    type: "dropdown",
+    label: "Submit",
+    items: [{ label: "Training", href: "/training" }],
+  },
+  {
+    type: "dropdown",
+    label: "Plan Travel",
     items: [
-      { label: "Sponsorship & Partners", href: "/get-involved" },
-      { label: "Our Partners", href: "/partners" },
+      { label: "Logistics", href: "/travel/logistics" },
+      { label: "Venue & Accommodation", href: "/travel/venue-accommodation" },
+      { label: "Registration & EOI", href: "/travel/registration" },
+      { label: "Travel FAQ", href: "/travel/faq" },
     ],
   },
-];
-
-const directLinks = [
-  { label: "Travel", href: "/travel" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-  { label: "Register", href: "/register", highlight: true },
+  { type: "link", label: "Sponsorship", href: "/sponsorship" },
+  { type: "link", label: "Press", href: "/press" },
+  { type: "link", label: "FAQ", href: "/faq" },
+  { type: "link", label: "Contact Us", href: "/contact" },
+  { type: "link", label: "Register Now", href: "/register", highlight: true },
 ];
 
 function DropdownGroup({
   group,
   pathname,
+  floating,
 }: {
-  group: (typeof navGroups)[0];
+  group: NavDropdownItem;
   pathname: string;
+  floating?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const isActive = group.items.some((i) => pathname.startsWith(i.href));
@@ -59,8 +85,11 @@ function DropdownGroup({
     >
       <button
         className={cn(
-          "flex items-center gap-1 font-body text-sm font-medium px-1 py-2 transition-colors",
-          isActive ? "text-primary" : "text-foreground/70 hover:text-primary",
+          "flex items-center gap-1 font-body font-medium px-1 py-2 transition-colors",
+          floating ? "text-base" : "text-sm",
+          isActive
+            ? "text-primary font-bold"
+            : "text-foreground/70 hover:text-primary",
         )}
       >
         {group.label}
@@ -96,65 +125,104 @@ function DropdownGroup({
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(!isHome);
+
+  useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
+
+  const floating = isHome && !scrolled;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-colors duration-300",
+        floating
+          ? "bg-transparent"
+          : "border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
+      )}
+    >
       {/* Prayer flag accent */}
-      <div className="h-0.5 bg-gradient-to-r from-secondary via-accent to-secondary opacity-80" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex h-16 items-center justify-between gap-4">
+      {!floating && (
+        <div className="h-0.5 bg-gradient-to-r from-secondary via-accent to-secondary opacity-80" />
+      )}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 flex h-16 items-center justify-between gap-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 shrink-0">
+        <Link
+          href="/"
+          className={cn(
+            "flex items-center gap-3 shrink-0 transition-all duration-300",
+            floating && "absolute left-4 top-2 sm:left-6 z-50",
+          )}
+        >
           <Image
             src="/logo.svg"
             alt="Asian Ranger Congress 2026"
-            width={48}
-            height={48}
-            className="h-10 w-auto"
+            width={96}
+            height={96}
+            className={cn(
+              "w-auto transition-all duration-300",
+              floating ? "h-28 sm:h-36 drop-shadow-md" : "h-10",
+            )}
             priority
           />
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-base font-bold text-primary leading-tight">
-              Asian Ranger Congress
-            </span>
-            <span className="font-body text-[10px] tracking-[0.22em] uppercase text-secondary font-semibold">
-              Thimphu, Bhutan · 2026
-            </span>
-          </div>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navGroups.map((group) => (
-            <DropdownGroup
-              key={group.label}
-              group={group}
-              pathname={pathname}
-            />
-          ))}
-          {directLinks.map((link) =>
-            link.highlight ? (
+        <nav
+          className={cn(
+            "hidden lg:flex items-center gap-4 pt-2 transition-all duration-300 ml-auto",
+            floating && "px-3",
+          )}
+        >
+          {navItems.map((item) => {
+            if (item.type === "dropdown") {
+              return (
+                <DropdownGroup
+                  key={item.label}
+                  group={item}
+                  pathname={pathname}
+                  floating={floating}
+                />
+              );
+            }
+
+            return item.highlight ? (
               <Link
-                key={link.href}
-                href={link.href}
-                className="ml-2 inline-flex items-center px-4 py-1.5 rounded-sm bg-accent text-accent-foreground font-body text-sm font-semibold tracking-wide uppercase transition-opacity hover:opacity-90"
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "ml-2 inline-flex items-center px-4 py-1.5 rounded-sm bg-accent text-accent-foreground font-body font-semibold tracking-wide uppercase transition-opacity hover:opacity-90",
+                  floating ? "text-base" : "text-sm",
+                )}
               >
-                {link.label}
+                {item.label}
               </Link>
             ) : (
               <Link
-                key={link.href}
-                href={link.href}
+                key={item.href}
+                href={item.href}
                 className={cn(
-                  "px-1 py-2 font-body text-sm font-medium transition-colors",
-                  pathname === link.href
-                    ? "text-primary"
+                  "px-1 py-2 font-body font-medium transition-colors",
+                  floating ? "text-base" : "text-sm",
+                  pathname === item.href
+                    ? "text-primary font-bold"
                     : "text-foreground/70 hover:text-primary",
                 )}
               >
-                {link.label}
+                {item.label}
               </Link>
-            ),
-          )}
+            );
+          })}
         </nav>
 
         {/* Mobile hamburger */}
@@ -163,7 +231,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className={cn(
+                "lg:hidden ml-auto",
+                floating && "shadow-sm",
+              )}
               aria-label="Open menu"
             >
               <Menu size={20} />
@@ -172,52 +243,50 @@ export function Header() {
           <SheetContent side="right" className="w-72 p-0">
             <div className="flex flex-col h-full pt-16 pb-8 px-6 overflow-y-auto">
               <div className="flex flex-col gap-1">
-                <Link
-                  href="/"
-                  onClick={() => setMobileOpen(false)}
-                  className="font-body text-sm font-semibold py-2 text-primary"
-                >
-                  Home
-                </Link>
-                {navGroups.map((group) => (
-                  <div key={group.label} className="mt-2">
-                    <p className="font-body text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-                      {group.label}
-                    </p>
-                    {group.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={cn(
-                          "block font-body text-sm py-1.5 pl-2 border-l-2 transition-colors",
-                          pathname === item.href
-                            ? "border-secondary text-primary font-semibold"
-                            : "border-transparent text-foreground/70 hover:text-primary",
-                        )}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                ))}
-                <div className="mt-4 flex flex-col gap-1">
-                  {directLinks.map((link) => (
+                {navItems.map((item) => {
+                  if (item.type === "dropdown") {
+                    return (
+                      <div key={item.label} className="mt-2">
+                        <p className="font-body text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
+                          {item.label}
+                        </p>
+                        {item.items.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={cn(
+                              "block font-body text-sm py-1.5 pl-2 border-l-2 transition-colors",
+                              pathname === subItem.href
+                                ? "border-secondary text-primary font-semibold"
+                                : "border-transparent text-foreground/70 hover:text-primary",
+                            )}
+                          >
+                            {subItem.label}
+                          </Link>
+                        ))}
+                      </div>
+                    );
+                  }
+
+                  return (
                     <Link
-                      key={link.href}
-                      href={link.href}
+                      key={item.href}
+                      href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
                         "font-body text-sm py-2 font-medium",
-                        link.highlight
+                        item.highlight
                           ? "text-accent font-semibold"
-                          : "text-foreground/70",
+                          : pathname === item.href
+                            ? "text-primary font-semibold"
+                            : "text-foreground/70",
                       )}
                     >
-                      {link.label}
+                      {item.label}
                     </Link>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             </div>
           </SheetContent>

@@ -13,6 +13,11 @@ export default function PartnersPage() {
         eyebrow="Partners"
         title="Our Partners"
         subtitle="The 2nd Asian Ranger Congress is made possible through the support of partner organisations committed to conservation and the ranger profession across Asia."
+        backgroundImage={{
+          src: "/images/travel-hero.png",
+          alt: "Asian rangers looking out over a Himalayan valley in Bhutan",
+          priority: true,
+        }}
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">

@@ -21,7 +21,7 @@ const linkGroups = [
       { label: "Register", href: "/register" },
       { label: "Call for Proposals", href: "/call-for-proposals" },
       { label: "Training Sessions", href: "/training" },
-      { label: "Get Involved", href: "/get-involved" },
+      { label: "Sponsorship", href: "/sponsorship" },
     ],
   },
   {

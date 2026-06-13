@@ -15,6 +15,11 @@ export default function RegisterPage() {
         eyebrow="Register"
         title="Register for the Congress"
         subtitle="Secure your place at the 2nd Asian Ranger Congress. Registration includes accommodation, meals, and all congress activities."
+        backgroundImage={{
+          src: "/images/about-hero-natural.png",
+          alt: "Asian rangers and conservation leaders gathered in a Himalayan conservation landscape",
+          priority: true,
+        }}
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">

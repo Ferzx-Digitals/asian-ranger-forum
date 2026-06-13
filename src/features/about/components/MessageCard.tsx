@@ -25,7 +25,7 @@ export function MessageCard({
   message,
   imageUrl,
   placeholder,
-  maxLength = 280,
+  maxLength = 380,
   reverse = false,
 }: MessageCardProps) {
   const isLongMessage = message && message.length > maxLength;
@@ -36,12 +36,12 @@ export function MessageCard({
   return (
     <div
       className={cn(
-        "relative rounded-sm border border-border bg-card p-8 flex flex-col gap-8 items-start",
+        "relative rounded-sm border border-border bg-card p-6 sm:p-8 flex flex-col gap-6 sm:gap-8 items-start",
         reverse ? "md:flex-row-reverse" : "md:flex-row",
       )}
     >
-      <div className="flex flex-col items-center text-center shrink-0 w-full md:w-48">
-        <Avatar className="h-24 w-24 mb-4 border border-border">
+      <div className="flex flex-row items-center gap-4 text-left shrink-0 w-full md:w-48 md:flex-col md:text-center">
+        <Avatar className="h-20 w-20 sm:h-28 sm:w-28 md:h-32 md:w-32 border border-border shrink-0">
           <AvatarImage src={imageUrl} alt={name} className="object-cover" />
           <AvatarFallback className="bg-muted text-muted-foreground font-display text-xl">
             {name
@@ -51,11 +51,11 @@ export function MessageCard({
               .toUpperCase()}
           </AvatarFallback>
         </Avatar>
-        <div className="space-y-1">
-          <p className="font-body text-sm font-bold text-primary leading-tight">
+        <div className="space-y-1 md:mt-1">
+          <p className="font-body text-base font-bold text-primary leading-tight">
             {name}
           </p>
-          <p className="font-body text-xs text-muted-foreground leading-snug">
+          <p className="font-body text-sm text-muted-foreground leading-snug">
             {title}
           </p>
         </div>
@@ -64,8 +64,8 @@ export function MessageCard({
       <div className="relative flex-1 pt-2">
         <div
           className={cn(
-            "absolute -top-4 font-display text-6xl text-secondary/20 leading-none select-none",
-            reverse ? "-right-2" : "-left-2",
+            "absolute -top-2 font-display text-5xl text-secondary/15 leading-none select-none",
+            reverse ? "-right-1 md:right-0" : "-left-1 md:left-0",
           )}
         >
           &ldquo;
@@ -83,10 +83,10 @@ export function MessageCard({
               </p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 pl-6 md:pl-8">
               <p
                 className={cn(
-                  "font-body text-base text-foreground/80 leading-relaxed whitespace-pre-line",
+                  "font-body text-base md:text-lg text-foreground/85 leading-7 md:leading-8 whitespace-pre-line",
                   reverse && "md:text-right",
                 )}
               >
@@ -134,11 +134,11 @@ export function MessageCard({
                         </div>
                       </DialogHeader>
                       <div className="max-h-[calc(100dvh-10rem)] overflow-y-auto overscroll-contain px-8 py-6 sm:max-h-[calc(90dvh-8rem)]">
-                        <div className="relative">
-                          <div className="absolute -left-2 -top-4 font-display text-6xl text-secondary/10 leading-none select-none">
+                        <div className="relative pl-6">
+                          <div className="absolute -left-1 -top-4 font-display text-6xl text-secondary/10 leading-none select-none">
                             &ldquo;
                           </div>
-                          <p className="relative z-10 font-body text-base text-foreground/80 leading-relaxed whitespace-pre-line">
+                          <p className="relative z-10 font-body text-base md:text-lg text-foreground/85 leading-7 md:leading-8 whitespace-pre-line">
                             {message}
                           </p>
                         </div>

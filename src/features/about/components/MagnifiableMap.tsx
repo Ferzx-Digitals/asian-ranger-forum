@@ -13,7 +13,7 @@ const levels = [
 ];
 
 export function MagnifiableMap() {
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(levels.length - 1);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const setLevel = (index: number) => {
@@ -103,7 +103,7 @@ export function MagnifiableMap() {
                 >
                   {isActive && (
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.5!2d89.6780!3d27.4305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e193!2sRIM+Simtokha+Thimphu!5e0!3m2!1sen!2s!4v1234567890"
+                      src="https://www.google.com/maps?q=Royal+Institute+of+Management,+Simtokha,+Thimphu,+Bhutan&z=15&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
@@ -182,6 +182,30 @@ export function MagnifiableMap() {
             </p>
           </div>
         </div>
+
+        {/* Venue Legend (RIM level) */}
+        {currentLevel === 3 && (
+          <div className="absolute bottom-6 left-6 z-30 pointer-events-none">
+            <div className="bg-background/90 backdrop-blur-md border border-border/50 p-3 rounded-sm shadow-sm min-w-[200px]">
+              <div className="flex items-start gap-2">
+                <span
+                  aria-hidden="true"
+                  className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground text-[9px] font-bold"
+                >
+                  •
+                </span>
+                <div>
+                  <p className="text-[10px] font-bold text-primary uppercase tracking-widest leading-none">
+                    Congress Venue
+                  </p>
+                  <p className="text-[9px] text-muted-foreground leading-snug mt-1">
+                    Royal Institute of Management (RIM), Simtokha, Thimphu
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

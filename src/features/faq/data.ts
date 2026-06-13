@@ -38,7 +38,7 @@ export interface FaqNotice {
 }
 
 export const faqQuickLinks: FaqQuickLink[] = [
-  { label: "Registration", href: "/register", icon: "registration" },
+  { label: "Registration", href: "/travel/registration", icon: "registration" },
   { label: "Travel & Visa", href: "/travel", icon: "travel" },
   { label: "Accommodation", href: "#accommodation", icon: "accommodation" },
   {

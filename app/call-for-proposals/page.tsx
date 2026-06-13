@@ -103,6 +103,11 @@ export default function CallForProposalsPage() {
         eyebrow="Call for Proposals"
         title="Call for Proposals"
         subtitle="Share your work and experiences with peers from across Asia through presentations, workshops, posters, and storytelling sessions."
+        backgroundImage={{
+          src: "/images/about-hero-green.png",
+          alt: "Asian rangers discussing conservation work overlooking a Himalayan valley",
+          priority: true,
+        }}
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">

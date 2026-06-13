@@ -12,6 +12,11 @@ export default function ThemePage() {
         eyebrow="Theme & Objectives"
         title="Theme & Objectives"
         subtitle="Defining the purpose and priorities of the 2nd Asian Ranger Congress."
+        backgroundImage={{
+          src: "/images/contact-hero.png",
+          alt: "Asian rangers coordinating congress communications in a Himalayan landscape",
+          priority: true,
+        }}
       />
       <ThemeOverview />
     </>

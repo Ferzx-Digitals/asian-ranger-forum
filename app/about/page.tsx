@@ -1,6 +1,11 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { MagnifiableMap } from "@/features/about/components/MagnifiableMap";
 import { MessageCard } from "@/features/about/components/MessageCard";
+import { PhotoStrip } from "@/features/about/components/PhotoStrip";
+import { GuwahatiHighlights } from "@/features/about/components/GuwahatiHighlights";
 
 export const metadata = {
   title: "About the Congress | 2nd Asian Ranger Congress 2026",
@@ -23,9 +28,20 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-16">
         {/* Introduction */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            About the Congress
-          </h2>
+          <div className="mb-6 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-sm border border-border bg-card p-3">
+              <Image
+                src="/logo.svg"
+                alt="2nd Asian Ranger Congress 2026 logo"
+                width={80}
+                height={80}
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <h2 className="font-display text-2xl font-bold text-primary">
+              Rangers at the Heart of Conservation
+            </h2>
+          </div>
           <div className="space-y-4 font-body text-base text-foreground/80 leading-relaxed">
             <p>
               Rangers play an indispensable role in maintaining the integrity of
@@ -74,6 +90,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* Photo Strip */}
+        <PhotoStrip />
 
         {/* Magnifiable Map */}
         <section>
@@ -148,24 +167,81 @@ export default function AboutPage() {
         {/* 1st Congress Declaration */}
         <section>
           <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            1st Asian Ranger Congress Declaration
+            Building on the 1st Asian Ranger Congress
           </h2>
-          <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
+          <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
             The 1st Asian Ranger Congress was held in Guwahati, India in
-            December 2023 and produced the Guwahati Declaration — a landmark
-            statement of intent committing organisations and governments to
-            strengthen the ranger profession across Asia. The declaration
-            remains a foundational document for the ranger movement in the
-            region.
+            December 2023, bringing together rangers, ranger associations, and
+            partner organisations from across the region. It produced the
+            Guwahati Declaration — a landmark statement of intent committing
+            organisations and governments to strengthen the ranger profession
+            across Asia. The declaration remains a foundational document for
+            the ranger movement in the region, and the 2nd Congress in Thimphu
+            will build directly on this momentum.
           </p>
-          <a
-            href="https://drive.google.com/file/d/1LDzJmcTJWsByLa19iohZltGxL_OZ3Lem/view"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-5 py-2.5 rounded-sm bg-accent text-accent-foreground font-body text-sm font-semibold uppercase tracking-wide transition-opacity hover:opacity-90"
-          >
-            Download Guwahati Declaration
-          </a>
+
+          <GuwahatiHighlights />
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href="https://drive.google.com/file/d/1LDzJmcTJWsByLa19iohZltGxL_OZ3Lem/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-5 py-2.5 rounded-sm bg-accent text-accent-foreground font-body text-sm font-semibold uppercase tracking-wide transition-opacity hover:opacity-90"
+            >
+              Download Guwahati Declaration
+            </a>
+            <a
+              href="https://www.internationalrangers.org/1st-asian-ranger-forum-2023/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm border border-border font-body text-sm font-semibold uppercase tracking-wide text-primary transition-colors hover:border-secondary/60 hover:text-secondary"
+            >
+              More About the 1st Congress
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+
+        {/* Next steps */}
+        <section className="rounded-sm border border-primary/15 bg-primary p-6 text-primary-foreground md:p-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary">
+                Ready to take part?
+              </p>
+              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">
+                Join Us in Thimphu
+              </h2>
+              <p className="mt-3 max-w-2xl font-body text-sm leading-6 text-primary-foreground/75">
+                Secure your place at the 2nd Asian Ranger Congress, explore the
+                themes shaping the programme, or find out how your
+                organisation can support the event.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link
+                href="/register"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-secondary px-5 font-body text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Register Now
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/theme"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-sm border border-primary-foreground/20 px-5 font-body text-sm font-semibold text-primary-foreground transition-colors hover:border-secondary/60 hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Explore Themes
+              </Link>
+              <Link
+                href="/sponsorship"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-sm border border-primary-foreground/20 px-5 font-body text-sm font-semibold text-primary-foreground transition-colors hover:border-secondary/60 hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Get Involved
+              </Link>
+            </div>
+          </div>
         </section>
       </div>
     </>

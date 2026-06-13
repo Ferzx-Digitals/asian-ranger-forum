@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+
 import {
   Bird,
   CalendarDays,
@@ -17,8 +21,14 @@ import {
   Users,
 } from "lucide-react";
 
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 import type { FieldVisit, FieldVisitFactIcon } from "../data";
+import {
+  FieldVisitGallery,
+  type FieldVisitGalleryHandle,
+} from "./FieldVisitGallery";
 
 const factIconMap: Record<FieldVisitFactIcon, LucideIcon> = {
   bird: Bird,
@@ -36,9 +46,9 @@ const factIconMap: Record<FieldVisitFactIcon, LucideIcon> = {
 };
 
 const difficultyClassName: Record<FieldVisit["difficulty"], string> = {
-  Easy: "border-primary/20 bg-primary/5 text-primary",
-  Moderate: "border-secondary/35 bg-secondary/10 text-foreground",
-  "Moderate-Challenging": "border-accent/30 bg-accent/10 text-accent",
+  Easy: "border-primary/30 text-primary",
+  Moderate: "border-secondary/45 text-foreground",
+  "Moderate-Challenging": "border-accent/40 text-accent",
 };
 
 interface VisitCardProps {
@@ -46,25 +56,73 @@ interface VisitCardProps {
 }
 
 export function VisitCard({ visit }: VisitCardProps) {
+  const allImages = visit.images ?? [];
+  const coverImage = allImages[0];
+  const galleryImages = allImages.slice(1);
+  const galleryRef = useRef<FieldVisitGalleryHandle>(null);
+
   return (
     <article
       id={visit.slug}
       className="scroll-mt-24 overflow-hidden rounded-sm border border-border bg-card"
     >
       <div className="grid min-h-full grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-        <div className="relative flex min-h-[280px] flex-col justify-between overflow-hidden border-b border-border bg-gradient-to-br from-primary/25 via-muted to-secondary/20 p-6 lg:border-b-0 lg:border-r">
-          <div className="absolute inset-0 bg-primary/10" />
-          <div className="absolute -right-12 -bottom-16 h-44 w-44 rounded-full border border-primary/15" />
-          <div className="absolute right-8 bottom-8 h-24 w-24 rounded-full border border-secondary/20" />
+        <div className="relative flex min-h-[280px] flex-col justify-between overflow-hidden border-b border-border p-6 lg:border-b-0 lg:border-r">
+          {coverImage ? (
+            <>
+              <button
+                type="button"
+                onClick={() => galleryRef.current?.openAt(0)}
+                aria-label={`View photo: ${coverImage.alt}`}
+                className="absolute inset-0 h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <Image
+                  src={coverImage.src}
+                  alt={coverImage.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover"
+                  priority={visit.number === 1}
+                />
+              </button>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/15 to-primary/80" />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-muted to-secondary/20" />
+              <div className="absolute inset-0 bg-primary/10" />
+              <div className="absolute -right-12 -bottom-16 h-44 w-44 rounded-full border border-primary/15" />
+              <div className="absolute right-8 bottom-8 h-24 w-24 rounded-full border border-secondary/20" />
+            </>
+          )}
 
           <div className="relative z-10">
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary">
+            <p
+              className={cn(
+                "font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary",
+                coverImage && "drop-shadow-[0_1px_4px_rgba(0,0,0,0.55)]",
+              )}
+            >
               Site {visit.number}
             </p>
-            <h3 className="mt-3 font-display text-3xl font-bold leading-tight text-primary">
+            <h3
+              className={cn(
+                "mt-3 font-display text-3xl font-bold leading-tight",
+                coverImage
+                  ? "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.55)]"
+                  : "text-primary",
+              )}
+            >
               {visit.shortName}
             </h3>
-            <p className="mt-3 max-w-xs font-body text-sm leading-6 text-foreground/70">
+            <p
+              className={cn(
+                "mt-3 max-w-xs font-body text-sm leading-6",
+                coverImage
+                  ? "text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
+                  : "text-foreground/70",
+              )}
+            >
               {visit.category}
             </p>
           </div>
@@ -72,13 +130,18 @@ export function VisitCard({ visit }: VisitCardProps) {
           <div className="relative z-10 mt-10 flex items-center justify-between gap-4">
             <span
               className={cn(
-                "inline-flex min-h-10 items-center rounded-sm border px-3 font-body text-xs font-semibold uppercase tracking-[0.18em]",
+                "inline-flex min-h-10 items-center rounded-sm border bg-background/90 px-3 font-body text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur-sm",
                 difficultyClassName[visit.difficulty],
               )}
             >
               {visit.difficulty}
             </span>
-            <p className="font-display text-6xl font-bold leading-none text-primary/15">
+            <p
+              className={cn(
+                "font-display text-6xl font-bold leading-none",
+                coverImage ? "text-white/20" : "text-primary/15",
+              )}
+            >
               {String(visit.number).padStart(2, "0")}
             </p>
           </div>
@@ -156,6 +219,15 @@ export function VisitCard({ visit }: VisitCardProps) {
               ))}
             </ul>
           </div>
+
+          {coverImage && (
+            <FieldVisitGallery
+              ref={galleryRef}
+              images={allImages}
+              thumbnails={galleryImages}
+              siteName={visit.shortName}
+            />
+          )}
 
           {visit.note && (
             <div className="mt-5 rounded-sm border border-accent/25 bg-accent/5 p-4">

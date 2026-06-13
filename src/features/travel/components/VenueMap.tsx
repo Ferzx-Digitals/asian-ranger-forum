@@ -13,7 +13,7 @@ export function VenueMap() {
       </div>
       <div className="h-80">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.5!2d89.6780!3d27.4305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e193!2sRIM+Simtokha+Thimphu!5e0!3m2!1sen!2s!4v1234567890"
+          src="https://www.google.com/maps?q=Royal+Institute+of+Management,+Simtokha,+Thimphu,+Bhutan&z=15&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0 }}

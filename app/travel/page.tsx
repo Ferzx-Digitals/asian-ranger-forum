@@ -1,15 +1,42 @@
-import { Plane, Route } from "lucide-react";
-
+import { ArrowRight, Bed, ClipboardList, HelpCircle, Plane } from "lucide-react";
+import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
-import { EmergencyNumbers } from "@/features/travel/components/EmergencyNumbers";
-import { EntryByAir } from "@/features/travel/components/EntryByAir";
-import { EntryByRoad } from "@/features/travel/components/EntryByRoad";
-import { VenuePhoto } from "@/features/travel/components/VenuePhoto";
-import { VisaInfo } from "@/features/travel/components/VisaInfo";
+import { FaqNoticeGrid } from "@/features/faq";
 
 export const metadata = {
   title: "Plan Your Travel | 2nd Asian Ranger Congress 2026",
 };
+
+const travelLinks = [
+  {
+    href: "/travel/logistics",
+    icon: Plane,
+    title: "Logistics",
+    description:
+      "Entry by air and road, visa & SDF requirements, and emergency numbers in Bhutan.",
+  },
+  {
+    href: "/travel/venue-accommodation",
+    icon: Bed,
+    title: "Venue & Accommodation",
+    description:
+      "About Thimphu, the Royal Institute of Management venue, and what's included in your stay.",
+  },
+  {
+    href: "/travel/registration",
+    icon: ClipboardList,
+    title: "Registration & EOI",
+    description:
+      "How to express interest, confirm your place, and understand participation fees.",
+  },
+  {
+    href: "/travel/faq",
+    icon: HelpCircle,
+    title: "Travel FAQ",
+    description:
+      "Quick answers to common questions about visas, flights, road entry, and accommodation.",
+  },
+];
 
 export default function TravelPage() {
   return (
@@ -23,123 +50,38 @@ export default function TravelPage() {
           alt: "Green-toned Bhutan mountain road and valley travel route toward Thimphu",
           priority: true,
         }}
-        actions={
-          <>
-            <a
-              href="#entry-by-air"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-secondary px-5 font-body text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-            >
-              <Plane aria-hidden="true" className="h-4 w-4" />
-              Entry by Air
-            </a>
-            <a
-              href="#entry-by-road"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-sm border border-primary-foreground/35 bg-primary-foreground/10 px-5 font-body text-sm font-semibold text-primary-foreground backdrop-blur transition-colors hover:bg-primary-foreground/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-            >
-              <Route aria-hidden="true" className="h-4 w-4" />
-              Entry by Road
-            </a>
-          </>
-        }
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-2 pb-12 space-y-14">
-        {/* About Thimphu */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            About Thimphu, Bhutan
-          </h2>
-          <div className="space-y-3 font-body text-sm text-foreground/80 leading-relaxed">
-            <p>
-              Thimphu is the capital city of Bhutan, nestled in a valley of the
-              Himalayas at an altitude of approximately 2,300 metres. It is one
-              of the few capital cities in the world without traffic lights — a
-              charming reflection of Bhutan&apos;s unique pace and philosophy.
-              Surrounded by forested hills, ancient monasteries, and dramatic
-              mountain landscapes, Thimphu offers a truly extraordinary setting
-              for the Congress.
-            </p>
-            <p>
-              Bhutan follows its own development philosophy — Gross National
-              Happiness (GNH) — which places environmental conservation as one
-              of its four core pillars. 69.71% of Bhutan&apos;s land area is
-              forested, and 52% is designated as protected areas and biological
-              corridors, making it one of the world&apos;s leading conservation
-              nations.
-            </p>
-          </div>
-        </section>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {travelLinks.map((link) => {
+            const Icon = link.icon;
 
-        {/* Venue */}
-        <section className="text-center">
-          <VenuePhoto />
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group flex flex-col rounded-sm border border-border bg-card p-6 transition-colors hover:border-secondary/60 hover:bg-secondary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-secondary/30 bg-secondary/10 text-primary">
+                  <Icon aria-hidden="true" className="h-6 w-6" />
+                </div>
+                <h2 className="mt-4 font-display text-lg font-bold text-primary">
+                  {link.title}
+                </h2>
+                <p className="mt-2 flex-1 font-body text-sm leading-6 text-muted-foreground">
+                  {link.description}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 font-body text-sm font-semibold text-secondary transition-transform group-hover:translate-x-1">
+                  Explore
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
 
-          <h2 className="font-display text-2xl font-bold text-primary leading-tight mt-3">
-            Royal Institute of Management
-          </h2>
-          <p className="font-body text-sm text-muted-foreground">
-            Simtokha, Thimphu, Bhutan
-          </p>
-          <p className="font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto mt-2">
-            Bhutan&apos;s premier institute for management and governance
-            training. The venue features a main auditorium with seating for up
-            to 200 participants and modern audio-visual facilities, plus more
-            than 15 breakout rooms and training halls. RIM is located just
-            outside Thimphu city, within 10–15 minutes&apos; drive of major
-            hotels.
-          </p>
-        </section>
-
-        {/* Entry by air */}
-        <section id="entry-by-air" className="scroll-mt-24">
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Entry by Air
-          </h2>
-          <EntryByAir />
-        </section>
-
-        {/* Entry by road */}
-        <section id="entry-by-road" className="scroll-mt-24">
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Entry by Road
-          </h2>
-          <p className="font-body text-sm text-muted-foreground mb-4">
-            Bhutan can also be reached by road from India through three official
-            land crossings:
-          </p>
-          <EntryByRoad />
-        </section>
-
-        {/* Visa */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Visa & Entry Requirements
-          </h2>
-          <VisaInfo />
-        </section>
-
-        {/* Accommodation */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Accommodation
-          </h2>
-          <div className="rounded-sm border border-border bg-card p-6">
-            <p className="font-body text-sm text-foreground/80 leading-relaxed">
-              Participants will be accommodated in hotels in Thimphu,
-              conveniently located near the venue. Accommodation costs are
-              covered by the registration fee. Shuttle buses will be provided
-              for participants staying in hotels further from the venue.
-            </p>
-          </div>
-        </section>
-
-        {/* Emergency numbers */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Emergency Numbers in Bhutan
-          </h2>
-          <EmergencyNumbers />
-        </section>
+        <FaqNoticeGrid />
       </div>
     </>
   );

@@ -54,7 +54,7 @@ const ParallaxHero = () => {
 
         {/* TITLE — starts close to the ridge line */}
         <div
-          className="absolute inset-x-0 top-[20vh] z-[14] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[20vh] z-[40] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleY}px, 0)`,
             opacity: titleOpacity,
@@ -75,6 +75,7 @@ const ParallaxHero = () => {
             </p>
             <div className="h-px w-10 bg-secondary md:w-14" />
           </div>
+
           <div className="mt-6 md:mt-8">
             <OrganiserLogos />
           </div>

@@ -2,28 +2,37 @@ import { Fragment } from "react";
 import Image from "next/image";
 import { ORGANISERS } from "@/lib/organisers";
 
+const LOGOS = [
+  { abbr: "ARC", name: "2nd Asian Ranger Congress 2026", logo: "/logo.svg" },
+  ...ORGANISERS.map((org) => ({
+    abbr: org.abbr,
+    name: org.name,
+    logo: `/logos/${org.logo}`,
+  })),
+];
+
 export function OrganiserLogos() {
   return (
     <div className="flex flex-col items-center">
       <p className="font-body text-[0.65rem] md:text-xs font-semibold uppercase tracking-[0.4em] text-secondary mb-3">
         Organised by
       </p>
-      <div className="flex items-stretch justify-center gap-4 md:gap-6">
-        {ORGANISERS.map((org, i) => (
+      <div className="flex max-w-full items-stretch justify-center gap-2 sm:gap-4 md:gap-6 overflow-x-auto px-2">
+        {LOGOS.map((org, i) => (
           <Fragment key={org.abbr}>
             {i > 0 && (
               <div
-                className="self-center h-8 w-px bg-secondary/40"
+                className="self-center h-12 sm:h-16 md:h-20 w-px shrink-0 bg-secondary/30"
                 aria-hidden="true"
               />
             )}
-            <div className="flex items-center justify-center w-[6rem] md:w-[8rem] h-20">
+            <div className="flex shrink-0 items-center justify-center w-16 sm:w-24 md:w-32 h-16 sm:h-24 md:h-28">
               <Image
-                src={`/logos/${org.logo}`}
+                src={org.logo}
                 alt={org.name}
-                width={80}
-                height={60}
-                className="object-contain max-h-full w-auto"
+                width={120}
+                height={90}
+                className="object-contain max-h-full w-auto drop-shadow-md"
               />
             </div>
           </Fragment>
