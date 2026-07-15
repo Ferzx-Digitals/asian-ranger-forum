@@ -1,15 +1,12 @@
-import { Fragment } from "react";
 import Image from "next/image";
+import { Fragment } from "react";
 import { ORGANISERS } from "@/lib/organisers";
 
-const LOGOS = [
-  { abbr: "ARC", name: "2nd Asian Ranger Congress 2026", logo: "/logo.svg" },
-  ...ORGANISERS.map((org) => ({
-    abbr: org.abbr,
-    name: org.name,
-    logo: `/logos/${org.logo}`,
-  })),
-];
+const LOGOS = ORGANISERS.map((org) => ({
+  abbr: org.abbr,
+  name: org.name,
+  logo: `/logos/${org.logo}`,
+}));
 
 export function OrganiserLogos() {
   return (
