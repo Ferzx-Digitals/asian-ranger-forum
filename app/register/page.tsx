@@ -1,93 +1,12 @@
-import { PageHero } from "@/components/layout/PageHero";
-import { RegistrationSteps } from "@/features/register/components/RegistrationSteps";
-import { SdfExemption } from "@/features/register/components/SdfExemption";
-import { WhatsIncluded } from "@/features/register/components/WhatsIncluded";
-import { OFFICIAL_CONGRESS_EMAIL } from "@/lib/contact";
+import type { Metadata } from "next";
+import { RegisterPageContent } from "@/features/register";
 
-export const metadata = {
-  title: "Register | 2nd Asian Ranger Congress 2026",
+export const metadata: Metadata = {
+  title: "Registration | 2nd Asian Ranger Congress 2026",
+  description:
+    "Invited participants can complete registration for the 2nd Asian Ranger Congress and review fees, inclusions, and participant guidance.",
 };
 
 export default function RegisterPage() {
-  return (
-    <>
-      <PageHero
-        eyebrow="Register"
-        title="Register for the Congress"
-        subtitle="Secure your place at the 2nd Asian Ranger Congress. Registration includes accommodation, meals, and all congress activities."
-        backgroundImage={{
-          src: "/images/about-hero-natural.png",
-          alt: "Asian rangers and conservation leaders gathered in a Himalayan conservation landscape",
-          priority: true,
-        }}
-      />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-14">
-        {/* How Registration Works */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-6">
-            How Registration Works
-          </h2>
-          <RegistrationSteps />
-        </section>
-
-        {/* What's Included */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-2">
-            What&apos;s Included
-          </h2>
-          <p className="font-body text-sm text-muted-foreground mb-6">
-            The registration fee of <strong>USD 450</strong> covers:
-          </p>
-          <WhatsIncluded />
-        </section>
-
-        {/* SDF Exemption */}
-        <section>
-          <SdfExemption />
-        </section>
-
-        {/* FAQ snippets */}
-        <section>
-          <h2 className="font-display text-2xl font-bold text-primary mb-4">
-            Registration FAQs
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                q: "When will I hear if my EOI is successful?",
-                a: "Following the review of submitted Expressions of Interest, selected participants will be notified by the Organising Committee and invited to complete formal registration. Confirmation and payment links will be sent directly to selected people who already submitted an EOI.",
-              },
-              {
-                q: "Can my organisation submit on behalf of multiple rangers?",
-                a: `Expression of Interest submissions are now closed, so new nominations cannot be submitted at this stage. Submitted EOIs will be reviewed by the Organising Committee. For questions about an existing submission, email ${OFFICIAL_CONGRESS_EMAIL}.`,
-              },
-              {
-                q: "What is the registration deadline?",
-                a: "EOI submissions are now closed. Formal registration and payment deadlines will be communicated directly to selected people who already submitted an EOI.",
-              },
-              {
-                q: "Can I get a refund if I cannot attend?",
-                a: "Cancellation and refund policies will be provided in the formal invitation after your EOI is reviewed.",
-              },
-              {
-                q: "Are there scholarships or subsidised places available?",
-                a: `Limited support may be available for rangers from low-income countries. Please contact ${OFFICIAL_CONGRESS_EMAIL} to enquire.`,
-              },
-            ].map(({ q, a }) => (
-              <div
-                key={q}
-                className="rounded-sm border border-border bg-card p-5"
-              >
-                <p className="font-body text-sm font-semibold text-primary mb-1">
-                  {q}
-                </p>
-                <p className="font-body text-sm text-muted-foreground">{a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </>
-  );
+  return <RegisterPageContent />;
 }

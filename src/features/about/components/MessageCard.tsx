@@ -29,9 +29,11 @@ export function MessageCard({
   reverse = false,
 }: MessageCardProps) {
   const isLongMessage = message && message.length > maxLength;
-  const displayMessage = isLongMessage
-    ? `${message.substring(0, maxLength)}...`
-    : message;
+  const excerpt = message?.slice(0, maxLength);
+  const displayMessage =
+    isLongMessage && excerpt
+      ? `${excerpt.replace(/\s+\S*$/, "").trimEnd()}…`
+      : message;
 
   return (
     <div
@@ -100,7 +102,7 @@ export function MessageCard({
                         type="button"
                         className="text-sm font-bold text-secondary hover:underline transition-all"
                       >
-                        Read more...
+                        Read full message
                       </button>
                     </DialogTrigger>
                     <DialogContent className="max-h-[calc(100dvh-2rem)] max-w-2xl overflow-hidden p-0 sm:max-h-[90dvh]">

@@ -2,7 +2,7 @@ const stats = [
   { value: "146", label: "Participants" },
   { value: "20", label: "Countries represented" },
   { value: "35", label: "Women rangers" },
-  { value: "Dec 2023", label: "Guwahati, India" },
+  { value: "December 2023", label: "Guwahati, India" },
 ];
 
 export function GuwahatiHighlights() {

@@ -18,9 +18,9 @@ const ExpressionOfInterest = () => {
           </h2>
 
           <p className="font-body text-sm text-muted-foreground text-center mb-8">
-            The Expression of Interest period has closed. EOIs already submitted
-            will be reviewed, and selected participants will receive the
-            confirmation and payment link directly.
+            The Expression of Interest period has closed. Submitted EOIs will be
+            reviewed, and selected participants will receive confirmation and a
+            payment link directly.
           </p>
 
           <button
@@ -32,11 +32,11 @@ const ExpressionOfInterest = () => {
           </button>
 
           <p className="mt-6 text-xs font-semibold text-secondary text-center font-body">
-            REGISTRATION FEE: USD 450 per participant
+            Registration fee: USD 450 per participant
           </p>
 
           <p className="mt-3 text-xs text-muted-foreground text-center font-body">
-            Thimphu, Bhutan · 2 — 4 December 2026
+            Thimphu, Bhutan · 2–4 December 2026
           </p>
         </div>
       </div>

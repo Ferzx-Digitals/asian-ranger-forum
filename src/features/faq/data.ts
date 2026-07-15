@@ -194,29 +194,28 @@ export const faqCategories: FaqCategory[] = [
   },
   {
     id: "proposal-submission",
-    title: "Proposal & Abstract Submission",
+    title: "Proposal Submission",
     shortTitle: "Proposals",
     description:
-      "Presentation, workshop, training, and abstract submission guidance.",
+      "Poster and workshop proposal guidance for confirmed participants.",
     icon: "proposal",
     items: [
       {
-        question: "Can I present a paper or lead a session?",
+        question: "Can I present a poster or lead a working session?",
         answer:
-          "Yes. The congress includes a call for proposals for presentations, workshops, and training sessions. Details on submission requirements and deadlines are available on the Call for Proposals and Training Sessions pages.",
-        keywords: [
-          "abstract",
-          "proposal",
-          "presentation",
-          "workshop",
-          "training",
-        ],
+          "Confirmed Congress participants who have been shortlisted and confirmed by the ARC Organising Committee may submit either a poster presentation or a ranger-led or ranger-co-led workshop or working session proposal. The call opens on 1 August 2026.",
+        keywords: ["proposal", "poster", "workshop", "working session"],
       },
       {
         question: "Where can I find submission requirements?",
         answer:
-          "Submission requirements will be shared through the Call for Proposals and Training Sessions pages. Confirmed deadlines and review timelines should be checked there before submitting.",
-        keywords: ["requirements", "deadline", "review", "call for proposals"],
+          "The Call for Proposals page lists the eligibility criteria, session formats, proposal requirements, and poster proposal template. Submissions open on 1 August 2026.",
+        keywords: [
+          "requirements",
+          "eligibility",
+          "template",
+          "call for proposals",
+        ],
       },
     ],
   },

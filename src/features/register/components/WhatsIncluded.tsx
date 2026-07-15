@@ -1,60 +1,50 @@
-const inclusions = [
-  {
-    icon: "🏨",
-    label: "Accommodation",
-    detail: "Selected hotels in Thimphu for the full congress duration",
-  },
-  {
-    icon: "🍽️",
-    label: "Working Lunches & Dinners",
-    detail: "All working meals throughout the event",
-  },
-  {
-    icon: "☕",
-    label: "Tea & Snack Breaks",
-    detail: "Two tea/snack breaks daily",
-  },
-  {
-    icon: "🚌",
-    label: "Transportation",
-    detail: "Transfers to and from the venue",
-  },
-  {
-    icon: "🎁",
-    label: "Welcome Kit",
-    detail: "Congress materials and welcome pack",
-  },
-  {
-    icon: "🎫",
-    label: "All Sessions & Field Visits",
-    detail: "Access to all congress sessions, field visits, and social events",
-  },
-  {
-    icon: "🏥",
-    label: "On-site Medical Team",
-    detail: "Dedicated medical support throughout the congress",
-  },
-];
+import {
+  BedDouble,
+  BusFront,
+  Coffee,
+  Gift,
+  HeartPulse,
+  TicketCheck,
+  Utensils,
+} from "lucide-react";
+import type { RegistrationInclusionIcon } from "../data";
+import { registrationInclusions } from "../data";
+
+const inclusionIcons = {
+  accommodation: BedDouble,
+  meals: Utensils,
+  breaks: Coffee,
+  transport: BusFront,
+  "welcome-kit": Gift,
+  access: TicketCheck,
+  medical: HeartPulse,
+} satisfies Record<RegistrationInclusionIcon, typeof BedDouble>;
 
 export function WhatsIncluded() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {inclusions.map(({ icon, label, detail }) => (
-        <div
-          key={label}
-          className="flex gap-3 rounded-sm border border-border bg-card p-4"
-        >
-          <span className="text-2xl leading-none mt-0.5">{icon}</span>
-          <div>
-            <p className="font-body text-sm font-semibold text-primary">
-              {label}
-            </p>
-            <p className="font-body text-xs text-muted-foreground mt-0.5">
-              {detail}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+    <ul className="grid border-t border-border sm:grid-cols-2">
+      {registrationInclusions.map((inclusion) => {
+        const Icon = inclusionIcons[inclusion.icon];
+
+        return (
+          <li
+            key={inclusion.label}
+            className="flex gap-4 border-b border-border p-5 last:border-b-0 sm:min-h-32 sm:border-r sm:even:border-r-0 sm:last:col-span-2 sm:last:border-r-0 sm:last:border-b-0 sm:last:min-h-0 sm:last:justify-center lg:p-6"
+          >
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-secondary/30 bg-secondary/10 text-primary">
+              <Icon className="size-5" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="font-body text-sm font-semibold text-primary">
+                {inclusion.label}
+              </p>
+              <p className="mt-1 font-body text-sm leading-6 text-muted-foreground">
+                {inclusion.detail}
+              </p>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

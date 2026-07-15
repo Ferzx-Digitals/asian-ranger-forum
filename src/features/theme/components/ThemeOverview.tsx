@@ -1,63 +1,15 @@
 import Image from "next/image";
-import { ImageCredit } from "@/components/ImageCredit";
-import { type CongressThemeImage, congressThemes } from "@/lib/congress-themes";
+import {
+  type CongressObjectiveImage,
+  congressObjectives,
+} from "@/lib/congress-objectives";
 import { cn } from "@/lib/utils";
-import { PriorityCarousel } from "./PriorityCarousel";
 
-const priorities = [
-  {
-    title: "Amplifying Asian Ranger Voices",
-    description:
-      "Consolidate a unified Asian ranger position to bring to the 2027 World Ranger Congress, building on the Guwahati Declaration and strengthening ranger-led advocacy capacity and collective voice through the Ranger Federation of Asia.",
-    image: {
-      src: "/images/priorities/amplifying-asian-ranger-voices.png",
-      alt: "Asian rangers gathered in discussion above a Himalayan valley.",
-    },
-  },
-  {
-    title: "Protecting the Protectors",
-    description:
-      "Enhance working conditions, social protection, and insurance coverage across Asia. Advance WRAP 2030 professional standards tailored to the Asian context.",
-    image: {
-      src: "/images/priorities/protecting-the-protectors.png",
-      alt: "Rangers providing first-aid and safety support at a mountain field station.",
-    },
-  },
-  {
-    title:
-      "Rangers at the Frontier of Climate, One Health & Humanitarian Action",
-    description:
-      "Strengthen evidence and support around rangers' contributions to climate resilience, One Health, disaster risk reduction, and community wellbeing, positioning rangers as essential actors within broader development and humanitarian frameworks.",
-    image: {
-      src: "/images/priorities/climate-one-health-humanitarian-action.png",
-      alt: "Rangers and community members monitoring a forest stream in a Himalayan landscape.",
-    },
-  },
-  {
-    title: "Skills Across Borders: Ranger-to-Ranger Learning Across Asia",
-    description:
-      "Facilitate direct peer exchange through hands-on training in first aid, disaster response, forest fire and emotional resilience, building a self-sustaining network of ranger knowledge that travels across borders and generations.",
-    image: {
-      src: "/images/priorities/ranger-to-ranger-learning.png",
-      alt: "Rangers from across Asia training together in a mountain forest clearing.",
-    },
-  },
-  {
-    title: "An Inclusive Workforce",
-    description:
-      "Build a ranger workforce where women, Indigenous Peoples, and local communities are represented as equal partners in conservation.",
-    image: {
-      src: "/images/priorities/inclusive-workforce.png",
-      alt: "A diverse ranger team walking together on a Himalayan forest trail.",
-    },
-  },
-];
-
-function ThemeImage({
+function ObjectiveImage({
   image,
   sizes,
 }: {
-  image: CongressThemeImage;
+  image: CongressObjectiveImage;
   sizes: string;
 }) {
   return (
@@ -69,7 +21,6 @@ function ThemeImage({
         sizes={sizes}
         className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
       />
-      <ImageCredit credit={image.credit} />
     </figure>
   );
 }
@@ -109,66 +60,51 @@ export function ThemeOverview() {
         </p>
       </section>
 
-      {/* Priorities */}
-      <section className="py-4">
-        <h2 className="font-display text-2xl font-bold text-primary mb-4">
-          Priorities for Thimphu (ARC 2026)
-        </h2>
-        <p className="font-body text-base text-muted-foreground leading-relaxed max-w-3xl mb-8">
-          ARC 2026 is built around five interconnected priorities: recognising
-          rangers as an essential professional workforce, strengthening their
-          collective voice and representation in policy arenas, advancing their
-          welfare, mental health, and professional standards, and ensuring the
-          ranger workforce reflects the full diversity of the landscapes and
-          communities it serves.
-        </p>
-        <PriorityCarousel priorities={priorities} />
-      </section>
-
-      {/* Congress Themes */}
       <section className="space-y-16">
-        <h2 className="font-display text-3xl font-bold text-primary mb-12 text-center">
-          Congress Themes
-        </h2>
+        <div className="text-center">
+          <div className="mb-8 flex items-center justify-center gap-3">
+            <div className="h-px w-12 bg-secondary" />
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
+              Our Goals
+            </p>
+            <div className="h-px w-12 bg-secondary" />
+          </div>
+          <h2 className="font-display text-3xl font-bold text-primary md:text-4xl">
+            What We Aim to Achieve
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl font-body text-base text-muted-foreground">
+            Five core objectives that will guide the 2nd Asian Ranger Congress.
+          </p>
+        </div>
         <div className="space-y-16 md:space-y-24">
-          {congressThemes.map((theme, index) => (
+          {congressObjectives.map((objective, index) => (
             <div
-              key={theme.title}
+              key={objective.number}
               className={cn(
                 "flex flex-col gap-8 md:gap-16 items-center",
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse",
               )}
             >
               <div className="w-full md:w-[45%]">
-                <div
-                  className={cn(
-                    "grid gap-3",
-                    theme.supportingImage && "sm:grid-cols-2",
-                  )}
-                >
-                  <ThemeImage
-                    image={theme.image}
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                  />
-                  {theme.supportingImage ? (
-                    <ThemeImage
-                      image={theme.supportingImage}
-                      sizes="(max-width: 768px) 100vw, 24vw"
-                    />
-                  ) : null}
-                </div>
+                <ObjectiveImage
+                  image={objective.image}
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                />
               </div>
               <div className="w-full md:w-[55%] space-y-4">
                 <div className="space-y-2">
                   <p className="font-body text-xs font-bold text-secondary uppercase tracking-widest">
-                    Theme {index + 1}
+                    Objective {objective.number}
                   </p>
                   <h3 className="font-display text-2xl font-bold text-primary leading-tight">
-                    {theme.title}
+                    {objective.title}
                   </h3>
                 </div>
                 <p className="font-body text-base text-muted-foreground leading-relaxed">
-                  {theme.description}
+                  {objective.description}
+                </p>
+                <p className="font-body text-base text-muted-foreground/80 leading-relaxed">
+                  {objective.supportingText}
                 </p>
               </div>
             </div>

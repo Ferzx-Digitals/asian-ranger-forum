@@ -57,8 +57,8 @@ export function PhotoStrip() {
         ))}
       </div>
       <p className="mt-3 font-body text-xs text-muted-foreground">
-        Rangers from across Asia at work and in community — the people the
-        Congress is convened for.
+        Rangers from across Asia at work and in their communities. These are the
+        people the Congress is convened for.
       </p>
     </section>
   );

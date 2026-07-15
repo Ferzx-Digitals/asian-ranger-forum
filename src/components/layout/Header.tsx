@@ -37,16 +37,12 @@ const navItems: NavItem[] = [
   },
   {
     type: "dropdown",
-    label: "Program",
+    label: "Programme",
     items: [
+      { label: "Congress Programme", href: "/programme" },
       { label: "Call for Proposals", href: "/call-for-proposals" },
       { label: "Field Visits", href: "/field-visits" },
     ],
-  },
-  {
-    type: "dropdown",
-    label: "Submit",
-    items: [{ label: "Training", href: "/training" }],
   },
   {
     type: "dropdown",
@@ -231,10 +227,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className={cn(
-                "lg:hidden ml-auto",
-                floating && "shadow-sm",
-              )}
+              className={cn("lg:hidden ml-auto", floating && "shadow-sm")}
               aria-label="Open menu"
             >
               <Menu size={20} />

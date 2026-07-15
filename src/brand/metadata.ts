@@ -6,7 +6,7 @@ export const defaultMetadata: Metadata = {
     template: "%s | Asian Ranger Congress",
   },
   description:
-    "A landmark gathering of Asia's rangers and conservationists — Thimphu, Bhutan, 2–4 December 2026.",
+    "A landmark gathering of Asia's rangers and conservationists in Thimphu, Bhutan, from 2–4 December 2026.",
   metadataBase: new URL("https://asianrangercongress.org"),
   icons: {
     icon: [

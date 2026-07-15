@@ -29,10 +29,10 @@ export function Welcome() {
             <p className="font-body mb-7 text-center text-lg leading-relaxed text-foreground/85 md:text-left md:text-xl">
               Welcome to the{" "}
               <span className="font-display font-bold text-primary">
-                2<sup className="text-[0.6em]">nd</sup> Asian Ranger Congress
+                2<sup className="text-[0.6em]">nd</sup> Asian Ranger Congress,
               </span>{" "}
-              — a landmark gathering of Asia&apos;s rangers, conservationists,
-              and organisations dedicated to protecting the natural world.
+              a landmark gathering of Asia&apos;s rangers, conservationists, and
+              organisations dedicated to protecting the natural world.
             </p>
 
             {/* Bhutan narrative */}
@@ -40,15 +40,15 @@ export function Welcome() {
               Hosted in the heart of the Himalayas, the 2
               <sup className="text-[0.7em]">nd</sup> ARC will be held in{" "}
               <span className="font-semibold text-primary">
-                Thimphu, Bhutan
+                Thimphu, Bhutan.
               </span>{" "}
-              — one of the world&apos;s most remarkable conservation success
-              stories. A country where{" "}
+              Bhutan is one of the world&apos;s most remarkable conservation
+              success stories:{" "}
               <span className="font-semibold text-secondary">
-                69.71% of the land remains forested
-              </span>
-              , where tiger populations are recovering, and where the harmony
-              between people and nature is a national philosophy.
+                69.71% of the land remains forested,
+              </span>{" "}
+              tiger populations are recovering, and harmony between people and
+              nature is a national philosophy.
             </p>
 
             {/* Closing call */}

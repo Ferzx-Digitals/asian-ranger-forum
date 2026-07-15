@@ -16,7 +16,11 @@ interface PageHeroProps {
   compact?: boolean;
   backgroundImage?: PageHeroBackgroundImage;
   actions?: ReactNode;
+  eventDetails?: ReactNode;
 }
+
+const DEFAULT_EVENT_DETAILS =
+  "2nd Asian Ranger Congress · Thimphu, Bhutan · 2–4 December 2026";
 
 export function PageHero({
   eyebrow,
@@ -25,6 +29,7 @@ export function PageHero({
   compact,
   backgroundImage,
   actions,
+  eventDetails = DEFAULT_EVENT_DETAILS,
 }: PageHeroProps) {
   if (backgroundImage) {
     return (
@@ -101,13 +106,15 @@ export function PageHero({
             {actions}
           </div>
         )}
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <div className="h-px w-12 bg-secondary" />
-          <p className="font-body text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            2nd Asian Ranger Congress · Thimphu, Bhutan · 2–4 December 2026
-          </p>
-          <div className="h-px w-12 bg-secondary" />
-        </div>
+        {eventDetails ? (
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="h-px w-12 bg-secondary" />
+            <p className="font-body text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              {eventDetails}
+            </p>
+            <div className="h-px w-12 bg-secondary" />
+          </div>
+        ) : null}
       </div>
     </section>
   );

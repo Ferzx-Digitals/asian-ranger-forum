@@ -7,6 +7,7 @@ import { FieldVisitsTeaser } from "@/features/home/components/FieldVisitsTeaser"
 import { OrganiserCards } from "@/features/home/components/OrganiserCards";
 import { SupporterLogos } from "@/features/home/components/SupporterLogos";
 import { Welcome } from "@/features/home/components/Welcome";
+import { HostCityVenueSection } from "@/features/host-city";
 
 export default function Page() {
   return (
@@ -22,6 +23,7 @@ export default function Page() {
         <OrganiserCards />
         <SupporterLogos />
         <CongressObjectives />
+        <HostCityVenueSection />
         <FieldVisitsTeaser />
         <ExpressionOfInterest />
       </div>

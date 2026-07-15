@@ -11,6 +11,7 @@ const linkGroups = [
     links: [
       { label: "About", href: "/about" },
       { label: "Theme & Objectives", href: "/theme" },
+      { label: "Programme", href: "/programme" },
       { label: "Partners", href: "/partners" },
       { label: "FAQ", href: "/faq" },
     ],
@@ -20,7 +21,6 @@ const linkGroups = [
     links: [
       { label: "Register", href: "/register" },
       { label: "Call for Proposals", href: "/call-for-proposals" },
-      { label: "Training Sessions", href: "/training" },
       { label: "Sponsorship", href: "/sponsorship" },
     ],
   },
@@ -86,7 +86,7 @@ export function Footer() {
             © 2026 Asian Ranger Congress
           </p>
           <p className="font-body text-xs text-primary-foreground/40">
-            Organised by RFA · IRF · SBF
+            Organised by RFA · SBF
           </p>
         </div>
       </div>

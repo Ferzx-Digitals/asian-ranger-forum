@@ -1,11 +1,11 @@
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
-import { MagnifiableMap } from "@/features/about/components/MagnifiableMap";
+import { GuwahatiHighlights } from "@/features/about/components/GuwahatiHighlights";
 import { MessageCard } from "@/features/about/components/MessageCard";
 import { PhotoStrip } from "@/features/about/components/PhotoStrip";
-import { GuwahatiHighlights } from "@/features/about/components/GuwahatiHighlights";
+import { HostCityVenueSection } from "@/features/host-city";
 
 export const metadata = {
   title: "About the Congress | 2nd Asian Ranger Congress 2026",
@@ -25,55 +25,68 @@ export default function AboutPage() {
         }}
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+      <div className="mx-auto max-w-4xl px-4 pb-16 pt-12 sm:px-6 lg:pb-20 lg:pt-16">
         {/* Introduction */}
-        <section>
-          <div className="mb-6 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-sm border border-border bg-card p-3">
-              <Image
-                src="/logo.svg"
-                alt="2nd Asian Ranger Congress 2026 logo"
-                width={80}
-                height={80}
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <h2 className="font-display text-2xl font-bold text-primary">
+        <section aria-labelledby="rangers-at-the-heart-heading">
+          <div>
+            <h2
+              id="rangers-at-the-heart-heading"
+              className="font-display text-3xl font-bold leading-tight text-primary sm:text-4xl"
+            >
               Rangers at the Heart of Conservation
             </h2>
+
+            <div className="mt-6 flow-root font-body text-base leading-7 text-foreground/80">
+              <div className="relative float-right mb-4 ml-5 aspect-[225/409] w-24 overflow-hidden sm:ml-8 sm:w-32 lg:mb-5 lg:ml-10">
+                <Image
+                  src="/logo.svg"
+                  alt="2nd Asian Ranger Congress 2026 logo"
+                  width={1200}
+                  height={1200}
+                  sizes="(min-width: 640px) 24rem, 21rem"
+                  className="absolute block h-auto max-w-none"
+                  style={{
+                    width: "266.666667%",
+                    left: "-83.333333%",
+                    top: "-23.349633%",
+                  }}
+                />
+              </div>
+
+              <p className="sm:first-letter:float-left sm:first-letter:mr-3 sm:first-letter:mt-1 sm:first-letter:font-display sm:first-letter:text-6xl sm:first-letter:font-bold sm:first-letter:leading-[0.75] sm:first-letter:text-primary">
+                Rangers play an indispensable role in maintaining the integrity
+                of protected and conserved areas (PCAs), and in supporting the
+                rights of those with whom they interact while carrying out their
+                duties of planetary protection. The world's rangers go by many
+                names and perform a vast array of roles, from law enforcement
+                and biodiversity monitoring to conservation education and
+                community engagement. They are an essential part of
+                internationally agreed plans to protect 30% of land and oceans,
+                and without them, this goal is unattainable.
+              </p>
+              <p className="mt-5">
+                Building on the success of the 1st Asian Ranger Congress held in
+                Guwahati, India, in December 2023, the 2nd Asian Ranger Congress
+                will once again bring together rangers and organisations
+                supporting rangers from across Asia to collaborate on the issues
+                that matter most. The Congress will offer a platform to share
+                knowledge, build capacity, create partnerships, and celebrate
+                the vital role rangers play in Asia's extraordinary
+                biodiversity.
+              </p>
+              <p className="mt-5">
+                This time, the Congress will be hosted in Thimphu, Bhutan, which
+                is globally recognised for its extraordinary commitment to
+                conservation and the wellbeing of its rangers. The Society of
+                Bhutanese Foresters, backed by the Royal Government of Bhutan,
+                is proud to welcome Asia's ranger community to Bhutan.
+              </p>
+            </div>
           </div>
-          <div className="space-y-4 font-body text-base text-foreground/80 leading-relaxed">
-            <p>
-              Rangers play an indispensable role in maintaining the integrity of
-              protected and conserved areas (PCAs), and in supporting the rights
-              of those with whom they interact while carrying out their duties
-              of planetary protection. The world's rangers go by many names and
-              perform a vast array of roles — from law enforcement and
-              biodiversity monitoring to conservation education and community
-              engagement. They are an essential part of internationally agreed
-              plans to protect 30% of land and oceans, and without them, this
-              goal is unattainable.
-            </p>
-            <p>
-              Building on the success of the 1st Asian Ranger Congress held in
-              Guwahati, India in December 2023, the 2nd Asian Ranger Congress
-              will once again bring together rangers and organisations
-              supporting rangers from across Asia to collaborate on the issues
-              that matter most. The Congress will offer a platform to share
-              knowledge, build capacity, create partnerships, and celebrate the
-              vital role rangers play in Asia's extraordinary biodiversity.
-            </p>
-            <p>
-              This time, the Congress will be hosted in Thimphu, Bhutan — a
-              country globally recognised for its extraordinary commitment to
-              conservation and the wellbeing of its rangers. The Society of
-              Bhutanese Foresters, backed by the Royal Government of Bhutan, is
-              proud to welcome Asia's ranger community to Bhutan.
-            </p>
-          </div>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="rounded-sm border border-border bg-muted/30 px-5 py-4">
-              <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-1">
+              <p className="mb-1 font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary">
                 Where
               </p>
               <p className="font-body text-sm text-foreground/80">
@@ -81,7 +94,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-sm border border-border bg-muted/30 px-5 py-4">
-              <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-1">
+              <p className="mb-1 font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary">
                 When
               </p>
               <p className="font-body text-sm text-foreground/80">
@@ -90,26 +103,13 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+      </div>
 
+      <HostCityVenueSection />
+
+      <div className="mx-auto max-w-4xl space-y-16 px-4 py-16 sm:px-6">
         {/* Photo Strip */}
         <PhotoStrip />
-
-        {/* Magnifiable Map */}
-        <section>
-          <div className="mb-6">
-            <h2 className="font-display text-2xl font-bold text-primary mb-2">
-              Majestic Thimphu Hosts You
-            </h2>
-            <p className="max-w-2xl font-body text-sm text-muted-foreground leading-relaxed">
-              Set in the Himalayan valley of Thimphu, Bhutan offers delegates
-              more than a congress venue. The country&apos;s conservation
-              legacy, high forest cover, and constitutional commitment to
-              protecting nature make it a fitting host for Asia&apos;s ranger
-              community.
-            </p>
-          </div>
-          <MagnifiableMap />
-        </section>
 
         {/* Messages */}
         <section>
@@ -151,17 +151,16 @@ export default function AboutPage() {
             Congress Schedule
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">
-            The full congress schedule will be published here once confirmed.
-            Registered participants will be notified when the schedule is
-            available for download.
+            A tentative programme overview is now available and will be updated
+            as sessions and timings are confirmed.
           </p>
-          <button
-            type="button"
-            disabled
-            className="inline-flex items-center px-5 py-2.5 rounded-sm border border-border bg-muted text-muted-foreground font-body text-sm font-semibold uppercase tracking-wide cursor-not-allowed"
+          <Link
+            href="/programme"
+            className="inline-flex items-center gap-2 rounded-sm border border-primary bg-primary px-5 py-2.5 font-body text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
-            Download Full Schedule (Coming Soon)
-          </button>
+            View Tentative Programme
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
         </section>
 
         {/* 1st Congress Declaration */}
@@ -170,14 +169,14 @@ export default function AboutPage() {
             Building on the 1st Asian Ranger Congress
           </h2>
           <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
-            The 1st Asian Ranger Congress was held in Guwahati, India in
+            The 1st Asian Ranger Congress was held in Guwahati, India, in
             December 2023, bringing together rangers, ranger associations, and
             partner organisations from across the region. It produced the
-            Guwahati Declaration — a landmark statement of intent committing
-            organisations and governments to strengthen the ranger profession
-            across Asia. The declaration remains a foundational document for
-            the ranger movement in the region, and the 2nd Congress in Thimphu
-            will build directly on this momentum.
+            Guwahati Declaration, a landmark statement of intent that commits
+            organisations and governments to strengthening the ranger profession
+            across Asia. The declaration remains a foundational document for the
+            ranger movement in the region, and the 2nd Congress in Thimphu will
+            build directly on this momentum.
           </p>
 
           <GuwahatiHighlights />
@@ -215,8 +214,8 @@ export default function AboutPage() {
               </h2>
               <p className="mt-3 max-w-2xl font-body text-sm leading-6 text-primary-foreground/75">
                 Secure your place at the 2nd Asian Ranger Congress, explore the
-                themes shaping the programme, or find out how your
-                organisation can support the event.
+                themes shaping the programme, or find out how your organisation
+                can support the event.
               </p>
             </div>
 

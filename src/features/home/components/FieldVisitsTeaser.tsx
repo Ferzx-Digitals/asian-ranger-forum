@@ -12,7 +12,7 @@ const visits = [
     number: "02",
     name: "Takin Preserve, Motithang",
     description:
-      "Home to Bhutan's national animal, the Takin — a remarkable and rare bovid found only in the Eastern Himalayas. This mini-preserve in the hills above Thimphu offers visitors a chance to see these iconic animals up close while learning about conservation efforts to protect them.",
+      "The preserve is home to Bhutan's national animal, the takin, a remarkable and rare bovid found only in the Eastern Himalayas. Located in the hills above Thimphu, it offers visitors a chance to see these iconic animals up close while learning about efforts to conserve them.",
     tag: "Wildlife",
   },
   {

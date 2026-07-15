@@ -3,13 +3,13 @@ import { SUPPORTERS } from "@/lib/supporters";
 
 export function PartnerGrid() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3">
       {SUPPORTERS.map((partner) => (
-        <div
+        <article
           key={partner.name}
-          className="rounded-sm border border-border bg-card p-4 flex flex-col items-center justify-between gap-3 min-h-[140px] text-center"
+          className="flex min-h-48 flex-col items-center justify-between gap-4 rounded-sm border border-border bg-card p-5 text-center"
         >
-          <div className="w-30 h-30 rounded-sm flex items-center justify-center overflow-hidden">
+          <div className="flex h-28 w-full items-center justify-center overflow-hidden rounded-sm">
             <Image
               src={`/logos/${partner.logo}`}
               alt={partner.name}
@@ -19,7 +19,7 @@ export function PartnerGrid() {
             />
           </div>
 
-          <p className="font-body text-xs text-foreground/70 leading-tight">
+          <p className="font-body text-xs leading-5 text-foreground/70">
             {partner.name}
           </p>
 
@@ -32,12 +32,8 @@ export function PartnerGrid() {
             >
               Know More →
             </a>
-          ) : (
-            <span className="font-body text-xs text-muted-foreground/40 cursor-not-allowed">
-              Know More →
-            </span>
-          )}
-        </div>
+          ) : null}
+        </article>
       ))}
     </div>
   );

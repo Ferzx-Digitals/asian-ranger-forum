@@ -8,7 +8,7 @@ export function SupporterLogos() {
         <div className="flex items-center justify-center gap-3 mb-8">
           <div className="h-px w-12 bg-secondary" />
           <p className="font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
-            Supported By
+            Supported by
           </p>
           <div className="h-px w-12 bg-secondary" />
         </div>

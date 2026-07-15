@@ -9,13 +9,13 @@ export function OrganiserCards() {
         <div className="flex items-center justify-center gap-3 mb-10">
           <div className="h-px w-12 bg-secondary" />
           <p className="font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
-            Organised By
+            Organised by
           </p>
           <div className="h-px w-12 bg-secondary" />
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6">
           {ORGANISERS.map((org) => (
             <div
               key={org.abbr}
