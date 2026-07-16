@@ -4,7 +4,7 @@ import StatsBar from "@/components/StatsBar";
 export function CountdownSection() {
   return (
     <section
-      className="relative z-50 overflow-hidden border-y border-border bg-muted/55 px-4 py-4 md:py-5"
+      className="relative z-50 overflow-hidden border-y border-border bg-muted/55 px-4 py-8 md:py-10"
       aria-labelledby="countdown-heading"
     >
       <div

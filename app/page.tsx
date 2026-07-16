@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-background">
       <ParallaxHero />
-      <div className="relative z-50 -mt-[25vh] bg-background">
+      <div className="relative z-50 -mt-[50vh] bg-background">
         <CountdownSection />
         <Welcome />
         <CongressObjectives />

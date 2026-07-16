@@ -15,7 +15,10 @@ const ParallaxHero = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let animationFrame: number | null = null;
+
     const updateProgress = () => {
+      animationFrame = null;
       if (!heroRef.current) return;
       const rect = heroRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
@@ -23,19 +26,25 @@ const ParallaxHero = () => {
       setProgress(clamp(-rect.top / scrollRange, 0, 1));
     };
 
+    const scheduleUpdate = () => {
+      if (animationFrame !== null) return;
+      animationFrame = window.requestAnimationFrame(updateProgress);
+    };
+
     updateProgress();
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress);
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
     return () => {
-      window.removeEventListener("scroll", updateProgress);
-      window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+      }
     };
   }, []);
 
   // Title moves DOWN as you scroll (gets swallowed by rising mountains)
   const titleY = 160 * progress;
-  const titleOpacity = clamp(1 - progress * 1.2, 0, 1);
-
   // Mountains rise UP as you scroll (negative = upward). Back moves least, front moves most.
   const backY = -120 * progress;
   const midY = -220 * progress;
@@ -44,7 +53,7 @@ const ParallaxHero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative -mt-16 h-[125vh] bg-gradient-to-b from-secondary/20 via-muted/70 via-60% to-background to-80%"
+      className="relative -mt-16 h-[150vh] bg-gradient-to-b from-secondary/20 via-muted/70 via-60% to-background to-80%"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Warm sky gradient */}
@@ -55,10 +64,9 @@ const ParallaxHero = () => {
 
         {/* TITLE — starts close to the ridge line */}
         <div
-          className="absolute inset-x-0 top-[20vh] z-[40] flex flex-col items-center px-4 text-center will-change-transform"
+          className="absolute inset-x-0 top-[20vh] z-[5] flex flex-col items-center px-4 text-center will-change-transform"
           style={{
             transform: `translate3d(0, ${titleY}px, 0)`,
-            opacity: titleOpacity,
           }}
         >
           <p className="font-body mb-3 text-sm font-semibold uppercase tracking-[0.38em] text-secondary md:text-base">
@@ -97,8 +105,11 @@ const ParallaxHero = () => {
             fill
             loading="eager"
             sizes="100vw"
-            className="object-cover object-top opacity-50"
-            style={{ transform: "scale(1.15)" }}
+            className="object-cover object-top"
+            style={{
+              transform: "scale(1.15)",
+              filter: "brightness(1.35) saturate(0.65)",
+            }}
           />
         </div>
 
@@ -129,8 +140,8 @@ const ParallaxHero = () => {
         <div
           className="pointer-events-none absolute inset-x-0 z-[28] will-change-transform"
           style={{
-            bottom: "-7vh",
-            height: "58vh",
+            bottom: "-15vh",
+            height: "70vh",
             transform: `translate3d(0, ${frontY}px, 0)`,
           }}
         >
