@@ -5,20 +5,21 @@ const stats = [
 
 const StatsBar = () => {
   return (
-    <section className="relative z-50 py-8 px-4 bg-background">
-      <div className="max-w-4xl mx-auto grid grid-cols-2 gap-8">
-        {stats.map((stat) => (
-          <div key={stat.label} className="text-center">
-            <p className="font-display text-3xl md:text-4xl font-bold text-secondary">
-              {stat.value}
-            </p>
-            <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mt-1">
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <dl className="mt-9 grid grid-cols-2 border-t border-border pt-7 sm:mx-auto sm:max-w-2xl sm:divide-x sm:divide-border lg:ml-auto lg:mr-0">
+      {stats.map((stat) => (
+        <div
+          key={stat.label}
+          className="flex flex-col px-4 text-center sm:px-8"
+        >
+          <dt className="order-2 mt-2 font-body text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+            {stat.label}
+          </dt>
+          <dd className="order-1 font-display text-3xl font-bold leading-none text-primary md:text-4xl">
+            {stat.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
   );
 };
 

@@ -51,19 +51,19 @@ export function CountdownTimer({
     return (
       <div
         className={cn(
-          "flex items-stretch justify-center gap-3 sm:gap-5 md:gap-7",
+          "grid w-full grid-cols-4 gap-2 sm:flex sm:w-auto sm:items-stretch sm:justify-center sm:gap-5 md:gap-7",
           className,
         )}
       >
         {units.map((unit) => (
           <div
             key={unit.label}
-            className="flex flex-col items-center justify-center rounded-sm border border-secondary/20 bg-secondary/5 shadow-sm px-4 py-4 sm:px-7 sm:py-6 md:px-9 md:py-7 min-w-[4.5rem] sm:min-w-[6rem] md:min-w-[7.5rem]"
+            className="flex min-w-0 flex-col items-center justify-center rounded-sm border border-secondary/25 bg-background/80 px-2 py-4 shadow-sm sm:min-w-24 sm:px-7 sm:py-6 md:min-w-30 md:px-9 md:py-7"
           >
             <span className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-secondary leading-none">
               {String(unit.value).padStart(2, "0")}
             </span>
-            <span className="font-body text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.25em] text-muted-foreground mt-2">
+            <span className="mt-2 font-body text-[0.55rem] uppercase tracking-[0.12em] text-muted-foreground sm:text-xs sm:tracking-[0.25em] md:text-sm">
               {unit.label}
             </span>
           </div>
@@ -73,7 +73,12 @@ export function CountdownTimer({
   }
 
   return (
-    <div className={cn("flex items-center justify-center gap-2 md:gap-4", className)}>
+    <div
+      className={cn(
+        "flex items-center justify-center gap-2 md:gap-4",
+        className,
+      )}
+    >
       {units.map((unit, i) => (
         <div key={unit.label} className="flex items-center gap-2 md:gap-4">
           <div className="flex flex-col items-center min-w-[3rem] md:min-w-[4rem]">

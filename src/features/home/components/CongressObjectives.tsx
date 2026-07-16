@@ -1,59 +1,52 @@
-import Image from "next/image";
 import { congressObjectives } from "@/lib/congress-objectives";
+import { ObjectivesCarousel } from "./ObjectivesCarousel";
 
 export function CongressObjectives() {
   return (
-    <section className="py-12 md:py-16 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-3 mb-10">
-          <div className="h-px w-12 bg-secondary" />
-          <p className="font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
-            Our Goals
-          </p>
-          <div className="h-px w-12 bg-secondary" />
-        </div>
+    <section
+      className="relative overflow-hidden bg-primary py-16 text-primary-foreground md:py-24"
+      aria-labelledby="congress-objectives-heading"
+    >
+      <div
+        className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-secondary via-accent to-secondary"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 border border-secondary/15"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 border border-accent/15"
+        aria-hidden="true"
+      />
 
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-primary text-center mb-3">
-          What We Aim to Achieve
-        </h2>
-        <p className="font-body text-muted-foreground text-base text-center max-w-xl mx-auto mb-10">
-          Five core objectives that will guide the 2nd Asian Ranger Congress.
-        </p>
-
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {congressObjectives.map((obj) => (
-            <div
-              key={obj.number}
-              className="rounded-sm border border-border bg-card overflow-hidden flex flex-col"
-            >
-              <figure className="relative aspect-[16/10]">
-                <Image
-                  src={obj.image.src}
-                  alt={obj.image.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
-                />
-              </figure>
-              <div className="p-6 flex flex-col flex-1">
-                <span className="font-display text-2xl font-bold text-secondary/50 mb-3">
-                  {obj.number}
-                </span>
-                <h3 className="font-display text-lg font-bold text-primary mb-2 leading-snug">
-                  {obj.title}
-                </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  {obj.description}
-                </p>
-                <p className="font-body text-sm text-muted-foreground/80 leading-relaxed mt-3">
-                  {obj.supportingText}
-                </p>
-              </div>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 border-b border-primary-foreground/15 pb-10 md:grid-cols-[1.25fr_0.75fr] md:items-end md:gap-16 md:pb-12">
+          <div>
+            <div className="mb-5 flex items-center gap-3">
+              <span className="h-px w-10 bg-secondary" aria-hidden="true" />
+              <p className="font-body text-xs font-semibold uppercase tracking-[0.32em] text-secondary">
+                Our shared outcomes
+              </p>
             </div>
-          ))}
+
+            <h2
+              id="congress-objectives-heading"
+              className="max-w-3xl font-display text-4xl font-bold leading-[0.98] text-primary-foreground sm:text-5xl lg:text-6xl"
+            >
+              What We Aim to Achieve
+            </h2>
+          </div>
+
+          <div className="md:pb-1">
+            <p className="max-w-xl font-body text-base leading-relaxed text-primary-foreground/75 md:text-lg">
+              Five commitments shaping a stronger, safer, and more connected
+              ranger community across Asia.
+            </p>
+          </div>
         </div>
+
+        <ObjectivesCarousel objectives={congressObjectives} />
       </div>
     </section>
   );

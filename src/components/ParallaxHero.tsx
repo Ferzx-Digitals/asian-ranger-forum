@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import mountainBack from "@/assets/mountain-back.png";
-import mountainMid from "@/assets/mountain-mid.png";
 import mountainFront from "@/assets/mountain-front.png";
+import mountainMid from "@/assets/mountain-mid.png";
 import { OrganiserLogos } from "@/components/layout/OrganiserLogos";
 
 const clamp = (value: number, min: number, max: number) =>
@@ -43,11 +44,11 @@ const ParallaxHero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative h-[125vh] -mt-16 bg-gradient-to-b from-[hsl(34,52%,82%)] via-[hsl(41,48%,90%)] via-60% to-[hsl(48,60%,97%)] to-80%"
+      className="relative -mt-16 h-[125vh] bg-gradient-to-b from-secondary/20 via-muted/70 via-60% to-background to-80%"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Warm sky gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,hsl(43_72%_52%_/_0.22),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,hsl(var(--secondary)/0.22),transparent_50%)]" />
 
         {/* Prayer flag accent line */}
         <div className="absolute inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-70" />
@@ -90,10 +91,13 @@ const ParallaxHero = () => {
             transform: `translate3d(0, ${backY}px, 0)`,
           }}
         >
-          <img
-            src={mountainBack.src}
+          <Image
+            src={mountainBack}
             alt=""
-            className="h-full w-full object-cover object-top opacity-50"
+            fill
+            loading="eager"
+            sizes="100vw"
+            className="object-cover object-top opacity-50"
             style={{ transform: "scale(1.15)" }}
           />
         </div>
@@ -107,10 +111,13 @@ const ParallaxHero = () => {
             transform: `translate3d(0, ${midY}px, 0)`,
           }}
         >
-          <img
-            src={mountainMid.src}
+          <Image
+            src={mountainMid}
             alt=""
-            className="h-full w-full object-cover object-top will-change-transform"
+            fill
+            loading="eager"
+            sizes="100vw"
+            className="object-cover object-top will-change-transform"
             style={{
               transform: "scale(1.18)",
               filter: "brightness(0.9) saturate(0.85)",
@@ -127,10 +134,13 @@ const ParallaxHero = () => {
             transform: `translate3d(0, ${frontY}px, 0)`,
           }}
         >
-          <img
-            src={mountainFront.src}
+          <Image
+            src={mountainFront}
             alt=""
-            className="h-full w-full object-cover object-top will-change-transform"
+            fill
+            loading="eager"
+            sizes="100vw"
+            className="object-cover object-top will-change-transform"
             style={{
               transform: "scale(1.2)",
               filter: "brightness(0.72) saturate(0.82)",

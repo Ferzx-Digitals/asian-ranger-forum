@@ -3,21 +3,28 @@ import { SUPPORTERS } from "@/lib/supporters";
 
 export function SupporterLogos() {
   return (
-    <section className="py-10 md:py-14 px-4 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="h-px w-12 bg-secondary" />
-          <p className="font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
-            Supported by
+    <section
+      className="relative bg-muted/45 px-4 pb-16 md:pb-20"
+      aria-labelledby="supporters-heading"
+    >
+      <div className="mx-auto grid max-w-7xl gap-8 border-t border-border pt-10 lg:grid-cols-[15rem_minmax(0,1fr)] lg:items-center">
+        <div>
+          <p className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-secondary">
+            Regional partnership
           </p>
-          <div className="h-px w-12 bg-secondary" />
+          <h2
+            id="supporters-heading"
+            className="mt-2 font-display text-2xl font-bold leading-tight text-primary"
+          >
+            With support from
+          </h2>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14">
+        <div className="grid grid-cols-2 items-center gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-6">
           {SUPPORTERS.map((s) => (
             <div
               key={s.name}
-              className="flex items-center justify-center h-16 md:h-20 w-28 md:w-36"
+              className="flex h-16 items-center justify-center px-2 md:h-20"
               title={s.name}
             >
               <Image
@@ -31,6 +38,11 @@ export function SupporterLogos() {
           ))}
         </div>
       </div>
+
+      <div
+        className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-secondary via-accent to-secondary"
+        aria-hidden="true"
+      />
     </section>
   );
 }

@@ -27,39 +27,7 @@ function ObjectiveImage({
 
 export function ThemeOverview() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-24">
-      {/* Theme */}
-      <section className="max-w-4xl mx-auto">
-        <h2 className="font-display text-2xl font-bold text-primary mb-4 text-center md:text-left">
-          Congress Theme
-        </h2>
-        <div className="rounded-sm border border-secondary/40 bg-secondary/5 p-8 text-center">
-          <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary mb-3">
-            2026 Theme
-          </p>
-          <p className="font-display text-2xl md:text-3xl font-bold text-primary italic">
-            Theme to be confirmed
-          </p>
-          <p className="mt-3 font-body text-sm text-muted-foreground">
-            The official congress theme will be announced in the coming months.
-          </p>
-        </div>
-        <p className="mt-4 font-body text-sm text-foreground/70 leading-relaxed text-center md:text-left">
-          The 2nd Asian Ranger Congress continues to build on the momentum of
-          the first Congress and the outcomes of the 10th IRF World Ranger
-          Congress, with a strong commitment to the{" "}
-          <a
-            href="https://www.cbd.int/article/cop15-cbd-press-release-final-19dec2022"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-secondary hover:text-secondary/80 underline underline-offset-2 transition-colors"
-          >
-            Kunming-Montreal Global Biodiversity Framework
-          </a>
-          .
-        </p>
-      </section>
-
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
       <section className="space-y-16">
         <div className="text-center">
           <div className="mb-8 flex items-center justify-center gap-3">

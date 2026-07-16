@@ -8,6 +8,10 @@
 
 # testing
 /coverage
+/test-results/
+
+# Python tooling
+__pycache__/
 
 # next.js
 /.next/

@@ -1,5 +1,6 @@
-import { ArrowUpRight, Check, CircleCheckBig, MailCheck } from "lucide-react";
-import { registrationFee, registrationSupportHref } from "../data";
+import { ArrowRight, Check, CircleCheckBig } from "lucide-react";
+import { registrationFee } from "../data";
+import { RegistrationDialog } from "./RegistrationDialog";
 
 export function RegistrationSteps() {
   return (
@@ -54,9 +55,6 @@ export function RegistrationSteps() {
         </span>
 
         <div className="relative flex flex-wrap items-center gap-3">
-          <div className="flex size-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-            <MailCheck className="size-6" aria-hidden="true" />
-          </div>
           <span className="rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1.5 font-body text-xs font-bold uppercase tracking-[0.2em] text-secondary">
             Open now · By invitation
           </span>
@@ -98,14 +96,15 @@ export function RegistrationSteps() {
         </div>
 
         <div className="relative mt-7">
-          <a
-            href={registrationSupportHref}
-            aria-label="Register by emailing the ARC Organising Committee"
-            className="inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-sm bg-secondary px-5 py-3 text-center font-body text-sm font-semibold text-secondary-foreground hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:w-auto"
-          >
-            Register with Email
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
+          <RegistrationDialog>
+            <button
+              type="button"
+              className="inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-sm bg-secondary px-5 py-3 text-center font-body text-sm font-semibold text-secondary-foreground hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:w-auto"
+            >
+              Register with Email
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
+          </RegistrationDialog>
         </div>
       </li>
     </ol>

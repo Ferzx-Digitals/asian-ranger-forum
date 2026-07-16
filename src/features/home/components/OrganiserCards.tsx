@@ -3,55 +3,80 @@ import { ORGANISERS } from "@/lib/organisers";
 
 export function OrganiserCards() {
   return (
-    <section className="py-12 md:py-16 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Section eyebrow */}
-        <div className="flex items-center justify-center gap-3 mb-10">
-          <div className="h-px w-12 bg-secondary" />
-          <p className="font-body text-xs font-semibold uppercase tracking-[0.35em] text-secondary">
-            Organised by
+    <section
+      className="relative overflow-hidden border-t border-border bg-muted/45 px-4 py-14 md:py-20"
+      aria-labelledby="organisers-heading"
+    >
+      <div
+        className="absolute -left-20 top-16 h-48 w-48 border border-secondary/20"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(18rem,0.7fr)_minmax(0,1.3fr)] lg:items-center lg:gap-16">
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-secondary" aria-hidden="true" />
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.32em] text-secondary">
+              Hosts & organisers
+            </p>
+          </div>
+          <h2
+            id="organisers-heading"
+            className="mt-5 max-w-lg font-display text-4xl font-bold leading-none text-primary sm:text-5xl"
+          >
+            Led in Asia. Hosted by Bhutan.
+          </h2>
+          <p className="mt-5 max-w-lg font-body text-base leading-7 text-muted-foreground">
+            Regional ranger leadership and Bhutanese conservation expertise come
+            together to shape the 2026 Congress.
           </p>
-          <div className="h-px w-12 bg-secondary" />
         </div>
 
-        {/* Cards */}
-        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6">
+        <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
           {ORGANISERS.map((org) => (
-            <div
+            <article
               key={org.abbr}
-              className="rounded-sm border border-border bg-card p-6 md:p-8 flex flex-col items-center text-center transition-colors hover:border-secondary/50"
+              className="grid min-h-0 grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 rounded-sm border border-border bg-background/85 p-4 shadow-sm sm:flex sm:min-h-64 sm:grid-cols-none sm:flex-col sm:items-stretch sm:gap-0 sm:p-6"
             >
-              <div className="h-28 md:h-35 w-full flex items-center justify-center mb-6">
+              <div className="flex h-20 w-full items-center justify-center sm:h-24">
                 <Image
                   src={`/logos/${org.logo}`}
                   alt={org.name}
                   width={120}
                   height={100}
-                  className="object-contain max-h-full w-auto"
+                  className="max-h-full max-w-full object-contain"
                 />
               </div>
+              <div>
+                <p className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-secondary sm:mt-5">
+                  {org.role}
+                </p>
+                <h3 className="mt-2 font-display text-lg font-bold leading-tight text-primary">
+                  {org.name}
+                </h3>
+              </div>
+            </article>
+          ))}
 
-              <h3 className="font-display text-base md:text-lg font-bold text-primary leading-tight">
-                {org.name}
+          <article className="grid min-h-0 grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 rounded-sm border border-secondary/30 bg-background/85 p-4 shadow-sm sm:flex sm:min-h-64 sm:grid-cols-none sm:flex-col sm:items-stretch sm:gap-0 sm:p-6">
+            <div className="flex h-20 w-full items-center justify-center sm:h-24">
+              <Image
+                src="/logos/rgob.png"
+                alt="Royal Government of Bhutan"
+                width={120}
+                height={120}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div>
+              <p className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-accent sm:mt-5">
+                In collaboration
+              </p>
+              <h3 className="mt-2 font-display text-lg font-bold leading-tight text-primary">
+                Royal Government of Bhutan
               </h3>
             </div>
-          ))}
-        </div>
-
-        <div className="mt-8 flex flex-col items-center gap-1">
-          <p className="font-body text-xs italic text-muted-foreground">
-            In collaboration with partner agencies
-          </p>
-          <Image
-            src="/logos/rgob.png"
-            alt="Royal Government of Bhutan"
-            width={250}
-            height={250}
-            className="object-contain"
-          />
-          <p className="font-body text-xs font-semibold text-muted-foreground">
-            Royal Government of Bhutan
-          </p>
+          </article>
         </div>
       </div>
     </section>
