@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import mountainBack from "@/assets/mountain-back.png";
 import mountainFront from "@/assets/mountain-front.png";
 import mountainMid from "@/assets/mountain-mid.png";
 import { OrganiserLogos } from "@/components/layout/OrganiserLogos";
@@ -100,15 +99,15 @@ const ParallaxHero = () => {
           }}
         >
           <Image
-            src={mountainBack}
+            src={mountainMid}
             alt=""
             fill
             loading="eager"
             sizes="100vw"
             className="object-cover object-top"
             style={{
-              transform: "scale(1.15)",
-              filter: "brightness(1.35) saturate(0.65)",
+              transform: "scale(-1.12, 1.12)",
+              filter: "brightness(1.12) saturate(0.5) contrast(0.92)",
             }}
           />
         </div>
