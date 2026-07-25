@@ -24,6 +24,10 @@ import {
   saveRegistrationOtpChallenge,
   saveRegistrationOtpState,
 } from "./otp-state";
+import {
+  isRegistrationStorageConfigured,
+  persistRegistration,
+} from "./registration-storage";
 
 const invitedEmailAddresses = new Set(
   allowedEmails.map((email) => email.trim().toLowerCase()),
@@ -249,14 +253,48 @@ export async function submitRegistration(
     };
   }
 
+  if (!isRegistrationStorageConfigured()) {
+    console.error("Registration storage is not configured.");
+    return {
+      success: false,
+      message:
+        "Registration storage is temporarily unavailable. Please try again shortly.",
+    };
+  }
+
+  const confirmationId = `ARC26-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+  let persistenceResult: Awaited<ReturnType<typeof persistRegistration>>;
+
+  try {
+    persistenceResult = await persistRegistration(
+      normalizedEmail,
+      parsedDetails.data,
+      confirmationId,
+    );
+  } catch (error) {
+    console.error("Unexpected registration persistence failure", error);
+    return {
+      success: false,
+      message:
+        "We could not save your registration right now. Please try again shortly.",
+    };
+  }
+
+  if (!persistenceResult.success) {
+    return {
+      success: false,
+      message:
+        persistenceResult.reason === "already_registered"
+          ? "A registration has already been submitted for this email address."
+          : "We could not save your registration right now. Please try again shortly.",
+    };
+  }
+
   await clearRegistrationVerification();
 
-  // Persist parsedDetails.data and send confirmation mail when those services
-  // are connected. The temporary reference lets the end-to-end registration
-  // experience be reviewed without storing participant information.
   return {
     success: true,
-    message: "Your registration details have been validated.",
-    confirmationId: `ARC26-${crypto.randomUUID().slice(0, 8).toUpperCase()}`,
+    message: "Your registration and payment receipt have been submitted.",
+    confirmationId,
   };
 }

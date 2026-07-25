@@ -1,5 +1,26 @@
 import { z } from "zod";
 
+export const PAYMENT_RECEIPT_ACCEPT = "image/*,application/pdf";
+export const PAYMENT_RECEIPT_MAX_SIZE_BYTES = 4 * 1024 * 1024;
+
+function isFile(value: unknown): value is File {
+  return typeof File !== "undefined" && value instanceof File;
+}
+
+const paymentReceiptSchema = z
+  .custom<File>(isFile, "Choose a payment receipt file.")
+  .refine(
+    (file) =>
+      !isFile(file) ||
+      file.type === "application/pdf" ||
+      file.type.startsWith("image/"),
+    "Upload a PDF or image file.",
+  )
+  .refine(
+    (file) => !isFile(file) || file.size <= PAYMENT_RECEIPT_MAX_SIZE_BYTES,
+    "Payment receipt must be 4 MB or smaller.",
+  );
+
 export const emailAccessSchema = z.object({
   email: z
     .string()
@@ -72,6 +93,7 @@ export const registrationDetailsSchema = z.object({
     .string()
     .trim()
     .max(500, "Use 500 characters or fewer."),
+  paymentReceipt: paymentReceiptSchema,
   consent: z.boolean().refine((value) => value, {
     message: "Confirm that the information provided is accurate.",
   }),

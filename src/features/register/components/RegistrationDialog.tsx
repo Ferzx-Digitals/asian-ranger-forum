@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { type DefaultValues, useForm } from "react-hook-form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -58,6 +58,7 @@ import {
   emailAccessSchema,
   type OtpValues,
   otpSchema,
+  PAYMENT_RECEIPT_ACCEPT,
   type RegistrationDetailsValues,
   registrationDetailsSchema,
 } from "../registration-schema";
@@ -104,7 +105,7 @@ const participantTypeLabels = {
   other: "Other",
 } as const;
 
-const initialRegistrationValues: RegistrationDetailsValues = {
+const initialRegistrationValues = {
   fullName: "",
   preferredName: "",
   organisation: "",
@@ -117,7 +118,7 @@ const initialRegistrationValues: RegistrationDetailsValues = {
   dietaryRequirements: "",
   accessibilityRequirements: "",
   consent: false,
-};
+} satisfies DefaultValues<RegistrationDetailsValues>;
 
 function RegistrationProgress({ step }: { step: RegistrationStep }) {
   const activeIndex =
@@ -710,6 +711,38 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
             />
           </FormSection>
 
+          <FormSection
+            title="Payment"
+            description="Attach a copy of your payment receipt to complete registration."
+          >
+            <FormField
+              control={form.control}
+              name="paymentReceipt"
+              render={({ field: { value, onChange, ...field } }) => (
+                <FormItem className="sm:col-span-2">
+                  <FormLabel>Payment receipt</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="file"
+                      accept={PAYMENT_RECEIPT_ACCEPT}
+                      required
+                      onChange={(event) =>
+                        onChange(event.target.files?.[0] ?? undefined)
+                      }
+                      className="h-auto min-h-11 cursor-pointer py-2 file:mr-3 file:cursor-pointer"
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Required. Upload a PDF or image up to 4 MB.
+                    {value ? ` Selected: ${value.name}` : ""}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </FormSection>
+
           <FormField
             control={form.control}
             name="consent"
@@ -798,8 +831,9 @@ function SuccessStep({
 
       <Alert className="mx-auto mt-5 max-w-xl text-left">
         <AlertDescription>
-          Email verification is live. Registration submissions are not yet
-          stored, so connect a database before launch.
+          Your registration details and payment receipt have been saved. The
+          Organising Committee will review your submission and contact you by
+          email.
         </AlertDescription>
       </Alert>
 
