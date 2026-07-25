@@ -32,7 +32,7 @@ const ExpressionOfInterest = () => {
           </button>
 
           <p className="mt-6 text-xs font-semibold text-secondary text-center font-body">
-            Registration fee: USD 450 per participant
+            Registration fee: USD 460 per participant
           </p>
 
           <p className="mt-3 text-xs text-muted-foreground text-center font-body">

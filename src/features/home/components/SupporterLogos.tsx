@@ -20,7 +20,7 @@ export function SupporterLogos() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 items-center gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 items-center gap-x-6 gap-y-7 sm:grid-cols-4 lg:grid-cols-7">
           {SUPPORTERS.map((s) => (
             <div
               key={s.name}

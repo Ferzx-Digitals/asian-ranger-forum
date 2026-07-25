@@ -63,7 +63,7 @@ export const faqNotices: FaqNotice[] = [
   },
   {
     title: "Accommodation included",
-    body: "The USD 450 registration fee includes accommodation from 1-4 December 2026, meals, local transport, materials, sessions, and field visits.",
+    body: "The USD 460 registration fee includes accommodation from 1-4 December 2026, meals, local transport, materials, sessions, and field visits.",
     icon: "accommodation",
   },
 ];
@@ -86,7 +86,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What is the registration fee?",
         answer:
-          "The registration fee is USD 450 per participant. This includes accommodation for the duration of the congress (1-4 December 2026), all meals including working lunches, dinners, and daily tea or coffee breaks, local transportation, congress materials, a welcome kit, access to all sessions and field visits, and an on-site medical team. Any bank transaction fees are the responsibility of the participant.",
+          "The registration fee is USD 460 per participant. This includes accommodation for the duration of the congress (1-4 December 2026), all meals including working lunches, dinners, and daily tea or coffee breaks, local transportation, congress materials, a welcome kit, access to all sessions and field visits, and an on-site medical team. Any bank transaction fees are the responsibility of the participant.",
         keywords: ["fee", "cost", "included", "payment"],
       },
       {

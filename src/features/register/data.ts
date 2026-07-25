@@ -24,7 +24,7 @@ export interface RegistrationFaq {
 }
 
 export const registrationFee = {
-  amount: "USD 450",
+  amount: "USD 460",
   qualifier: "per participant",
 } as const;
 
@@ -84,7 +84,7 @@ export const registrationFaqs: RegistrationFaq[] = [
       "Your registration deadline is included in your invitation. Please complete the form and payment by the date shown there so the Organising Committee can confirm your place.",
   },
   {
-    question: "What does the USD 450 registration fee cover?",
+    question: "What does the USD 460 registration fee cover?",
     answer:
       "The fee covers accommodation for the Congress duration, working meals and breaks, Congress transport, a welcome kit, access to sessions and field visits, social events, and on-site medical support.",
   },

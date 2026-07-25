@@ -27,4 +27,8 @@ export const SUPPORTERS: readonly Supporter[] = [
     url: "https://www.wwfbhutan.org.bt/",
   },
   { name: "Royal Government of Bhutan", logo: "rgob.png" },
+  {
+    name: "First Spring Foundation",
+    logo: "first-spring-foundation.webp",
+  },
 ];

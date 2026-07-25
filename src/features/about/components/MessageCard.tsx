@@ -12,9 +12,8 @@ import { cn } from "@/lib/utils";
 interface MessageCardProps {
   name: string;
   title: string;
-  message?: string;
+  message: string;
   imageUrl?: string;
-  placeholder?: boolean;
   maxLength?: number;
   reverse?: boolean;
 }
@@ -24,16 +23,14 @@ export function MessageCard({
   title,
   message,
   imageUrl,
-  placeholder,
   maxLength = 380,
   reverse = false,
 }: MessageCardProps) {
-  const isLongMessage = message && message.length > maxLength;
-  const excerpt = message?.slice(0, maxLength);
-  const displayMessage =
-    isLongMessage && excerpt
-      ? `${excerpt.replace(/\s+\S*$/, "").trimEnd()}…`
-      : message;
+  const isLongMessage = message.length > maxLength;
+  const excerpt = message.slice(0, maxLength);
+  const displayMessage = isLongMessage
+    ? `${excerpt.replace(/\s+\S*$/, "").trimEnd()}…`
+    : message;
 
   return (
     <div
@@ -73,84 +70,71 @@ export function MessageCard({
           &ldquo;
         </div>
         <div className="relative z-10">
-          {placeholder ? (
-            <div className="space-y-3">
-              <div className="h-4 bg-muted rounded w-full" />
-              <div className="h-4 bg-muted rounded w-5/6" />
-              <div className="h-4 bg-muted rounded w-4/5" />
-              <div className="h-4 bg-muted rounded w-full" />
-              <div className="h-4 bg-muted rounded w-3/4" />
-              <p className="mt-4 font-body text-xs text-muted-foreground italic">
-                Message to be confirmed
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-4 pl-6 md:pl-8">
-              <p
-                className={cn(
-                  "font-body text-base md:text-lg text-foreground/85 leading-7 md:leading-8 whitespace-pre-line",
-                  reverse && "md:text-right",
-                )}
-              >
-                {displayMessage}
-              </p>
-              {isLongMessage && (
-                <div className={cn("flex", reverse && "md:justify-end")}>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <button
-                        type="button"
-                        className="text-sm font-bold text-secondary hover:underline transition-all"
-                      >
-                        Read full message
-                      </button>
-                    </DialogTrigger>
-                    <DialogContent className="max-h-[calc(100dvh-2rem)] max-w-2xl overflow-hidden p-0 sm:max-h-[90dvh]">
-                      <DialogHeader className="border-b p-8 pb-4">
-                        <div className="flex items-center gap-4">
-                          <Avatar className="h-12 w-12 border border-border">
-                            <AvatarImage
-                              src={imageUrl}
-                              alt={name}
-                              className="object-cover"
-                            />
-                            <AvatarFallback className="bg-muted text-muted-foreground font-display text-sm">
-                              {name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")
-                                .toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div className="text-left">
-                            <DialogTitle className="font-display text-xl text-primary">
-                              {name}
-                            </DialogTitle>
-                            <DialogDescription className="sr-only">
-                              Full welcome message from {name}
-                            </DialogDescription>
-                            <p className="font-body text-xs text-muted-foreground">
-                              {title}
-                            </p>
-                          </div>
-                        </div>
-                      </DialogHeader>
-                      <div className="max-h-[calc(100dvh-10rem)] overflow-y-auto overscroll-contain px-8 py-6 sm:max-h-[calc(90dvh-8rem)]">
-                        <div className="relative pl-6">
-                          <div className="absolute -left-1 -top-4 font-display text-6xl text-secondary/10 leading-none select-none">
-                            &ldquo;
-                          </div>
-                          <p className="relative z-10 font-body text-base md:text-lg text-foreground/85 leading-7 md:leading-8 whitespace-pre-line">
-                            {message}
+          <div className="space-y-4 pl-6 md:pl-8">
+            <p
+              className={cn(
+                "font-body text-base md:text-lg text-foreground/85 leading-7 md:leading-8 whitespace-pre-line",
+                reverse && "md:text-right",
+              )}
+            >
+              {displayMessage}
+            </p>
+            {isLongMessage && (
+              <div className={cn("flex", reverse && "md:justify-end")}>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      type="button"
+                      className="text-sm font-bold text-secondary hover:underline transition-all"
+                    >
+                      Read full message
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[calc(100dvh-2rem)] max-w-2xl overflow-hidden p-0 sm:max-h-[90dvh]">
+                    <DialogHeader className="border-b p-8 pb-4">
+                      <div className="flex items-center gap-4">
+                        <Avatar className="h-12 w-12 border border-border">
+                          <AvatarImage
+                            src={imageUrl}
+                            alt={name}
+                            className="object-cover"
+                          />
+                          <AvatarFallback className="bg-muted text-muted-foreground font-display text-sm">
+                            {name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="text-left">
+                          <DialogTitle className="font-display text-xl text-primary">
+                            {name}
+                          </DialogTitle>
+                          <DialogDescription className="sr-only">
+                            Full welcome message from {name}
+                          </DialogDescription>
+                          <p className="font-body text-xs text-muted-foreground">
+                            {title}
                           </p>
                         </div>
                       </div>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              )}
-            </div>
-          )}
+                    </DialogHeader>
+                    <div className="max-h-[calc(100dvh-10rem)] overflow-y-auto overscroll-contain px-8 py-6 sm:max-h-[calc(90dvh-8rem)]">
+                      <div className="relative pl-6">
+                        <div className="absolute -left-1 -top-4 font-display text-6xl text-secondary/10 leading-none select-none">
+                          &ldquo;
+                        </div>
+                        <p className="relative z-10 font-body text-base md:text-lg text-foreground/85 leading-7 md:leading-8 whitespace-pre-line">
+                          {message}
+                        </p>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
