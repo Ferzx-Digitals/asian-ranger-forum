@@ -7,15 +7,21 @@ const expectedColumns = {
   accessibility_requirements: { type: "string", required: false },
   consent: { type: "boolean", required: true },
   country: { type: "string", required: true },
+  date_of_birth: { type: "string", format: "date", required: false },
   dietary_requirements: { type: "string", required: false },
   email: { type: "string", required: true },
   emergency_contact_name: { type: "string", required: true },
   emergency_contact_phone: { type: "string", required: true },
   full_name: { type: "string", required: true },
+  gender: { type: "string", required: false },
   id: { type: "string", format: "uuid", primaryKey: true, required: true },
   job_title: { type: "string", required: true },
   organisation: { type: "string", required: true },
   participant_type: { type: "string", required: true },
+  passport_expiry_date: { type: "string", format: "date", required: false },
+  passport_issue_date: { type: "string", format: "date", required: false },
+  passport_number: { type: "string", required: false },
+  passport_place_of_issue: { type: "string", required: false },
   phone: { type: "string", required: true },
   preferred_name: { type: "string", required: false },
   receipt_bucket: { type: "string", required: true },
@@ -30,6 +36,7 @@ const expectedColumns = {
     format: "timestamp with time zone",
     required: true,
   },
+  whatsapp_number: { type: "string", required: false },
 };
 
 if (!url || !secretKey) {
@@ -162,6 +169,6 @@ if (bucketAccessError) {
 
 console.log(`Supabase project: ${new URL(url).host}`);
 console.log(
-  `registrations table: correct 22-column schema, reachable (${count ?? 0} rows)`,
+  `registrations table: correct 29-column schema, reachable (${count ?? 0} rows)`,
 );
 console.log(`${bucket} bucket: private, reachable, 4 MB limit`);

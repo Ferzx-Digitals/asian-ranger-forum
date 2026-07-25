@@ -1,7 +1,10 @@
 import "server-only";
 
 import { createClient } from "@supabase/supabase-js";
-import type { RegistrationDetailsValues } from "../registration-schema";
+import {
+  type RegistrationDetailsValues,
+  registrationDateToIso,
+} from "../registration-schema";
 
 const DEFAULT_RECEIPTS_BUCKET = "payment-receipts";
 
@@ -84,14 +87,26 @@ export async function persistRegistration(
       registrationDetails.accessibilityRequirements || null,
     consent: registrationDetails.consent,
     country: registrationDetails.country,
+    date_of_birth: registrationDetails.dateOfBirth
+      ? registrationDateToIso(registrationDetails.dateOfBirth)
+      : null,
     dietary_requirements: registrationDetails.dietaryRequirements || null,
     email,
     emergency_contact_name: registrationDetails.emergencyContactName,
     emergency_contact_phone: registrationDetails.emergencyContactPhone,
     full_name: registrationDetails.fullName,
+    gender: registrationDetails.gender,
     job_title: registrationDetails.jobTitle,
     organisation: registrationDetails.organisation,
     participant_type: registrationDetails.participantType,
+    passport_expiry_date: registrationDateToIso(
+      registrationDetails.passportExpiryDate,
+    ),
+    passport_issue_date: registrationDateToIso(
+      registrationDetails.passportIssueDate,
+    ),
+    passport_number: registrationDetails.passportNumber,
+    passport_place_of_issue: registrationDetails.passportPlaceOfIssue || null,
     phone: registrationDetails.phone,
     preferred_name: registrationDetails.preferredName || null,
     receipt_bucket: configuration.bucket,
@@ -100,6 +115,7 @@ export async function persistRegistration(
     receipt_path: receiptPath,
     receipt_size_bytes: paymentReceipt.size,
     reference,
+    whatsapp_number: registrationDetails.whatsappNumber,
   });
 
   if (!insertError) return { success: true };

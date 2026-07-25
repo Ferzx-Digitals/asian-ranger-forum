@@ -39,6 +39,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -105,19 +106,33 @@ const participantTypeLabels = {
   other: "Other",
 } as const;
 
+const genderLabels = {
+  male: "Male",
+  female: "Female",
+  "non-binary": "Non-binary",
+} as const;
+
 const initialRegistrationValues = {
   fullName: "",
   preferredName: "",
+  dateOfBirth: "",
+  passportNumber: "",
+  passportIssueDate: "",
+  passportExpiryDate: "",
+  passportPlaceOfIssue: "",
   organisation: "",
   jobTitle: "",
   participantType: "ranger",
   country: "",
   phone: "",
+  whatsappNumber: "",
   emergencyContactName: "",
   emergencyContactPhone: "",
   dietaryRequirements: "",
   accessibilityRequirements: "",
   consent: false,
+  mediaConsent: false,
+  codeOfConductConsent: false,
 } satisfies DefaultValues<RegistrationDetailsValues>;
 
 function RegistrationProgress({ step }: { step: RegistrationStep }) {
@@ -505,10 +520,11 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full name</FormLabel>
+                  <FormLabel>Full name (as per passport) *</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      required
                       autoComplete="name"
                       autoFocus
                       className="h-11 rounded-sm"
@@ -526,6 +542,58 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
                   <FormLabel>Preferred name</FormLabel>
                   <FormControl>
                     <Input {...field} className="h-11 rounded-sm" />
+                  </FormControl>
+                  <FormDescription>Optional</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="gender"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Gender *</FormLabel>
+                  <Select
+                    required
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="h-11 rounded-sm">
+                        <SelectValue placeholder="Select gender" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {Object.entries(genderLabels).map(([value, label]) => (
+                        <SelectItem
+                          key={value}
+                          value={value}
+                          className="cursor-pointer"
+                        >
+                          {label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dateOfBirth"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date of birth</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      inputMode="numeric"
+                      autoComplete="bday"
+                      placeholder="DD / MM / YYYY"
+                      className="h-11 rounded-sm"
+                    />
                   </FormControl>
                   <FormDescription>Optional</FormDescription>
                   <FormMessage />
@@ -613,12 +681,109 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
                 </FormItem>
               )}
             />
+          </FormSection>
+
+          <FormSection
+            title="Passport details"
+            description="Enter the details exactly as shown on your current passport."
+          >
+            <FormField
+              control={form.control}
+              name="passportNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Passport number *</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      required
+                      autoCapitalize="characters"
+                      spellCheck={false}
+                      className="h-11 rounded-sm"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="passportPlaceOfIssue"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Place of issue</FormLabel>
+                  <FormControl>
+                    <Input {...field} className="h-11 rounded-sm" />
+                  </FormControl>
+                  <FormDescription>Optional</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="passportIssueDate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date of issue *</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      required
+                      inputMode="numeric"
+                      placeholder="DD / MM / YYYY"
+                      className="h-11 rounded-sm"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="passportExpiryDate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Passport expiry date *</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      required
+                      inputMode="numeric"
+                      placeholder="DD / MM / YYYY"
+                      className="h-11 rounded-sm"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </FormSection>
+
+          <FormSection
+            title="Contact details"
+            description="Use numbers that the Organising Committee can reach during travel."
+          >
+            <div className="space-y-2">
+              <Label htmlFor="registration-email">Email address *</Label>
+              <Input
+                id="registration-email"
+                type="email"
+                value={email}
+                readOnly
+                aria-readonly="true"
+                className="h-11 rounded-sm bg-muted/50"
+              />
+              <p className="text-sm text-muted-foreground">
+                Verified invitation email
+              </p>
+            </div>
             <FormField
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem className="sm:col-span-2">
-                  <FormLabel>Mobile number</FormLabel>
+                <FormItem>
+                  <FormLabel>Phone number *</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -629,6 +794,50 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
                       className="h-11 rounded-sm"
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="whatsappNumber"
+              render={({ field }) => (
+                <FormItem className="sm:col-span-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <FormLabel>WhatsApp number *</FormLabel>
+                    <Button
+                      type="button"
+                      variant="link"
+                      size="sm"
+                      onClick={() =>
+                        form.setValue(
+                          "whatsappNumber",
+                          form.getValues("phone"),
+                          {
+                            shouldDirty: true,
+                            shouldValidate: true,
+                          },
+                        )
+                      }
+                      className="h-auto cursor-pointer p-0 font-body text-xs"
+                    >
+                      Same as phone number
+                    </Button>
+                  </div>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      required
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder="+975"
+                      className="h-11 rounded-sm"
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Include the country code, for example +975.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -743,32 +952,93 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
             />
           </FormSection>
 
-          <FormField
-            control={form.control}
-            name="consent"
-            render={({ field }) => (
-              <FormItem className="rounded-sm border border-border bg-muted/35 p-4">
-                <div className="flex items-start gap-3">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={(checked) =>
-                        field.onChange(checked === true)
-                      }
-                      className="mt-0.5 size-5"
-                    />
-                  </FormControl>
-                  <div>
-                    <FormLabel className="font-body text-sm leading-6">
-                      I confirm that the information provided is accurate and
-                      may be used to organise my Congress participation.
-                    </FormLabel>
-                    <FormMessage className="mt-1" />
+          <FormSection
+            title="Confirmations and consent"
+            description="Review each statement before submitting your registration."
+          >
+            <FormField
+              control={form.control}
+              name="consent"
+              render={({ field }) => (
+                <FormItem className="rounded-sm border border-border bg-muted/35 p-4 sm:col-span-2">
+                  <div className="flex items-start gap-3">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        required
+                        onCheckedChange={(checked) =>
+                          field.onChange(checked === true)
+                        }
+                        className="mt-0.5 size-5"
+                      />
+                    </FormControl>
+                    <div>
+                      <FormLabel className="font-body text-sm leading-6">
+                        I confirm that the information provided above is
+                        accurate and complete and may be used by the Congress
+                        Organisers to support my participation
+                      </FormLabel>
+                      <FormMessage className="mt-1" />
+                    </div>
                   </div>
-                </div>
-              </FormItem>
-            )}
-          />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="mediaConsent"
+              render={({ field }) => (
+                <FormItem className="rounded-sm border border-border bg-muted/35 p-4 sm:col-span-2">
+                  <div className="flex items-start gap-3">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        required
+                        onCheckedChange={(checked) =>
+                          field.onChange(checked === true)
+                        }
+                        className="mt-0.5 size-5"
+                      />
+                    </FormControl>
+                    <div>
+                      <FormLabel className="font-body text-sm leading-6">
+                        I consent to photographs and videos taken during the
+                        Congress being used for official communication,
+                        publications, and advocacy materials.
+                      </FormLabel>
+                      <FormMessage className="mt-1" />
+                    </div>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="codeOfConductConsent"
+              render={({ field }) => (
+                <FormItem className="rounded-sm border border-border bg-muted/35 p-4 sm:col-span-2">
+                  <div className="flex items-start gap-3">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        required
+                        onCheckedChange={(checked) =>
+                          field.onChange(checked === true)
+                        }
+                        className="mt-0.5 size-5"
+                      />
+                    </FormControl>
+                    <div>
+                      <FormLabel className="font-body text-sm leading-6">
+                        I agree to abide by the Congress Code of Conduct
+                      </FormLabel>
+                      <FormMessage className="mt-1" />
+                    </div>
+                  </div>
+                </FormItem>
+              )}
+            />
+          </FormSection>
 
           {serverError ? (
             <Alert variant="destructive" aria-live="polite">

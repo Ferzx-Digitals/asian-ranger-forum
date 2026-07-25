@@ -2,6 +2,48 @@ import { z } from "zod";
 
 export const PAYMENT_RECEIPT_ACCEPT = "image/*,application/pdf";
 export const PAYMENT_RECEIPT_MAX_SIZE_BYTES = 4 * 1024 * 1024;
+const REGISTRATION_DATE_PATTERN = /^(\d{2})\s*\/\s*(\d{2})\s*\/\s*(\d{4})$/;
+const INTERNATIONAL_PHONE_PATTERN = /^\+[1-9][\d\s()-]{6,28}$/;
+
+export const genderValues = ["male", "female", "non-binary"] as const;
+
+export function registrationDateToIso(value: string) {
+  const match = REGISTRATION_DATE_PATTERN.exec(value.trim());
+  if (!match) return null;
+
+  const [, day, month, year] = match;
+  return `${year}-${month}-${day}`;
+}
+
+function isValidRegistrationDate(value: string) {
+  const match = REGISTRATION_DATE_PATTERN.exec(value.trim());
+  if (!match) return false;
+
+  const [, day, month, year] = match;
+  const parsedDate = new Date(
+    Date.UTC(Number(year), Number(month) - 1, Number(day)),
+  );
+
+  return (
+    parsedDate.getUTCFullYear() === Number(year) &&
+    parsedDate.getUTCMonth() === Number(month) - 1 &&
+    parsedDate.getUTCDate() === Number(day)
+  );
+}
+
+const requiredDateSchema = z
+  .string()
+  .trim()
+  .min(1, "Enter a date in DD / MM / YYYY format.")
+  .refine(isValidRegistrationDate, "Enter a valid date as DD / MM / YYYY.");
+
+const optionalDateSchema = z
+  .string()
+  .trim()
+  .refine(
+    (value) => value.length === 0 || isValidRegistrationDate(value),
+    "Enter a valid date as DD / MM / YYYY.",
+  );
 
 function isFile(value: unknown): value is File {
   return typeof File !== "undefined" && value instanceof File;
@@ -45,59 +87,100 @@ export const participantTypes = [
   "other",
 ] as const;
 
-export const registrationDetailsSchema = z.object({
-  fullName: z
-    .string()
-    .trim()
-    .min(2, "Enter your full name.")
-    .max(120, "Use 120 characters or fewer."),
-  preferredName: z.string().trim().max(80, "Use 80 characters or fewer."),
-  organisation: z
-    .string()
-    .trim()
-    .min(2, "Enter your organisation.")
-    .max(160, "Use 160 characters or fewer."),
-  jobTitle: z
-    .string()
-    .trim()
-    .min(2, "Enter your role or job title.")
-    .max(120, "Use 120 characters or fewer."),
-  participantType: z.enum(participantTypes, {
-    message: "Select the option that best describes you.",
-  }),
-  country: z
-    .string()
-    .trim()
-    .min(2, "Enter your country or territory.")
-    .max(100, "Use 100 characters or fewer."),
-  phone: z
-    .string()
-    .trim()
-    .min(7, "Enter a valid phone number.")
-    .max(30, "Use 30 characters or fewer."),
-  emergencyContactName: z
-    .string()
-    .trim()
-    .min(2, "Enter an emergency contact name.")
-    .max(120, "Use 120 characters or fewer."),
-  emergencyContactPhone: z
-    .string()
-    .trim()
-    .min(7, "Enter a valid emergency contact number.")
-    .max(30, "Use 30 characters or fewer."),
-  dietaryRequirements: z
-    .string()
-    .trim()
-    .max(500, "Use 500 characters or fewer."),
-  accessibilityRequirements: z
-    .string()
-    .trim()
-    .max(500, "Use 500 characters or fewer."),
-  paymentReceipt: paymentReceiptSchema,
-  consent: z.boolean().refine((value) => value, {
-    message: "Confirm that the information provided is accurate.",
-  }),
-});
+export const registrationDetailsSchema = z
+  .object({
+    fullName: z
+      .string()
+      .trim()
+      .min(2, "Enter your full name as shown on your passport.")
+      .max(120, "Use 120 characters or fewer."),
+    preferredName: z.string().trim().max(80, "Use 80 characters or fewer."),
+    gender: z.enum(genderValues, {
+      message: "Select your gender.",
+    }),
+    dateOfBirth: optionalDateSchema,
+    passportNumber: z
+      .string()
+      .trim()
+      .min(3, "Enter your passport number.")
+      .max(30, "Use 30 characters or fewer."),
+    passportIssueDate: requiredDateSchema,
+    passportExpiryDate: requiredDateSchema,
+    passportPlaceOfIssue: z
+      .string()
+      .trim()
+      .max(120, "Use 120 characters or fewer."),
+    organisation: z
+      .string()
+      .trim()
+      .min(2, "Enter your organisation.")
+      .max(160, "Use 160 characters or fewer."),
+    jobTitle: z
+      .string()
+      .trim()
+      .min(2, "Enter your role or job title.")
+      .max(120, "Use 120 characters or fewer."),
+    participantType: z.enum(participantTypes, {
+      message: "Select the option that best describes you.",
+    }),
+    country: z
+      .string()
+      .trim()
+      .min(2, "Enter your country or territory.")
+      .max(100, "Use 100 characters or fewer."),
+    phone: z
+      .string()
+      .trim()
+      .min(7, "Enter a valid phone number.")
+      .max(30, "Use 30 characters or fewer."),
+    whatsappNumber: z
+      .string()
+      .trim()
+      .regex(
+        INTERNATIONAL_PHONE_PATTERN,
+        "Enter a WhatsApp number with country code, for example +975.",
+      ),
+    emergencyContactName: z
+      .string()
+      .trim()
+      .min(2, "Enter an emergency contact name.")
+      .max(120, "Use 120 characters or fewer."),
+    emergencyContactPhone: z
+      .string()
+      .trim()
+      .min(7, "Enter a valid emergency contact number.")
+      .max(30, "Use 30 characters or fewer."),
+    dietaryRequirements: z
+      .string()
+      .trim()
+      .max(500, "Use 500 characters or fewer."),
+    accessibilityRequirements: z
+      .string()
+      .trim()
+      .max(500, "Use 500 characters or fewer."),
+    paymentReceipt: paymentReceiptSchema,
+    consent: z.boolean().refine((value) => value, {
+      message: "Confirm that the information provided is accurate.",
+    }),
+    mediaConsent: z.boolean().refine((value) => value, {
+      message: "Consent to the use of Congress photographs and videos.",
+    }),
+    codeOfConductConsent: z.boolean().refine((value) => value, {
+      message: "Agree to abide by the Congress Code of Conduct.",
+    }),
+  })
+  .superRefine((values, context) => {
+    const issueDate = registrationDateToIso(values.passportIssueDate);
+    const expiryDate = registrationDateToIso(values.passportExpiryDate);
+
+    if (issueDate && expiryDate && expiryDate <= issueDate) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Passport expiry must be after its issue date.",
+        path: ["passportExpiryDate"],
+      });
+    }
+  });
 
 export type EmailAccessValues = z.infer<typeof emailAccessSchema>;
 export type OtpValues = z.infer<typeof otpSchema>;
