@@ -76,12 +76,17 @@ export const registrationFaqs: RegistrationFaq[] = [
   },
   {
     question: "Where can I find my registration link?",
-    answer: `Your private registration and payment link is provided with your formal invitation. If you have been invited but cannot locate the link, contact ${OFFICIAL_CONGRESS_EMAIL}.`,
+    answer: `Your private registration link is provided with your formal invitation. If you have been invited but cannot locate the link, contact ${OFFICIAL_CONGRESS_EMAIL}.`,
   },
   {
     question: "What is the registration deadline?",
     answer:
-      "Your registration deadline is included in your invitation. Please complete the form and payment by the date shown there so the Organising Committee can confirm your place.",
+      "Your registration deadline is included in your invitation. Please complete the form and provide your payment receipt or sponsorship status by the date shown there so the Organising Committee can confirm your place.",
+  },
+  {
+    question: "What if my participation is sponsored?",
+    answer:
+      "Select “Sponsored participation” in the registration form. You will not need to upload a payment receipt, but your passport copy remains required. The Organising Committee will verify your sponsorship during review.",
   },
   {
     question: "What does the USD 460 registration fee cover?",

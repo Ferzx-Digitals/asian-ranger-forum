@@ -13,22 +13,31 @@ const expectedColumns = {
   emergency_contact_name: { type: "string", required: true },
   emergency_contact_phone: { type: "string", required: true },
   full_name: { type: "string", required: true },
-  gender: { type: "string", required: false },
+  gender: { type: "string", required: true },
   id: { type: "string", format: "uuid", primaryKey: true, required: true },
   job_title: { type: "string", required: true },
   organisation: { type: "string", required: true },
   participant_type: { type: "string", required: true },
-  passport_expiry_date: { type: "string", format: "date", required: false },
-  passport_issue_date: { type: "string", format: "date", required: false },
-  passport_number: { type: "string", required: false },
+  payment_status: { type: "string", required: true },
+  passport_file_content_type: { type: "string", required: true },
+  passport_file_original_name: { type: "string", required: true },
+  passport_file_path: { type: "string", required: true },
+  passport_file_size_bytes: {
+    type: "integer",
+    format: "bigint",
+    required: true,
+  },
+  passport_expiry_date: { type: "string", format: "date", required: true },
+  passport_issue_date: { type: "string", format: "date", required: true },
+  passport_number: { type: "string", required: true },
   passport_place_of_issue: { type: "string", required: false },
   phone: { type: "string", required: true },
   preferred_name: { type: "string", required: false },
-  receipt_bucket: { type: "string", required: true },
-  receipt_content_type: { type: "string", required: true },
-  receipt_original_name: { type: "string", required: true },
-  receipt_path: { type: "string", required: true },
-  receipt_size_bytes: { type: "integer", format: "bigint", required: true },
+  receipt_bucket: { type: "string", required: false },
+  receipt_content_type: { type: "string", required: false },
+  receipt_original_name: { type: "string", required: false },
+  receipt_path: { type: "string", required: false },
+  receipt_size_bytes: { type: "integer", format: "bigint", required: false },
   reference: { type: "string", required: true },
   status: { type: "string", required: true },
   submitted_at: {
@@ -36,7 +45,7 @@ const expectedColumns = {
     format: "timestamp with time zone",
     required: true,
   },
-  whatsapp_number: { type: "string", required: false },
+  whatsapp_number: { type: "string", required: true },
 };
 
 if (!url || !secretKey) {
@@ -169,6 +178,6 @@ if (bucketAccessError) {
 
 console.log(`Supabase project: ${new URL(url).host}`);
 console.log(
-  `registrations table: correct 29-column schema, reachable (${count ?? 0} rows)`,
+  `registrations table: correct 34-column schema, reachable (${count ?? 0} rows)`,
 );
 console.log(`${bucket} bucket: private, reachable, 4 MB limit`);

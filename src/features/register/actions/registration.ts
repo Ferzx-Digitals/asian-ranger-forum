@@ -6,6 +6,7 @@ import allowedEmails from "../data/allowed-emails.json";
 import {
   emailAccessSchema,
   otpSchema,
+  passportCopySchema,
   type RegistrationDetailsValues,
   registrationDetailsSchema,
 } from "../registration-schema";
@@ -25,8 +26,16 @@ import {
   saveRegistrationOtpState,
 } from "./otp-state";
 import {
+  clearPassportUploadState,
+  createPassportUploadState,
+  getPassportUploadState,
+  savePassportUploadState,
+} from "./passport-upload-state";
+import {
   isRegistrationStorageConfigured,
   persistRegistration,
+  removeRegistrationFiles,
+  stagePassportCopy,
 } from "./registration-storage";
 
 const invitedEmailAddresses = new Set(
@@ -221,6 +230,96 @@ export async function verifyRegistrationOtp(
   };
 }
 
+export async function uploadRegistrationPassportCopy(
+  email: string,
+  passportCopy: File,
+): Promise<RegistrationActionResult> {
+  const parsedEmail = emailAccessSchema.safeParse({ email });
+
+  if (!parsedEmail.success || !isInvitedEmail(email)) {
+    return {
+      success: false,
+      message: "Your verification has expired. Close the form and start again.",
+    };
+  }
+
+  if (!isOtpConfigured()) return otpUnavailableResult();
+
+  const normalizedEmail = normalizeEmail(parsedEmail.data.email);
+  if (!(await isRegistrationEmailVerified(normalizedEmail))) {
+    return {
+      success: false,
+      message: "Your verification has expired. Close the form and start again.",
+    };
+  }
+
+  const parsedPassportCopy = passportCopySchema.safeParse(passportCopy);
+  if (!parsedPassportCopy.success) {
+    return {
+      success: false,
+      message:
+        parsedPassportCopy.error.issues[0]?.message ??
+        "Choose a valid passport copy.",
+    };
+  }
+
+  const reference = `ARC26-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+  let stageResult: Awaited<ReturnType<typeof stagePassportCopy>>;
+
+  try {
+    stageResult = await stagePassportCopy(parsedPassportCopy.data, reference);
+  } catch (error) {
+    console.error("Unexpected passport upload failure", error);
+    return {
+      success: false,
+      message:
+        "We could not upload your passport copy right now. Please try again shortly.",
+    };
+  }
+
+  if (!stageResult.success) {
+    return {
+      success: false,
+      message:
+        "We could not upload your passport copy right now. Please try again shortly.",
+    };
+  }
+
+  try {
+    const previousUpload = await getPassportUploadState();
+
+    if (previousUpload) {
+      await removeRegistrationFiles(previousUpload.bucket, [
+        previousUpload.path,
+      ]);
+    }
+
+    await savePassportUploadState(
+      createPassportUploadState({
+        ...stageResult.file,
+        email: normalizedEmail,
+        reference,
+      }),
+    );
+  } catch (error) {
+    console.error("Unable to save passport upload state", error);
+    await removeRegistrationFiles(stageResult.file.bucket, [
+      stageResult.file.path,
+    ]);
+    await clearPassportUploadState();
+    return {
+      success: false,
+      message:
+        "We could not prepare your passport copy right now. Please try again shortly.",
+    };
+  }
+
+  return {
+    success: true,
+    message: "Passport copy uploaded.",
+  };
+}
+
 export async function submitRegistration(
   email: string,
   details: RegistrationDetailsValues,
@@ -262,7 +361,26 @@ export async function submitRegistration(
     };
   }
 
-  const confirmationId = `ARC26-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+  const passportUpload = await getPassportUploadState();
+  if (
+    !passportUpload ||
+    passportUpload.email !== normalizedEmail ||
+    passportUpload.expiresAt <= Date.now()
+  ) {
+    if (passportUpload) {
+      await removeRegistrationFiles(passportUpload.bucket, [
+        passportUpload.path,
+      ]);
+    }
+    await clearPassportUploadState();
+    return {
+      success: false,
+      message:
+        "Your passport upload has expired. Submit the form again to re-upload it.",
+    };
+  }
+
+  const confirmationId = passportUpload.reference;
   let persistenceResult: Awaited<ReturnType<typeof persistRegistration>>;
 
   try {
@@ -270,9 +388,12 @@ export async function submitRegistration(
       normalizedEmail,
       parsedDetails.data,
       confirmationId,
+      passportUpload,
     );
   } catch (error) {
     console.error("Unexpected registration persistence failure", error);
+    await removeRegistrationFiles(passportUpload.bucket, [passportUpload.path]);
+    await clearPassportUploadState();
     return {
       success: false,
       message:
@@ -281,6 +402,7 @@ export async function submitRegistration(
   }
 
   if (!persistenceResult.success) {
+    await clearPassportUploadState();
     return {
       success: false,
       message:
@@ -290,11 +412,15 @@ export async function submitRegistration(
     };
   }
 
+  await clearPassportUploadState();
   await clearRegistrationVerification();
 
   return {
     success: true,
-    message: "Your registration and payment receipt have been submitted.",
+    message:
+      parsedDetails.data.paymentStatus === "sponsored"
+        ? "Your sponsored registration and passport copy have been submitted."
+        : "Your registration, passport copy, and payment receipt have been submitted.",
     confirmationId,
   };
 }

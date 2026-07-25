@@ -68,8 +68,8 @@ export function RegistrationSteps() {
         </h3>
         <p className="relative mt-5 max-w-2xl font-body text-base leading-7 text-primary-foreground/80">
           Formal registration is now open for selected participants. Use the
-          private registration and payment link in your invitation email to
-          confirm your details and secure your place.
+          private registration link in your invitation email to confirm your
+          details and payment arrangement.
         </p>
 
         <div className="relative mt-8 grid gap-4 border-y border-primary-foreground/15 py-5 sm:grid-cols-2">
@@ -89,8 +89,8 @@ export function RegistrationSteps() {
               Your next step
             </p>
             <p className="mt-2 font-body text-sm leading-6 text-primary-foreground/80">
-              Complete the form and payment by the deadline stated in your
-              invitation.
+              Complete the form and provide your payment receipt or sponsorship
+              status by the deadline in your invitation.
             </p>
           </div>
         </div>

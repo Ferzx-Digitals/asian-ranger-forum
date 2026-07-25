@@ -39,7 +39,7 @@ const verifiedStateSchema = z.object({
 
 export type RegistrationOtpState = z.infer<typeof otpStateSchema>;
 
-function getOtpSecret() {
+export function getRegistrationCookieSecret() {
   const secret = process.env.OTP_SECRET;
 
   if (!secret || secret.length < 32) {
@@ -59,7 +59,7 @@ function signaturesMatch(received: string, expected: string) {
   );
 }
 
-function cookieOptions(maxAge: number) {
+export function registrationCookieOptions(maxAge: number) {
   return {
     httpOnly: true,
     maxAge,
@@ -71,7 +71,7 @@ function cookieOptions(maxAge: number) {
 }
 
 function hashOtp(email: string, otp: string, expiresAt: number) {
-  return createHmac("sha256", getOtpSecret())
+  return createHmac("sha256", getRegistrationCookieSecret())
     .update(`otp:${email}:${otp}:${expiresAt}`)
     .digest("base64url");
 }
@@ -107,7 +107,7 @@ export function registrationOtpMatches(
 export async function getRegistrationOtpState() {
   const cookieStore = await cookies();
   return decodeSignedCookie(
-    getOtpSecret(),
+    getRegistrationCookieSecret(),
     OTP_COOKIE_PURPOSE,
     cookieStore.get(OTP_COOKIE_NAME)?.value,
     otpStateSchema,
@@ -125,17 +125,21 @@ export async function saveRegistrationOtpChallenge(
 
   cookieStore.set(
     OTP_COOKIE_NAME,
-    encodeSignedCookie(getOtpSecret(), OTP_COOKIE_PURPOSE, state),
-    cookieOptions(OTP_EXPIRY_SECONDS),
+    encodeSignedCookie(
+      getRegistrationCookieSecret(),
+      OTP_COOKIE_PURPOSE,
+      state,
+    ),
+    registrationCookieOptions(OTP_EXPIRY_SECONDS),
   );
   cookieStore.set(
     OTP_COOLDOWN_COOKIE_NAME,
     encodeSignedCookie(
-      getOtpSecret(),
+      getRegistrationCookieSecret(),
       OTP_COOLDOWN_COOKIE_PURPOSE,
       cooldownState,
     ),
-    cookieOptions(OTP_RESEND_COOLDOWN_SECONDS),
+    registrationCookieOptions(OTP_RESEND_COOLDOWN_SECONDS),
   );
 }
 
@@ -147,15 +151,19 @@ export async function saveRegistrationOtpState(state: RegistrationOtpState) {
   const cookieStore = await cookies();
   cookieStore.set(
     OTP_COOKIE_NAME,
-    encodeSignedCookie(getOtpSecret(), OTP_COOKIE_PURPOSE, state),
-    cookieOptions(secondsRemaining),
+    encodeSignedCookie(
+      getRegistrationCookieSecret(),
+      OTP_COOKIE_PURPOSE,
+      state,
+    ),
+    registrationCookieOptions(secondsRemaining),
   );
 }
 
 export async function getOtpCooldownSeconds(email: string) {
   const cookieStore = await cookies();
   const cooldownState = decodeSignedCookie(
-    getOtpSecret(),
+    getRegistrationCookieSecret(),
     OTP_COOLDOWN_COOKIE_PURPOSE,
     cookieStore.get(OTP_COOLDOWN_COOKIE_NAME)?.value,
     cooldownStateSchema,
@@ -183,8 +191,12 @@ export async function completeRegistrationOtpVerification(email: string) {
   cookieStore.delete(OTP_COOLDOWN_COOKIE_NAME);
   cookieStore.set(
     VERIFIED_COOKIE_NAME,
-    encodeSignedCookie(getOtpSecret(), VERIFIED_COOKIE_PURPOSE, verifiedState),
-    cookieOptions(VERIFICATION_EXPIRY_SECONDS),
+    encodeSignedCookie(
+      getRegistrationCookieSecret(),
+      VERIFIED_COOKIE_PURPOSE,
+      verifiedState,
+    ),
+    registrationCookieOptions(VERIFICATION_EXPIRY_SECONDS),
   );
 }
 
@@ -196,7 +208,7 @@ export async function clearRegistrationOtpState() {
 export async function isRegistrationEmailVerified(email: string) {
   const cookieStore = await cookies();
   const verifiedState = decodeSignedCookie(
-    getOtpSecret(),
+    getRegistrationCookieSecret(),
     VERIFIED_COOKIE_PURPOSE,
     cookieStore.get(VERIFIED_COOKIE_NAME)?.value,
     verifiedStateSchema,

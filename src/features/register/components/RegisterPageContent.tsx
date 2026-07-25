@@ -132,7 +132,7 @@ export function RegisterPageContent() {
               </h2>
               <p className="mt-4 max-w-md font-body text-base leading-7 text-muted-foreground">
                 Key information for invited participants before completing the
-                form and payment.
+                form and payment arrangement.
               </p>
             </div>
 

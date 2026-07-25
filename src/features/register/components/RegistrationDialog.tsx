@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { type DefaultValues, useForm } from "react-hook-form";
+import { type DefaultValues, useForm, useWatch } from "react-hook-form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -40,6 +40,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -52,6 +53,7 @@ import { cn } from "@/lib/utils";
 import {
   requestRegistrationOtp,
   submitRegistration,
+  uploadRegistrationPassportCopy,
   verifyRegistrationOtp,
 } from "../actions/registration";
 import {
@@ -59,9 +61,11 @@ import {
   emailAccessSchema,
   type OtpValues,
   otpSchema,
+  PASSPORT_COPY_ACCEPT,
   PAYMENT_RECEIPT_ACCEPT,
-  type RegistrationDetailsValues,
-  registrationDetailsSchema,
+  type PaymentStatus,
+  type RegistrationFormValues,
+  registrationFormSchema,
 } from "../registration-schema";
 
 type RegistrationStep = "email" | "otp" | "details" | "success";
@@ -133,7 +137,7 @@ const initialRegistrationValues = {
   consent: false,
   mediaConsent: false,
   codeOfConductConsent: false,
-} satisfies DefaultValues<RegistrationDetailsValues>;
+} satisfies DefaultValues<RegistrationFormValues>;
 
 function RegistrationProgress({ step }: { step: RegistrationStep }) {
   const activeIndex =
@@ -454,21 +458,54 @@ function FormSection({
 
 function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
   const [serverError, setServerError] = useState("");
-  const form = useForm<RegistrationDetailsValues>({
-    resolver: zodResolver(registrationDetailsSchema),
+  const form = useForm<RegistrationFormValues>({
+    resolver: zodResolver(registrationFormSchema),
     defaultValues: initialRegistrationValues,
   });
+  const paymentStatus = useWatch({
+    control: form.control,
+    name: "paymentStatus",
+  });
 
-  async function handleSubmit(values: RegistrationDetailsValues) {
+  function handlePaymentStatusChange(value: PaymentStatus) {
+    form.setValue("paymentStatus", value, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+
+    if (value === "sponsored") {
+      form.setValue("paymentReceipt", undefined, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+      form.clearErrors("paymentReceipt");
+    }
+  }
+
+  async function handleSubmit(values: RegistrationFormValues) {
     setServerError("");
-    const result = await submitRegistration(email, values);
+    const { passportCopy, ...registrationDetails } = values;
+    const passportUploadResult = await uploadRegistrationPassportCopy(
+      email,
+      passportCopy,
+    );
+
+    if (!passportUploadResult.success) {
+      form.setError("passportCopy", {
+        message: passportUploadResult.message,
+      });
+      setServerError(passportUploadResult.message);
+      return;
+    }
+
+    const result = await submitRegistration(email, registrationDetails);
 
     if (!result.success || !result.confirmationId) {
       if (result.fieldErrors) {
         for (const [fieldName, messages] of Object.entries(
           result.fieldErrors,
         )) {
-          form.setError(fieldName as keyof RegistrationDetailsValues, {
+          form.setError(fieldName as keyof RegistrationFormValues, {
             message: messages[0],
           });
         }
@@ -758,6 +795,32 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="passportCopy"
+              render={({ field: { value, onChange, ...field } }) => (
+                <FormItem className="sm:col-span-2">
+                  <FormLabel>Passport copy *</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="file"
+                      accept={PASSPORT_COPY_ACCEPT}
+                      required
+                      onChange={(event) =>
+                        onChange(event.target.files?.[0] ?? undefined)
+                      }
+                      className="h-auto min-h-11 cursor-pointer py-2 file:mr-3 file:cursor-pointer"
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Required. Upload a PDF or image up to 4 MB.
+                    {value ? ` Selected: ${value.name}` : ""}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </FormSection>
 
           <FormSection
@@ -922,34 +985,117 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
 
           <FormSection
             title="Payment"
-            description="Attach a copy of your payment receipt to complete registration."
+            description="Tell us how your participation is funded. Sponsored participants do not need a payment receipt."
           >
             <FormField
               control={form.control}
-              name="paymentReceipt"
-              render={({ field: { value, onChange, ...field } }) => (
+              name="paymentStatus"
+              render={({ field }) => (
                 <FormItem className="sm:col-span-2">
-                  <FormLabel>Payment receipt</FormLabel>
+                  <FormLabel>Payment arrangement *</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      type="file"
-                      accept={PAYMENT_RECEIPT_ACCEPT}
-                      required
-                      onChange={(event) =>
-                        onChange(event.target.files?.[0] ?? undefined)
+                    <RadioGroup
+                      ref={field.ref}
+                      name={field.name}
+                      value={field.value}
+                      onBlur={field.onBlur}
+                      onValueChange={(value) =>
+                        handlePaymentStatusChange(value as PaymentStatus)
                       }
-                      className="h-auto min-h-11 cursor-pointer py-2 file:mr-3 file:cursor-pointer"
-                    />
+                      className="gap-3 sm:grid-cols-2"
+                      required
+                    >
+                      <div
+                        className={cn(
+                          "flex min-h-20 items-start gap-3 rounded-sm border border-border bg-background p-4",
+                          field.value === "paid" &&
+                            "border-primary/45 bg-primary/5",
+                        )}
+                      >
+                        <RadioGroupItem
+                          value="paid"
+                          id="payment-status-paid"
+                          className="mt-0.5 size-5 shrink-0 cursor-pointer"
+                        />
+                        <Label
+                          htmlFor="payment-status-paid"
+                          className="cursor-pointer font-body"
+                        >
+                          <span className="block text-sm font-semibold text-foreground">
+                            Payment completed
+                          </span>
+                          <span className="mt-1 block text-sm leading-5 text-muted-foreground">
+                            I will upload my payment receipt.
+                          </span>
+                        </Label>
+                      </div>
+                      <div
+                        className={cn(
+                          "flex min-h-20 items-start gap-3 rounded-sm border border-border bg-background p-4",
+                          field.value === "sponsored" &&
+                            "border-primary/45 bg-primary/5",
+                        )}
+                      >
+                        <RadioGroupItem
+                          value="sponsored"
+                          id="payment-status-sponsored"
+                          className="mt-0.5 size-5 shrink-0 cursor-pointer"
+                        />
+                        <Label
+                          htmlFor="payment-status-sponsored"
+                          className="cursor-pointer font-body"
+                        >
+                          <span className="block text-sm font-semibold text-foreground">
+                            Sponsored participation
+                          </span>
+                          <span className="mt-1 block text-sm leading-5 text-muted-foreground">
+                            My registration fee is covered by a sponsor.
+                          </span>
+                        </Label>
+                      </div>
+                    </RadioGroup>
                   </FormControl>
-                  <FormDescription>
-                    Required. Upload a PDF or image up to 4 MB.
-                    {value ? ` Selected: ${value.name}` : ""}
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            {paymentStatus === "paid" ? (
+              <FormField
+                control={form.control}
+                name="paymentReceipt"
+                render={({ field: { value, onChange, ...field } }) => (
+                  <FormItem className="sm:col-span-2">
+                    <FormLabel>Payment receipt *</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="file"
+                        accept={PAYMENT_RECEIPT_ACCEPT}
+                        required
+                        onChange={(event) =>
+                          onChange(event.target.files?.[0] ?? undefined)
+                        }
+                        className="h-auto min-h-11 cursor-pointer py-2 file:mr-3 file:cursor-pointer"
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Required for paid registrations. Upload a PDF or image up
+                      to 4 MB.
+                      {value ? ` Selected: ${value.name}` : ""}
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ) : paymentStatus === "sponsored" ? (
+              <Alert className="border-primary/20 bg-primary/5 sm:col-span-2">
+                <ShieldCheck aria-hidden="true" />
+                <AlertDescription>
+                  No payment receipt is required. Your passport copy is still
+                  mandatory.
+                </AlertDescription>
+              </Alert>
+            ) : null}
           </FormSection>
 
           <FormSection
@@ -1049,7 +1195,7 @@ function DetailsStep({ email, onSubmitted }: DetailsStepProps) {
           <div className="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-sm font-body text-xs leading-5 text-muted-foreground">
               Your place is confirmed only after the Organising Committee
-              reviews your registration and payment.
+              reviews your registration and supporting documents.
             </p>
             <Button
               type="submit"
@@ -1101,7 +1247,7 @@ function SuccessStep({
 
       <Alert className="mx-auto mt-5 max-w-xl text-left">
         <AlertDescription>
-          Your registration details and payment receipt have been saved. The
+          Your registration details and required documents have been saved. The
           Organising Committee will review your submission and contact you by
           email.
         </AlertDescription>
