@@ -1,15 +1,8 @@
-import { ArrowDown, CalendarDays, Check, Clock3, Hotel } from "lucide-react";
+import { ArrowDown, Check, Clock3, Hotel } from "lucide-react";
 
 import { PageHero } from "@/components/layout/PageHero";
 import { fieldVisitPackingList, fieldVisits } from "../data";
 import { VisitCard } from "./VisitCard";
-
-const pageStats = [
-  { label: "Options", value: "4" },
-  { label: "Date", value: "4 Dec 2026" },
-  { label: "Format", value: "Half day" },
-  { label: "Pickup", value: "Your hotel" },
-] as const;
 
 export function FieldVisitsPageContent() {
   return (
@@ -44,71 +37,29 @@ export function FieldVisitsPageContent() {
       />
 
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
-        <section
-          aria-labelledby="field-visits-overview"
-          className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]"
-        >
-          <div>
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary">
-              Morning of 4 December
+        <section aria-labelledby="field-visits-overview" className="max-w-3xl">
+          <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-secondary">
+            Morning of 4 December
+          </p>
+          <h2
+            id="field-visits-overview"
+            className="mt-3 font-display text-3xl font-bold leading-tight text-primary md:text-4xl"
+          >
+            Four ways to experience conservation around Thimphu
+          </h2>
+          <div className="mt-5 space-y-4 font-body text-base leading-8 text-foreground/75">
+            <p>
+              As part of the 2nd Asian Ranger Congress (2–4 December 2026,
+              Thimphu), a half-day field visit is planned for the morning of 4
+              December 2026, the final day of the Congress. Four site options
+              are offered to accommodate participants&apos; varying interests
+              and physical preferences.
             </p>
-            <h2
-              id="field-visits-overview"
-              className="mt-3 max-w-3xl font-display text-3xl font-bold leading-tight text-primary md:text-4xl"
-            >
-              Four ways to experience conservation around Thimphu
-            </h2>
-            <div className="mt-5 max-w-3xl space-y-4 font-body text-base leading-8 text-foreground/75">
-              <p>
-                As part of the 2nd Asian Ranger Congress (2–4 December 2026,
-                Thimphu), a half-day field visit is planned for the morning of 4
-                December 2026, the final day of the Congress. Four site options
-                are offered to accommodate participants&apos; varying interests
-                and physical preferences.
-              </p>
-              <p>
-                All participants are lodged in hotels across Thimphu; departure
-                and return will therefore be organized directly from each
-                participant&apos;s hotel rather than from a single central
-                point.
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-sm border border-border bg-muted/20 p-5">
-            <div className="flex items-start gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-secondary/30 bg-secondary/10 text-secondary">
-                <CalendarDays
-                  aria-hidden="true"
-                  className="h-5 w-5"
-                  strokeWidth={1.8}
-                />
-              </div>
-              <div>
-                <h3 className="font-display text-xl font-bold text-primary">
-                  Field visit details
-                </h3>
-                <p className="mt-2 font-body text-sm leading-6 text-foreground/75">
-                  The visits take place on the final morning of the Congress,
-                  with transport coordinated from participants&apos; hotels.
-                </p>
-              </div>
-            </div>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              {pageStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-sm border border-border bg-background/60 p-3"
-                >
-                  <p className="font-body text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    {stat.label}
-                  </p>
-                  <p className="mt-1 font-display text-xl font-bold text-primary">
-                    {stat.value}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p>
+              All participants are lodged in hotels across Thimphu; departure
+              and return will therefore be organized directly from each
+              participant&apos;s hotel rather than from a single central point.
+            </p>
           </div>
         </section>
 

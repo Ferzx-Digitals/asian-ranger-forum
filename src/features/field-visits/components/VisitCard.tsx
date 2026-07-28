@@ -22,7 +22,6 @@ interface VisitCardProps {
 export function VisitCard({ visit }: VisitCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const coverImage = visit.images[0];
-  const galleryImages = visit.images.slice(1);
   const facts = [
     {
       icon: Clock3,
@@ -179,7 +178,6 @@ export function VisitCard({ visit }: VisitCardProps) {
           {coverImage ? (
             <FieldVisitGallery
               images={visit.images}
-              thumbnails={galleryImages}
               siteName={visit.shortName}
               activeIndex={activeImageIndex}
               onActiveIndexChange={setActiveImageIndex}
