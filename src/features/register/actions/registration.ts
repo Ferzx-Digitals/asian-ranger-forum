@@ -32,11 +32,15 @@ import {
   savePassportUploadState,
 } from "./passport-upload-state";
 import {
+  getRegistrationEmailStatus,
   isRegistrationStorageConfigured,
   persistRegistration,
   removeRegistrationFiles,
   stagePassportCopy,
 } from "./registration-storage";
+
+const ALREADY_REGISTERED_MESSAGE =
+  "A registration has already been submitted for this email address.";
 
 const invitedEmailAddresses = new Set(
   allowedEmails.map((email) => email.trim().toLowerCase()),
@@ -129,6 +133,23 @@ export async function requestRegistrationOtp(
   }
 
   if (!isOtpConfigured()) return otpUnavailableResult();
+
+  const registrationEmailStatus =
+    await getRegistrationEmailStatus(normalizedEmail);
+  if (registrationEmailStatus === "already_registered") {
+    return {
+      success: false,
+      message: ALREADY_REGISTERED_MESSAGE,
+    };
+  }
+
+  if (registrationEmailStatus === "unavailable") {
+    return {
+      success: false,
+      message:
+        "Registration is temporarily unavailable. Please try again shortly.",
+    };
+  }
 
   // Starting a new challenge invalidates any earlier verification proof in
   // this browser, including one for the same address.
@@ -407,7 +428,7 @@ export async function submitRegistration(
       success: false,
       message:
         persistenceResult.reason === "already_registered"
-          ? "A registration has already been submitted for this email address."
+          ? ALREADY_REGISTERED_MESSAGE
           : "We could not save your registration right now. Please try again shortly.",
     };
   }

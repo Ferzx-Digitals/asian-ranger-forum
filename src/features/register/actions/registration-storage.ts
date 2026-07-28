@@ -19,6 +19,11 @@ type RegistrationStorageResult =
         | "unavailable";
     };
 
+export type RegistrationEmailStatus =
+  | "available"
+  | "already_registered"
+  | "unavailable";
+
 export interface StagedPassportFile {
   bucket: string;
   contentType: string;
@@ -58,6 +63,27 @@ function createRegistrationStorageClient(
       persistSession: false,
     },
   });
+}
+
+export async function getRegistrationEmailStatus(
+  email: string,
+): Promise<RegistrationEmailStatus> {
+  const configuration = getStorageConfiguration();
+  if (!configuration) return "unavailable";
+
+  const supabase = createRegistrationStorageClient(configuration);
+  const { data, error } = await supabase
+    .from("registrations")
+    .select("id")
+    .eq("email", email)
+    .limit(1);
+
+  if (error) {
+    console.error("Unable to check registration email status", error);
+    return "unavailable";
+  }
+
+  return data.length > 0 ? "already_registered" : "available";
 }
 
 function getUploadExtension(file: File) {
