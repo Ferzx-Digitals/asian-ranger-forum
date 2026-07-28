@@ -5,30 +5,30 @@ import Link from "next/link";
 const featuredVisits = [
   {
     number: "01",
-    name: "Royal Botanical Park, Lamperi",
-    category: "Temperate forest corridor",
+    name: "Wangditse Trail + Takin Preserve",
+    category: "Wildlife + forest trail",
     difficulty: "Easy",
-    image: "/images/field-visits/lamperi_5.jpg",
-    alt: "A visitor walking through the moss-covered temperate forest at Lamperi",
-    href: "/field-visits#royal-botanical-park-lamperi",
+    image: "/images/field-visits/01-wangditse-trail.jpg",
+    alt: "Wangditse Trail approaching Wangditse Lhakhang above the Thimphu valley",
+    href: "/field-visits#wangditse-trail-takin-preserve",
+  },
+  {
+    number: "02",
+    name: "Buddha Dordenma + Changangkha",
+    category: "Landmark + ridge walk",
+    difficulty: "Easy–moderate",
+    image: "/images/field-visits/03-buddha-dordenma.jpg",
+    alt: "The seated Buddha Dordenma statue at Kuenselphodrang",
+    href: "/field-visits#buddha-dordenma-changangkha-hike",
   },
   {
     number: "04",
-    name: "Tiger’s Nest",
-    category: "Sacred forest hike",
-    difficulty: "Moderate–challenging",
-    image: "/images/field-visits/taktsang_2.jpg",
-    alt: "Tiger’s Nest monastery framed by trees on its forested cliffside",
-    href: "/field-visits#tigers-nest-hike-paro-taktsang",
-  },
-  {
-    number: "03",
-    name: "Royal Takin Preserve",
-    category: "National wildlife",
+    name: "National Biodiversity Centre",
+    category: "Technical conservation",
     difficulty: "Easy",
-    image: "/images/field-visits/takin_3.jpg",
-    alt: "A takin grazing in the pine forest at the Royal Takin Preserve",
-    href: "/field-visits#royal-takin-preserve-motithang",
+    image: "/images/field-visits/06-royal-botanical-park-serbithang.jpg",
+    alt: "Flower-lined path through the Royal Botanical Garden at Serbithang",
+    href: "/field-visits#national-biodiversity-centre-serbithang",
   },
 ] as const;
 
@@ -68,8 +68,8 @@ export function FieldVisitsTeaser() {
 
           <div className="border-l border-primary/20 pl-5 sm:pl-6">
             <p className="font-body text-base leading-7 text-muted-foreground">
-              Walk alongside Bhutan’s rangers through living conservation
-              landscapes—from mist forests to sacred mountain trails.
+              Choose from four half-day experiences spanning wildlife, forest
+              trails, a mountain drive, and technical biodiversity work.
             </p>
           </div>
         </div>

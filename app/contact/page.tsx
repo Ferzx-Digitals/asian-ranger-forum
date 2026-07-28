@@ -44,8 +44,8 @@ export default function ContactPage() {
                 </h2>
                 <p className="font-body text-sm leading-6 text-muted-foreground">
                   Have a question, suggestion, or would like to know more? Send
-                  your query or message in the form below, and our team will
-                  get back to you.
+                  your query or message in the form below, and our team will get
+                  back to you.
                 </p>
               </div>
             </div>
@@ -86,10 +86,10 @@ export default function ContactPage() {
                       Venue
                     </p>
                     <p className="mt-1 font-body text-sm font-semibold text-primary">
-                      Royal Institute of Management
+                      Royal University of Bhutan Convention Center
                     </p>
                     <p className="font-body text-sm text-muted-foreground">
-                      Simtokha, Thimphu, Bhutan
+                      Lower Motithang, Thimphu, Bhutan
                     </p>
                   </div>
                 </div>
@@ -105,8 +105,7 @@ export default function ContactPage() {
                       General Inquiries
                     </h3>
                     <p className="mt-1 font-body text-sm leading-6 text-muted-foreground">
-                      Questions about the congress, registration, or
-                      logistics.
+                      Questions about the congress, registration, or logistics.
                     </p>
                     <a
                       href={OFFICIAL_CONGRESS_MAILTO}

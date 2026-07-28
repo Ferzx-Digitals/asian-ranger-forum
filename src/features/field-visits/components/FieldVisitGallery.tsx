@@ -1,12 +1,12 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useState } from "react";
-import Image from "next/image";
 import { Expand } from "lucide-react";
+import Image from "next/image";
 
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { FieldVisitImage } from "../data";
@@ -17,26 +17,20 @@ interface FieldVisitGalleryProps {
   /** Subset of `images` to render as the "More photos" thumbnail strip. */
   thumbnails?: FieldVisitImage[];
   siteName: string;
+  activeIndex: number | null;
+  onActiveIndexChange: (index: number | null) => void;
 }
 
-export interface FieldVisitGalleryHandle {
-  openAt: (index: number) => void;
-}
-
-export const FieldVisitGallery = forwardRef<
-  FieldVisitGalleryHandle,
-  FieldVisitGalleryProps
->(function FieldVisitGallery({ images, thumbnails, siteName }, ref) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  useImperativeHandle(ref, () => ({
-    openAt: (index: number) => setActiveIndex(index),
-  }));
-
+export function FieldVisitGallery({
+  images,
+  thumbnails,
+  siteName,
+  activeIndex,
+  onActiveIndexChange,
+}: FieldVisitGalleryProps) {
   if (!images.length) return null;
 
-  const activeImage =
-    activeIndex !== null ? images[activeIndex] : undefined;
+  const activeImage = activeIndex !== null ? images[activeIndex] : undefined;
   const thumbnailImages = thumbnails ?? images;
 
   return (
@@ -54,9 +48,9 @@ export const FieldVisitGallery = forwardRef<
                 <button
                   key={image.src}
                   type="button"
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => onActiveIndexChange(index)}
                   style={{ aspectRatio: `${image.width} / ${image.height}` }}
-                  className="group relative block h-32 shrink-0 overflow-hidden rounded-sm border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-40"
+                  className="group relative block h-32 shrink-0 cursor-pointer overflow-hidden rounded-sm border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-40"
                 >
                   <Image
                     src={image.src}
@@ -80,14 +74,15 @@ export const FieldVisitGallery = forwardRef<
 
       <Dialog
         open={activeIndex !== null}
-        onOpenChange={(open) => !open && setActiveIndex(null)}
+        onOpenChange={(open) => !open && onActiveIndexChange(null)}
       >
-        <DialogContent className="max-w-3xl border-none bg-transparent p-0 shadow-none">
+        <DialogContent className="max-w-3xl border-none bg-transparent p-0 shadow-none [&>button]:right-3 [&>button]:top-3 [&>button]:rounded-full [&>button]:bg-background/90 [&>button]:p-2 [&>button]:opacity-100 [&>button]:shadow-md">
           <DialogTitle className="sr-only">
-            {activeImage
-              ? activeImage.alt
-              : `Photo from ${siteName}`}
+            {activeImage ? activeImage.alt : `Photo from ${siteName}`}
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Enlarged field-visit photograph with its source caption and credit.
+          </DialogDescription>
           {activeImage && (
             <div className="relative w-full overflow-hidden rounded-sm bg-background">
               <Image
@@ -97,17 +92,14 @@ export const FieldVisitGallery = forwardRef<
                 height={activeImage.height}
                 sizes="100vw"
                 className="h-auto max-h-[85vh] w-full object-contain"
-                priority
               />
               <div className="border-t border-border bg-card px-4 py-3">
-                <p className="font-body text-sm text-foreground/75">
-                  {activeImage.alt}
+                <p className="font-body text-sm font-semibold text-primary">
+                  {activeImage.caption}
                 </p>
-                {activeImage.credit && (
-                  <p className="mt-1 font-body text-xs text-muted-foreground">
-                    {activeImage.credit}
-                  </p>
-                )}
+                <p className="mt-1 font-body text-xs text-muted-foreground">
+                  {activeImage.credit}
+                </p>
               </div>
             </div>
           )}
@@ -115,4 +107,4 @@ export const FieldVisitGallery = forwardRef<
       </Dialog>
     </>
   );
-});
+}

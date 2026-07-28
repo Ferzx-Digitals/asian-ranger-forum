@@ -87,7 +87,7 @@ export function HostCityVenueSection() {
               <div className="relative aspect-[3/2] overflow-hidden rounded-sm bg-muted/40">
                 <Image
                   src="/images/rim-campus.png"
-                  alt="Illustration of the Royal Institute of Management campus in Simtokha"
+                  alt="Royal University of Bhutan Convention Center in Lower Motithang, Thimphu"
                   fill
                   sizes="(max-width: 640px) 96px, 128px"
                   className="object-contain"
@@ -98,10 +98,10 @@ export function HostCityVenueSection() {
                   Congress Venue
                 </p>
                 <h3 className="mt-1 font-display text-lg font-bold leading-tight text-primary">
-                  Royal Institute of Management
+                  Royal University of Bhutan Convention Center
                 </h3>
                 <p className="mt-1 font-body text-xs leading-5 text-muted-foreground">
-                  Simtokha, Thimphu · 2–4 December 2026
+                  Lower Motithang, Thimphu · 2–4 December 2026
                 </p>
               </div>
             </div>

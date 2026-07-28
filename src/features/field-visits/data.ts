@@ -1,32 +1,16 @@
-export const FIELD_EXCURSION_GUIDE_PATH =
-  "/files/ARC2026_FieldExcursion_Guide.pdf";
-
-export type FieldVisitFactIcon =
-  | "bird"
-  | "calendar"
-  | "clock"
-  | "forest"
-  | "leaf"
-  | "map"
-  | "mountain"
-  | "route"
-  | "ruler"
-  | "species"
-  | "trail"
-  | "users";
-
-export interface FieldVisitFact {
-  icon: FieldVisitFactIcon;
-  label: string;
-  value: string;
-}
+export type FieldVisitDifficulty =
+  | "Easy"
+  | "Easy–Moderate"
+  | "Easy (no hiking)"
+  | "Easy (indoor/institutional)";
 
 export interface FieldVisitImage {
   src: string;
   alt: string;
+  caption: string;
   width: number;
   height: number;
-  credit?: string;
+  credit: string;
 }
 
 export interface FieldVisit {
@@ -35,255 +19,130 @@ export interface FieldVisit {
   name: string;
   shortName: string;
   category: string;
-  difficulty: "Easy" | "Moderate" | "Moderate-Challenging";
   description: string;
-  facts: FieldVisitFact[];
-  highlights: string[];
-  quote: string;
-  mapsUrl: string;
-  images?: FieldVisitImage[];
-  note?: string;
+  duration: string;
+  difficulty: FieldVisitDifficulty;
+  driveTime: string;
+  notes: string;
+  images: FieldVisitImage[];
 }
 
 export const fieldVisits: FieldVisit[] = [
   {
     number: 1,
-    slug: "royal-botanical-park-lamperi",
-    name: "Royal Botanical Park, Lamperi",
-    shortName: "Lamperi",
-    category: "Temperate forest and botanical corridor",
-    difficulty: "Easy",
+    slug: "wangditse-trail-takin-preserve",
+    name: "Wangditse Trail + Takin Preserve",
+    shortName: "Wangditse + Takin Preserve",
+    category: "Wildlife and relaxed forest walk",
     description:
-      "Bhutan's first botanical park sits along the Thimphu-Punakha highway near Dochula Pass, just 30 km from the capital. Its oak, birch, fir, magnolia, orchid, and rhododendron forests form a living library of Himalayan plant life and a critical corridor between two national parks.",
-    facts: [
-      { icon: "map", label: "Distance", value: "30 km from Thimphu" },
-      { icon: "clock", label: "Travel time", value: "~1 hour by road" },
-      { icon: "mountain", label: "Elevation", value: "~2,600 m asl" },
-      { icon: "route", label: "Corridor", value: "Links 2 national parks" },
-    ],
-    highlights: [
-      "Nearly all of Bhutan's rhododendron species represented in one park",
-      "Habitat for red panda, Himalayan black bear, sambar deer, and leopard cat",
-      "Well-maintained walking trails through misty temperate forest",
-      "Viewpoints toward Dochula Pass and the Himalayan range",
-    ],
-    quote:
-      "Walking through Lamperi is walking through the heart of Bhutan's botanical heritage.",
-    mapsUrl:
-      "https://www.google.com/maps/place/Lamperi/@27.5082121,89.7525785,17z/data=!3m1!4b1!4m6!3m5!1s0x39e1eb6b6ea1fdd1:0x491c96a12b6cf102!8m2!3d27.5082121!4d89.7551534!16s%2Fg%2F11svpxml51",
+      "Participants will first stop at the Royal Takin Preserve in Motithang to view the takin, Bhutan's national animal, along with yaks, sambar deer, and pheasants kept in a natural forested enclosure. From there, the group proceeds a short distance to Sangaygang (BBS Tower) to walk the Wangditse Trail — an easy, gently graded path through pine, oak, and rhododendron forest leading to Wangditse Lhakhang, an 18th-century temple with sweeping views over the Thimphu valley and Tashichho Dzong. Suited to participants who want a short, relaxed walk combined with a wildlife stop.",
+    duration: "~2 hrs",
+    difficulty: "Easy",
+    driveTime: "~10 min",
+    notes: "Best for a light walk with a wildlife stop",
     images: [
       {
-        src: "/images/field-visits/lamperi_5.jpg",
-        alt: "Pond and gardens at the Royal Botanical Park, Lamperi, surrounded by temperate forest",
-        width: 2048,
-        height: 1536,
-        credit: "Source: omshatravel.com",
+        src: "/images/field-visits/01-wangditse-trail.jpg",
+        alt: "Wangditse Trail approaching Wangditse Lhakhang above the Thimphu valley",
+        caption: "Figure 1: Wangditse trail",
+        width: 640,
+        height: 480,
+        credit: "Source: Wangditse Goemba Nature Trail (2026) travel guide",
       },
       {
-        src: "/images/field-visits/lamperi_2.jpg",
-        alt: "Reflecting pond with a gazebo at Lamperi Botanical Park",
-        width: 1350,
-        height: 864,
-        credit: "Source: experiencebhutan.com.bt",
-      },
-      {
-        src: "/images/field-visits/lamperi_3.jpg",
-        alt: "Misty forest trail through moss-covered trees at Lamperi",
-        width: 1024,
-        height: 768,
-        credit: "Source: awalkintheworld.com",
-      },
-      {
-        src: "/images/field-visits/lamperi_4.jpg",
-        alt: "Quiet green pathway through the botanical park grounds",
-        width: 909,
-        height: 512,
-        credit: "Source: authenticbhutantours.com",
-      },
-      {
-        src: "/images/field-visits/lamperi_1.jpg",
-        alt: "Wide view of the Lamperi park pond ringed by rocks and forest",
-        width: 1024,
-        height: 383,
-        credit: "Source: experiencebhutan.com.bt",
+        src: "/images/field-visits/02-royal-takin-preserve-center.jpg",
+        alt: "Takin grazing in the forested enclosure at the Royal Takin Preserve",
+        caption: "Figure 2: Royal Takin Preserve Center",
+        width: 850,
+        height: 567,
+        credit: "Source: Bhutan Life Exposure",
       },
     ],
   },
   {
     number: 2,
-    slug: "phajoding-monastery-trail",
-    name: "Phajoding Monastery Trail",
-    shortName: "Phajoding Trail",
-    category: "Sacred landscape day hike",
-    difficulty: "Moderate",
+    slug: "buddha-dordenma-changangkha-hike",
+    name: "Kuenselphodrang (Buddha Dordenma) + Changangkha Hike",
+    shortName: "Buddha Dordenma + Changangkha",
+    category: "Landmark and scenic ridge walk",
     description:
-      "Starting at Motithang in Thimphu, this 7-8 km trail climbs through blue pine forest to a 13th-century monastery complex at 3,650 m. It shows how sacred landscapes can function as long-protected conservation areas.",
-    facts: [
-      { icon: "map", label: "Trailhead", value: "Motithang, Thimphu" },
-      { icon: "clock", label: "Duration", value: "3-4 hrs ascent; full day" },
-      { icon: "ruler", label: "Distance", value: "7-8 km one way" },
-      { icon: "mountain", label: "Top altitude", value: "3,650 m asl" },
-    ],
-    highlights: [
-      "Dense blue pine forest with monal pheasant, blood pheasant, and Himalayan thrushes",
-      "Prayer flag-lined ridges and dramatic views over the Thimphu valley",
-      "13th-century monastery complex with retreat cabins and meditation cells",
-      "A clear ecological transect shaped by altitude zonation",
-    ],
-    quote:
-      "The Phajoding trail is living proof that faith and forests make the strongest conservation alliance.",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Phajoding+Monastery+Trail+Motithang+Thimphu+Bhutan",
+      "The group visits the Buddha Dordenma statue at Kuenselphodrang, one of the world's largest seated Buddha statues, overlooking the Thimphu valley from a hilltop site. This is followed by a short section of the nature trail connecting Kuenselphodrang to Changangkha Lhakhang, a 12th-century temple considered the spiritual home of Bhutanese children. The trail runs through pine forest with intermittent valley views and is rated easy to moderate, suitable for most fitness levels. Given the morning time constraint, the group may cover a shorter segment of the full trail rather than the complete route.",
+    duration: "~2 hrs",
+    difficulty: "Easy–Moderate",
+    driveTime: "~15–20 min",
+    notes: "Combines statue visit with a scenic ridge walk",
     images: [
       {
-        src: "/images/field-visits/phajoding.jpg",
-        alt: "Chorten on the ridge above Phajoding with views across the Thimphu valley",
-        width: 860,
-        height: 574,
-        credit: "Source: bletour.com",
+        src: "/images/field-visits/03-buddha-dordenma.jpg",
+        alt: "The seated Buddha Dordenma statue at Kuenselphodrang",
+        caption: "Figure 3: Buddha Dordenma",
+        width: 678,
+        height: 452,
+        credit: "Source: Bhutan Trip Planner",
+      },
+      {
+        src: "/images/field-visits/04-changangkha-hike.jpg",
+        alt: "View across the Thimphu valley from the Changangkha nature trail",
+        caption: "Figure 4: Changangkha hike",
+        width: 640,
+        height: 427,
+        credit: "Source: Changangkha–Buddha Dordenma Biking Trail",
       },
     ],
   },
   {
     number: 3,
-    slug: "royal-takin-preserve-motithang",
-    name: "Royal Takin Preserve, Motithang",
-    shortName: "Takin Preserve",
-    category: "National animal and urban-forest interface",
-    difficulty: "Easy",
+    slug: "dochula-pass",
+    name: "Dochula Pass",
+    shortName: "Dochula Pass",
+    category: "Scenic mountain drive",
     description:
-      "Only 5 km from central Thimphu, the preserve offers close observation of Bhutan's national animal, the takin, in a natural pine forest enclosure. It is a compact case study in culture, coexistence, and adaptive conservation management.",
-    facts: [
-      { icon: "map", label: "Location", value: "Motithang, Thimphu" },
-      { icon: "clock", label: "Travel time", value: "10-15 min from city" },
-      { icon: "ruler", label: "Distance", value: "5 km from the centre" },
-      { icon: "species", label: "Species", value: "Takin" },
-    ],
-    highlights: [
-      "Close-range observation of Budorcas taxicolor whitei",
-      "Human-wildlife coexistence and adaptive management case study",
-      "Cultural context around takin mythology and royal gifting traditions",
-      "Accessible format suitable for mixed groups and limited mobility",
-    ],
-    quote:
-      "The takin is Bhutan in a single animal - mythical, resilient, and found nowhere else on Earth.",
-    mapsUrl:
-      "https://www.google.com/maps/place/Royal+Takin+Preserve+Motithang/@27.4819878,89.6088833,17z/data=!3m1!4b1!4m6!3m5!1s0x39e19697767cb05b:0x818ebdbd6ccc5e86!8m2!3d27.4817741!4d89.6114265!16s%2Fm%2F0bs4139",
+      "This option is primarily a scenic drive (45–60 minutes each way) rather than a hike, making it the best fit for participants who prefer not to walk. At the pass (3,100 m), the group will view the 108 Druk Wangyal Chortens, memorial stupas built in honor of Bhutanese soldiers, and — on a clear day — a panoramic view of the Himalayan range. Given the driving time, this option requires the most careful attention to the morning schedule to ensure a timely return.",
+    duration: "~2 hrs (mostly drive)",
+    difficulty: "Easy (no hiking)",
+    driveTime: "~45–60 min",
+    notes: "Best for those preferring a scenic drive over walking",
     images: [
       {
-        src: "/images/field-visits/takin_3.jpg",
-        alt: "A family of takin grazing in the pine forest enclosure at the Royal Takin Preserve",
-        width: 1600,
-        height: 801,
-        credit: "Source: relaxgetaways.com",
-      },
-      {
-        src: "/images/field-visits/takin_1.jpg",
-        alt: "A takin grazing on dry grass with pine trees in the background",
-        width: 1440,
-        height: 480,
-        credit: "Source: a-z-animals.com",
-      },
-      {
-        src: "/images/field-visits/takin_2.jpg",
-        alt: "Takin resting and grazing among pine trees at Motithang",
-        width: 850,
-        height: 567,
-        credit: "Source: bletour.com",
+        src: "/images/field-visits/05-dochula-pass.jpg",
+        alt: "The 108 Druk Wangyal Chortens at Dochula Pass beneath a clear Himalayan sky",
+        caption: "Figure 5: Dochula pass",
+        width: 1620,
+        height: 1080,
+        credit: "Source: Tour Bhutan",
       },
     ],
   },
   {
     number: 4,
-    slug: "tigers-nest-hike-paro-taktsang",
-    name: "Tiger's Nest Hike - Paro Taktsang",
-    shortName: "Tiger's Nest",
-    category: "Iconic sacred forest hike",
-    difficulty: "Moderate-Challenging",
+    slug: "national-biodiversity-centre-serbithang",
+    name: "National Biodiversity Centre (Serbithang)",
+    shortName: "National Biodiversity Centre",
+    category: "Technical conservation visit",
     description:
-      "Paro Taktsang is Bhutan's most iconic landmark and one of the world's most dramatic sacred sites. The hike to the cliffside monastery also passes through a high conservation value forest corridor in the eastern Himalayas.",
-    facts: [
-      { icon: "map", label: "Location", value: "Upper Paro Valley" },
-      { icon: "clock", label: "Road time", value: "~1.5-2 hrs drive" },
-      { icon: "trail", label: "Hike", value: "~4 km to monastery" },
-      { icon: "mountain", label: "Altitude", value: "3,120 m asl" },
-    ],
-    highlights: [
-      "Oak-rhododendron-fir-pine habitat and watershed protection forest",
-      "Potential habitat for monal, blood pheasant, musk deer, barking deer, and leopard cat",
-      "Sacred landscape where cultural reverence reinforces ecosystem protection",
-      "Ecological transect from pine through broadleaf to sub-alpine zones",
-    ],
-    quote:
-      "To stand before Tiger's Nest is to understand why the sacred and the natural are not separate.",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Paro+Taktsang+Tiger%27s+Nest+Bhutan",
+      "A technical/institutional visit to the National Biodiversity Centre, which coordinates Bhutan's biodiversity conservation and sustainable-use programmes. The visit typically includes a briefing on the Centre's mandate and a guided tour of facilities such as the National Herbarium, animal and plant genebanks, and the Royal Botanical Garden at Serbithang. Best suited to participants with a technical/scientific interest and limited walking.",
+    duration: "~1.5–2 hrs",
+    difficulty: "Easy (indoor/institutional)",
+    driveTime: "~20 min",
+    notes: "Best for a technical/institutional visit; limited walking",
     images: [
       {
-        src: "/images/field-visits/taktsang_1.jpg",
-        alt: "Paro Taktsang, the Tiger's Nest monastery, perched on a cliffside above the forest",
-        width: 2300,
-        height: 1535,
-        credit: "Source: wallpapercat.com",
-      },
-      {
-        src: "/images/field-visits/taktsang_2.jpg",
-        alt: "Tiger's Nest monastery seen through the forest canopy against the cliff face",
-        width: 2400,
-        height: 1702,
-        credit: "© Tsheltrim Dorji, DoFPS",
-      },
-    ],
-    note: "Monument fee: Nu.1000 per person, borne by the individual participant.",
-  },
-  {
-    number: 5,
-    slug: "gidakom-forest-management-unit",
-    name: "Gidakom Forest Management Unit",
-    shortName: "Gidakom FMU",
-    category: "Scientific forest management",
-    difficulty: "Easy",
-    description:
-      "Gidakom FMU covers 13,101.25 hectares in Mewang Gewog and has been under scientific management since 1992. It offers a hands-on window into Bhutan's approach to sustainable forestry, community livelihoods, and transparent resource accounting.",
-    facts: [
-      { icon: "map", label: "Location", value: "Mewang Gewog, Thimphu" },
-      { icon: "clock", label: "Road time", value: "~50 min-1 hr drive" },
-      {
-        icon: "forest",
-        label: "Forest types",
-        value: "Blue pine, conifer, fir, broadleaf",
-      },
-      {
-        icon: "users",
-        label: "Communities",
-        value: "266 households / 9 villages",
-      },
-    ],
-    highlights: [
-      "Management planning across blue pine, mixed conifer, fir, and broadleaf forests",
-      "Production, non-production, and protection management circles",
-      "92%+ timber volume compliance against permissible volumes",
-      "Reforestation, forest road construction, and climate record integration",
-    ],
-    quote:
-      "Gidakom is what sustainable forestry looks like when science, community, and commitment align over decades.",
-    mapsUrl:
-      "https://www.google.com/maps/place/Gidakom+Forest+Management+Unit+Office/@27.4362763,89.3835134,12z/data=!4m10!1m2!2m1!1sGidakom+Forest+Management+Unit,+Thimphu+Divisional+Forest+Office!3m6!1s0x39e19bb7b91693d3:0xfcd9b06c5bd7f22f!8m2!3d27.4362763!4d89.5359487",
-    images: [
-      {
-        src: "/images/field-visits/gidakom_1.jpg",
-        alt: "Aerial view of timber stacked at a forest management site in Gidakom FMU",
-        width: 2400,
-        height: 1800,
-        credit: "© Tsheltrim Dorji, DoFPS",
-      },
-      {
-        src: "/images/field-visits/gidakom_2.jpg",
-        alt: "Aerial view of sorted timber piles and forestry equipment at Gidakom FMU",
-        width: 2400,
-        height: 1800,
-        credit: "© Tsheltrim Dorji, DoFPS",
+        src: "/images/field-visits/06-royal-botanical-park-serbithang.jpg",
+        alt: "Flower-lined path through the Royal Botanical Garden at Serbithang",
+        caption: "Figure 6: Royal Botanical Park, Serbithang",
+        width: 1783,
+        height: 951,
+        credit:
+          "Source: National Biodiversity Centre, Ministry of Agriculture and Livestock",
       },
     ],
   },
 ];
+
+export const fieldVisitPackingList = [
+  "Warm layers / jacket (early December mornings are cold, especially at Dochula Pass)",
+  "Comfortable walking shoes (Options 1 and 2 involve short walks/hikes)",
+  "Water bottle and any personal medication",
+  "Camera/binoculars, if desired",
+  "Hotel key/ID for return transfer coordination",
+] as const;

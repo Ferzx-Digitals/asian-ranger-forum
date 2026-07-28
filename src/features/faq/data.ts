@@ -160,8 +160,8 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What accommodation is provided?",
         answer:
-          "Accommodation is included in the registration fee. Participants will be accommodated at or near the Royal Institute of Management (RIM) in Simtokha, Thimphu, for the duration of the congress (1-4 December 2026).",
-        keywords: ["hotel", "rim", "simtokha", "stay"],
+          "Accommodation is included in the registration fee. Participants will be accommodated in hotels in Thimphu, conveniently located near the Royal University of Bhutan Convention Center, for the duration of the congress (1-4 December 2026).",
+        keywords: ["hotel", "rub", "lower motithang", "stay"],
       },
       {
         question: "Can I extend my stay before or after the congress?",

@@ -90,7 +90,8 @@ export default function AboutPage() {
                 Where
               </p>
               <p className="font-body text-sm text-foreground/80">
-                Royal Institute of Management (RIM), Simtokha, Thimphu, Bhutan
+                Royal University of Bhutan Convention Center, Lower Motithang,
+                Thimphu, Bhutan
               </p>
             </div>
             <div className="rounded-sm border border-border bg-muted/30 px-5 py-4">

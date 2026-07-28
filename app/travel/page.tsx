@@ -1,4 +1,10 @@
-import { ArrowRight, Bed, ClipboardList, HelpCircle, Plane } from "lucide-react";
+import {
+  ArrowRight,
+  Bed,
+  ClipboardList,
+  HelpCircle,
+  Plane,
+} from "lucide-react";
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { FaqNoticeGrid } from "@/features/faq";
@@ -20,7 +26,7 @@ const travelLinks = [
     icon: Bed,
     title: "Venue & Accommodation",
     description:
-      "About Thimphu, the Royal Institute of Management venue, and what's included in your stay.",
+      "About Thimphu, the Royal University of Bhutan Convention Center, and what's included in your stay.",
   },
   {
     href: "/travel/registration",

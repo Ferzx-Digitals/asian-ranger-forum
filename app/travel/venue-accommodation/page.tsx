@@ -11,7 +11,7 @@ export default function VenueAccommodationPage() {
       <PageHero
         eyebrow="Plan Travel"
         title="Venue & Accommodation"
-        subtitle="About Thimphu, the Royal Institute of Management venue, and what's included in your stay."
+        subtitle="About Thimphu, the Royal University of Bhutan Convention Center, and what's included in your stay."
         backgroundImage={{
           src: "/images/travel-hero-green.png",
           alt: "Green-toned Bhutan mountain road and valley travel route toward Thimphu",
@@ -51,18 +51,15 @@ export default function VenueAccommodationPage() {
           <VenuePhoto />
 
           <h2 className="font-display text-2xl font-bold text-primary leading-tight mt-3">
-            Royal Institute of Management
+            Royal University of Bhutan Convention Center
           </h2>
           <p className="font-body text-sm text-muted-foreground">
-            Simtokha, Thimphu, Bhutan
+            Lower Motithang, Thimphu, Bhutan
           </p>
           <p className="font-body text-sm text-foreground/80 leading-relaxed max-w-2xl mx-auto mt-2">
-            Bhutan&apos;s premier institute for management and governance
-            training. The venue features a main auditorium with seating for up
-            to 200 participants and modern audio-visual facilities, plus more
-            than 15 breakout rooms and training halls. RIM is located just
-            outside Thimphu city, within 10–15 minutes&apos; drive of major
-            hotels.
+            Located in Lower Motithang, the Convention Center is part of the
+            Royal University of Bhutan and provides a central Thimphu setting
+            for the Congress.
           </p>
         </section>
 
